@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Geist', sans-serif;
+    background-color: #0d0e12;
+    color: #e4e6eb;
+  }
+  .font-mono {
+    font-family: 'Geist Mono', monospace;
+  }
+}
+
+/* Custom UI Utility classes for our Cyberpunk SaaS Redesign */
+.cyber-card {
+  background-color: #13151c;
+  border: 1px solid #1f222e;
+  border-radius: 8px;
+}
+
+.cyber-panel-dark {
+  background-color: #090a0d;
+  border: 1px solid #161821;
+}
+
+.text-cyber-red {
+  color: #ff5a5a;
+}
+
+.bg-cyber-red {
+  background-color: #ff5a5a;
+}
+
+.border-cyber-red {
+  border-color: #ff5a5a;
+}
+
+/* Slick Custom Scrollbar for our Code Terminal Blocks */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090a0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #252936;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #383d52;
+}
