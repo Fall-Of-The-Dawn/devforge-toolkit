@@ -4,9 +4,9 @@ const PRESETS = [
   { name: "Subtle", offsetX: "0", offsetY: "1", blur: "3", spread: "0", color: "#00000033", inset: false },
   { name: "Medium", offsetX: "0", offsetY: "4", blur: "6", spread: "-1", color: "#00000026", inset: false },
   { name: "Large", offsetX: "0", offsetY: "10", blur: "15", spread: "-3", color: "#0000001a", inset: false },
-  { name: "Glow", offsetX: "0", offsetY: "0", blur: "20", spread: "0", color: "#00e67666", inset: false },
+  { name: "Glow", offsetX: "0", offsetY: "0", blur: "20", spread: "0", color: "#f0a50066", inset: false },
   { name: "Inset", offsetX: "0", offsetY: "2", blur: "4", spread: "0", color: "#00000026", inset: true },
-  { name: "Neon", offsetX: "0", offsetY: "0", blur: "10", spread: "2", color: "#00e676", inset: false },
+  { name: "Neon", offsetX: "0", offsetY: "0", blur: "10", spread: "2", color: "#f0a500", inset: false },
 ];
 
 export default function BoxShadowGenerator({ isLight, mutedText }) {
@@ -76,13 +76,13 @@ export default function BoxShadowGenerator({ isLight, mutedText }) {
         </div>
       </div>
 
-      <div className="flex gap-5 flex-1 min-h-0">
-        <div className={`w-[260px] shrink-0 rounded-lg border p-4 space-y-4 overflow-y-auto ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
+      <div className="flex flex-col md:flex-row gap-5 flex-1 min-h-0">
+        <div className={`md:w-[260px] md:shrink-0 rounded-lg border p-4 space-y-4 overflow-y-auto ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
           <div>
             <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>Presets</label>
             <div className="grid grid-cols-3 gap-1.5">
               {PRESETS.map((p) => (
-                <button key={p.name} onClick={() => applyPreset(p)} className={`px-2 py-1.5 text-[10px] font-medium rounded border transition-all cursor-pointer ${isLight ? "bg-white border-gray-200 text-gray-600 hover:border-green-300" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:border-[#00e676]/30"}`}>{p.name}</button>
+                <button key={p.name} onClick={() => applyPreset(p)} className={`px-2 py-1.5 text-[10px] font-medium rounded border transition-all cursor-pointer ${isLight ? "bg-white border-gray-200 text-gray-600 hover:border-[#e8c870]" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:border-[#f0a500]/30"}`}>{p.name}</button>
               ))}
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function BoxShadowGenerator({ isLight, mutedText }) {
                 <span className={`text-[10px] font-bold uppercase ${mutedText}`}>Shadow {i + 1}</span>
                 <div className="flex items-center gap-2">
                   <label className={`flex items-center gap-1 text-[10px] ${mutedText} cursor-pointer`}>
-                    <input type="checkbox" checked={s.inset} onChange={(e) => updateShadow(i, "inset", e.target.checked)} className="w-3 h-3 accent-[#00e676]" />
+                    <input type="checkbox" checked={s.inset} onChange={(e) => updateShadow(i, "inset", e.target.checked)} className="w-3 h-3 accent-[#f0a500]" />
                     Inset
                   </label>
                   <button onClick={() => removeShadow(i)} disabled={shadows.length <= 1} className={`text-xs transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed ${isLight ? "text-gray-400 hover:text-red-500" : "text-[#444] hover:text-red-400"}`}>×</button>
@@ -113,7 +113,7 @@ export default function BoxShadowGenerator({ isLight, mutedText }) {
             </div>
           ))}
 
-          <button onClick={addShadow} disabled={shadows.length >= 5} className={`w-full py-2 text-[10px] font-bold rounded-md border border-dashed transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${isLight ? "border-gray-300 text-gray-500 hover:border-green-400 hover:text-green-600" : "border-[#333] text-[#666] hover:border-[#00e676]/30 hover:text-[#00e676]"}`}>+ Add Shadow Layer</button>
+          <button onClick={addShadow} disabled={shadows.length >= 5} className={`w-full py-2 text-[10px] font-bold rounded-md border border-dashed transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${isLight ? "border-gray-300 text-gray-500 hover:border-[#f0a500] hover:text-[#c87d0a]" : "border-[#333] text-[#666] hover:border-[#f0a500]/30 hover:text-[#f0a500]"}`}>+ Add Shadow Layer</button>
         </div>
 
         <div className="flex-1 flex flex-col min-w-0 gap-4">
@@ -121,14 +121,14 @@ export default function BoxShadowGenerator({ isLight, mutedText }) {
             <div className={`w-48 h-48 rounded-xl ${isLight ? "bg-white" : "bg-[#1a1a1a]"}`} style={{ boxShadow: cssOutput.replace("box-shadow: ", "").replace(";", "") }} />
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <div className={`flex-1 rounded-lg border p-3 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
               <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>CSS</label>
-              <pre className={`text-xs font-mono whitespace-pre-wrap break-all ${isLight ? "text-gray-700" : "text-[#00e676]"}`}>{cssOutput}</pre>
+              <pre className={`text-xs font-mono whitespace-pre-wrap break-all ${isLight ? "text-gray-700" : "text-[#f0a500]"}`}>{cssOutput}</pre>
             </div>
             <div className={`flex-1 rounded-lg border p-3 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
               <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>Tailwind</label>
-              <code className={`text-xs font-mono break-all ${isLight ? "text-gray-700" : "text-[#00e676]"}`}>{tailwindOutput}</code>
+              <code className={`text-xs font-mono break-all ${isLight ? "text-gray-700" : "text-[#f0a500]"}`}>{tailwindOutput}</code>
             </div>
           </div>
         </div>

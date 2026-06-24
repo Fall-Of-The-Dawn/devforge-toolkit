@@ -35,14 +35,14 @@ export default function CssConverter({ isLight, mutedText, activeBtn, inactiveBt
           <button onClick={() => setActiveDirection("tailwind-to-css")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all duration-150 cursor-pointer ${activeDirection === "tailwind-to-css" ? activeBtn : inactiveBtn}`}>Tailwind → CSS</button>
         </div>
       </div>
-      <div className="flex-1 flex gap-4 min-h-0">
+      <div className="flex-1 flex flex-col md:flex-row gap-4 min-h-0">
         <div className="flex-1 flex flex-col min-w-0">
           <label className={`text-xs ${mutedText} mb-2 font-mono`}>{activeDirection === "css-to-tailwind" ? "CSS INPUT" : "TAILWIND INPUT"}</label>
           <textarea
             value={activeDirection === "css-to-tailwind" ? cssInput : tailwindInput}
             onChange={(e) => activeDirection === "css-to-tailwind" ? convertCss(e.target.value) : convertTailwind(e.target.value)}
-            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-green-400 text-gray-800" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#00e676] text-[#ccc]"}`}
-            placeholder={activeDirection === "css-to-tailwind" ? 'Paste CSS code to convert to Tailwind classes...\n\nExample:\n.box {\n  display: flex;\n  padding: 1rem;\n  background: #00e676;\n  border-radius: 0.5rem;\n}' : 'Paste Tailwind utility classes to convert to CSS...\n\nExample:\nflex p-4 bg-green-500 rounded-lg hover:bg-green-600'}
+            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#f0a500] text-gray-800" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#f0a500] text-[#ccc]"}`}
+            placeholder={activeDirection === "css-to-tailwind" ? 'Paste CSS code to convert to Tailwind classes...\n\nExample:\n.box {\n  display: flex;\n  padding: 1rem;\n  background: #f0a500;\n  border-radius: 0.5rem;\n}' : 'Paste Tailwind utility classes to convert to CSS...\n\nExample:\nflex p-4 bg-[#fff8ed]0 rounded-lg hover:bg-green-600'}
             spellCheck={false}
           />
         </div>

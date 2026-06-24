@@ -26,14 +26,17 @@ const NAV_GROUPS = [
       { id: "gradient", label: "Gradient" },
       { id: "box-shadow", label: "Box Shadow" },
       { id: "layout", label: "Layout" },
+      { id: "color-contrast", label: "Color Contrast" },
     ],
   },
   {
     id: "editors",
     label: "Editors",
     items: [
-      { id: "diff", label: "Text Diff" },
+      { id: "text-diff", label: "Text Diff" },
       { id: "html-preview", label: "HTML Preview" },
+      { id: "markdown", label: "Markdown" },
+      { id: "css-minifier", label: "CSS Minifier" },
     ],
   },
   {
@@ -42,15 +45,16 @@ const NAV_GROUPS = [
     items: [
       { id: "lorem", label: "Lorem Ipsum" },
       { id: "qr-code", label: "QR Code" },
+      { id: "password", label: "Password" },
+      { id: "uuid", label: "UUID" },
+      { id: "timestamp", label: "Timestamp" },
     ],
   },
 ];
 
 function Dropdown({ group, activeTool, setActiveTool, isLight, mutedText2, activeBtn }) {
   const [open, setOpen] = useState(false);
-  const [pos, setPos] = useState({ top: 0, left: 0 });
   const ref = useRef(null);
-  const btnRef = useRef(null);
 
   useEffect(() => {
     const handler = (e) => {
@@ -59,14 +63,6 @@ function Dropdown({ group, activeTool, setActiveTool, isLight, mutedText2, activ
     if (open) document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [open]);
-
-  const handleToggle = () => {
-    if (!open && btnRef.current) {
-      const rect = btnRef.current.getBoundingClientRect();
-      setPos({ top: rect.bottom + 6, left: rect.left });
-    }
-    setOpen(!open);
-  };
 
   const isActive = group.items.some((item) => item.id === activeTool);
   const activeItem = group.items.find((item) => item.id === activeTool);
@@ -90,8 +86,7 @@ function Dropdown({ group, activeTool, setActiveTool, isLight, mutedText2, activ
   return (
     <div ref={ref} className="relative shrink-0">
       <button
-        ref={btnRef}
-        onClick={handleToggle}
+        onClick={() => setOpen(!open)}
         className={`flex items-center gap-1 px-2.5 py-1 text-[13px] font-medium rounded-md transition-all duration-150 cursor-pointer whitespace-nowrap shrink-0 ${
           isActive
             ? `${activeBtn} border`
@@ -105,8 +100,7 @@ function Dropdown({ group, activeTool, setActiveTool, isLight, mutedText2, activ
       </button>
       {open && (
         <div
-          className={`fixed min-w-[180px] rounded-lg border py-1.5 shadow-xl z-[100] ${isLight ? "bg-white border-gray-200 shadow-gray-200/50" : "bg-[#141414] border-[#222] shadow-black/50"}`}
-          style={{ top: pos.top, left: pos.left }}
+          className={`absolute top-full left-0 mt-1 min-w-[180px] rounded-lg border py-1.5 shadow-xl z-[100] ${isLight ? "bg-white border-[#e2e0da] shadow-black/10" : "bg-[#181c28] border-[#1c2030] shadow-black/40"}`}
         >
           {group.items.map((item) => (
             <button
@@ -114,8 +108,8 @@ function Dropdown({ group, activeTool, setActiveTool, isLight, mutedText2, activ
               onClick={() => { setActiveTool(item.id); setOpen(false); }}
               className={`w-full text-left px-3 py-2 text-[13px] font-medium transition-colors cursor-pointer ${
                 activeTool === item.id
-                  ? isLight ? "bg-green-50 text-green-600" : "bg-[#00e676]/10 text-[#00e676]"
-                  : isLight ? "text-gray-700 hover:bg-gray-50" : "text-[#ccc] hover:bg-[#1a1a1a]"
+                  ? isLight ? "bg-[#fff8ed] text-[#c87d0a]" : "bg-[rgba(240,165,0,0.08)] text-[#f0a500]"
+                  : isLight ? "text-[#5a5f6e] hover:bg-[#f0efe9]" : "text-[#8891a4] hover:bg-[#1e2333]"
               }`}
             >
               {item.label}
@@ -127,27 +121,88 @@ function Dropdown({ group, activeTool, setActiveTool, isLight, mutedText2, activ
   );
 }
 
-export default function Header({ activeTool, setActiveTool, isLight, setTheme, setIsPrivacyOpen, mutedText, mutedText2, activeBtn }) {
+function MobileMenu({ open, setOpen, activeTool, setActiveTool, isLight }) {
+  const [expandedGroup, setExpandedGroup] = useState(null);
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  if (!open) return null;
+
   return (
-    <header className={`h-[52px] border-b ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"} px-4 flex items-center justify-between shrink-0 z-40 transition-colors duration-200`}>
+    <div className="fixed inset-0 z-[90] md:hidden">
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setOpen(false)} />
+      <div className={`absolute top-[52px] left-0 right-0 bottom-0 overflow-y-auto ${isLight ? "bg-[#f7f6f3]" : "bg-[#0c0e14]"}`}>
+        <div className="p-4 space-y-1">
+          {NAV_GROUPS.map((group) => (
+            <div key={group.id}>
+              <button
+                onClick={() => setExpandedGroup(expandedGroup === group.id ? null : group.id)}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  isLight ? "text-[#1a1d26] hover:bg-[#f0efe9]" : "text-[#c8ccd4] hover:bg-[#181c28]"
+                }`}
+              >
+                {group.label || "Quick Access"}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`transition-transform ${expandedGroup === group.id ? "rotate-180" : ""}`}>
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+              {expandedGroup === group.id && (
+                <div className="pl-3 pb-2 space-y-0.5">
+                  {group.items.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => { setActiveTool(item.id); setOpen(false); }}
+                      className={`w-full text-left px-3 py-2 rounded-md text-[13px] transition-colors ${
+                        activeTool === item.id
+                          ? isLight ? "bg-[#fff8ed] text-[#c87d0a]" : "bg-[rgba(240,165,0,0.08)] text-[#f0a500]"
+                          : isLight ? "text-[#5a5f6e] hover:bg-[#f0efe9]" : "text-[#8891a4] hover:bg-[#181c28]"
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Header({ activeTool, setActiveTool, isLight, setTheme, setIsPrivacyOpen, mutedText, mutedText2, activeBtn }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <header className={`h-[52px] border-b ${isLight ? "bg-[#f7f6f3]/80 border-[#e2e0da]" : "bg-[#0c0e14]/80 border-[#1c2030]"} backdrop-blur-md px-4 flex items-center justify-between shrink-0 z-40 transition-colors duration-200`}>
       <div className="flex items-center gap-1 min-w-0">
         <button
           onClick={() => setActiveTool("home")}
           className="flex items-center gap-2 no-underline cursor-pointer shrink-0 mr-2"
         >
-          <div className={`w-7 h-7 ${isLight ? "bg-green-50 border-green-200" : "bg-[#111] border-[#222]"} border rounded-md flex items-center justify-center shrink-0`}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00e676" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
+          <div className={`w-7 h-7 ${isLight ? "bg-[#fff8ed] border-[#f0dfc0]" : "bg-[#181c28] border-[#1c2030]"} border rounded-md flex items-center justify-center shrink-0`}>
+            <svg width="15" height="15" viewBox="0 0 48 48" fill="none">
+              <rect width="48" height="48" rx="10" fill={isLight ? "#f7f6f3" : "#12151e"}/>
+              <path d="M12 14l6-6 2 2-6 6 6 6-2 2-6-6z" fill={isLight ? "#c87d0a" : "#f0a500"}/>
+              <path d="M36 14l-6-6-2 2 6 6-6 6 2 2 6-6z" fill={isLight ? "#c87d0a" : "#f0a500"}/>
+              <circle cx="24" cy="24" r="4" fill={isLight ? "#c87d0a" : "#f0a500"} opacity="0.5"/>
             </svg>
           </div>
-          <span className={`text-base font-bold ${isLight ? "text-gray-900" : "text-white"} tracking-tight shrink-0`}>
-            devforge
+          <span className={`text-base font-bold ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"} tracking-tight shrink-0 font-display`}>
+            omnidev
           </span>
           <span className={`text-xs ${mutedText} font-mono shrink-0`}>.tools</span>
         </button>
 
-        <nav className="flex items-center gap-0.5 min-w-0">
+        <nav className="hidden md:flex items-center gap-0.5 min-w-0">
           {NAV_GROUPS.map((group) => (
             <Dropdown
               key={group.id}
@@ -165,7 +220,7 @@ export default function Header({ activeTool, setActiveTool, isLight, setTheme, s
       <div className="flex items-center gap-2 shrink-0 ml-2">
         <button
           onClick={() => setTheme(isLight ? "dark" : "light")}
-          className={`p-2 rounded-md border transition-all duration-150 cursor-pointer ${isLight ? "border-gray-200 hover:border-gray-300 text-gray-500 hover:text-gray-700" : "border-[#222] hover:border-[#444] text-[#666] hover:text-[#999]"}`}
+          className={`p-2 rounded-md border transition-all duration-150 cursor-pointer ${isLight ? "border-[#e2e0da] hover:border-[#d0cec8] text-[#5a5f6e] hover:text-[#1a1d26]" : "border-[#1c2030] hover:border-[#2a3045] text-[#505868] hover:text-[#8891a4]"}`}
           title={`Switch to ${isLight ? "dark" : "light"} mode`}
         >
           {isLight ? (
@@ -188,11 +243,36 @@ export default function Header({ activeTool, setActiveTool, isLight, setTheme, s
         </button>
         <button
           onClick={() => setIsPrivacyOpen(true)}
-          className={`text-sm ${mutedText} hover:text-current font-medium transition-colors cursor-pointer`}
+          className={`text-sm ${mutedText} hover:text-current font-medium transition-colors cursor-pointer hidden sm:block`}
         >
           Privacy
         </button>
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className={`p-2 rounded-md border md:hidden transition-all duration-150 cursor-pointer ${isLight ? "border-[#e2e0da] text-[#5a5f6e]" : "border-[#1c2030] text-[#505868]"}`}
+        >
+          {mobileOpen ? (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          ) : (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          )}
+        </button>
       </div>
+
+      <MobileMenu
+        open={mobileOpen}
+        setOpen={setMobileOpen}
+        activeTool={activeTool}
+        setActiveTool={setActiveTool}
+        isLight={isLight}
+      />
     </header>
   );
 }

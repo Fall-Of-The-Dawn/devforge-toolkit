@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import QRCode from "qrcode";
 
 export default function QrCodeGenerator({ isLight, mutedText }) {
-  const [text, setText] = useState("https://devforge.tools");
+  const [text, setText] = useState("https://omnidev-toolkit.vercel.app");
   const [size, setSize] = useState(256);
   const [darkColor, setDarkColor] = useState("#000000");
   const [lightColor, setLightColor] = useState("#ffffff");
@@ -53,11 +53,11 @@ export default function QrCodeGenerator({ isLight, mutedText }) {
         </div>
       </div>
 
-      <div className="flex gap-5 flex-1 min-h-0">
-        <div className={`w-[260px] shrink-0 rounded-lg border p-4 space-y-4 overflow-y-auto ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
+      <div className="flex flex-col md:flex-row gap-5 flex-1 min-h-0">
+        <div className={`md:w-[260px] md:shrink-0 rounded-lg border p-4 space-y-4 overflow-y-auto ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
           <div className="flex flex-col gap-1">
             <label className={`text-[10px] font-bold uppercase ${mutedText}`}>Content</label>
-            <textarea value={text} onChange={(e) => setText(e.target.value)} className={`w-full h-28 resize-none rounded-lg p-3 font-mono text-sm border focus:outline-none transition-colors ${isLight ? "bg-white border-gray-200 focus:border-green-400 text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#00e676] text-[#e0e0e0]"}`} placeholder="Enter text or URL to encode..." spellCheck={false} />
+            <textarea value={text} onChange={(e) => setText(e.target.value)} className={`w-full h-28 resize-none rounded-lg p-3 font-mono text-sm border focus:outline-none transition-colors ${isLight ? "bg-white border-gray-200 focus:border-[#f0a500] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#f0a500] text-[#e0e0e0]"}`} placeholder="Enter text or URL to encode..." spellCheck={false} />
           </div>
 
           <div className="flex flex-col gap-1">
@@ -69,7 +69,7 @@ export default function QrCodeGenerator({ isLight, mutedText }) {
             <label className={`text-[10px] font-bold uppercase ${mutedText}`}>Error Correction</label>
             <div className="flex gap-1.5">
               {["L", "M", "Q", "H"].map((l) => (
-                <button key={l} onClick={() => setErrorLevel(l)} className={`flex-1 py-1.5 text-[10px] font-bold rounded border transition-all cursor-pointer ${errorLevel === l ? (isLight ? "bg-green-50 border-green-200 text-green-600" : "bg-[#00e676]/10 border-[#00e676]/30 text-[#00e676]") : (isLight ? "bg-white border-gray-200 text-gray-400 hover:text-gray-600" : "bg-[#111] border-[#1a1a1a] text-[#555] hover:text-[#888]")}`}>{l}</button>
+                <button key={l} onClick={() => setErrorLevel(l)} className={`flex-1 py-1.5 text-[10px] font-bold rounded border transition-all cursor-pointer ${errorLevel === l ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-white border-gray-200 text-gray-400 hover:text-gray-600" : "bg-[#111] border-[#1a1a1a] text-[#555] hover:text-[#888]")}`}>{l}</button>
               ))}
             </div>
           </div>

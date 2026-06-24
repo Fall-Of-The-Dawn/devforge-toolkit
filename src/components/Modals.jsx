@@ -45,22 +45,22 @@ export function ExportModal({ isOpen, setIsExportModalOpen, isLight, mutedText, 
             <label className={`text-xs font-bold uppercase tracking-wider ${mutedText} mb-2 block`}>Format</label>
             <div className="grid grid-cols-2 gap-2">
               {["json", "csv", "sql", "xml"].map((f) => (
-                <button key={f} onClick={() => setExportFormat(f)} className={`px-3 py-2 text-xs font-bold uppercase rounded-md border transition-all cursor-pointer ${exportFormat === f ? "bg-green-50 border-green-200 text-green-600" : isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700 hover:border-gray-300" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999] hover:border-[#333]"}`}>{f}</button>
+                <button key={f} onClick={() => setExportFormat(f)} className={`px-3 py-2 text-xs font-bold uppercase rounded-md border transition-all cursor-pointer ${exportFormat === f ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700 hover:border-gray-300" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999] hover:border-[#333]"}`}>{f}</button>
               ))}
             </div>
           </div>
           <div>
             <label className={`text-xs font-bold uppercase tracking-wider ${mutedText} mb-2 block`}>Filename</label>
-            <input type="text" value={exportFilename} onChange={(e) => setExportFilename(e.target.value)} className={`w-full px-3 py-2 text-sm rounded-md border bg-transparent focus:outline-none ${isLight ? "border-gray-200 focus:border-green-400 text-gray-900" : "border-[#1a1a1a] focus:border-[#00e676] text-[#ccc]"}`} />
+            <input type="text" value={exportFilename} onChange={(e) => setExportFilename(e.target.value)} className={`w-full px-3 py-2 text-sm rounded-md border bg-transparent focus:outline-none ${isLight ? "border-gray-200 focus:border-[#f0a500] text-gray-900" : "border-[#1a1a1a] focus:border-[#f0a500] text-[#ccc]"}`} />
           </div>
           <div>
             <label className={`text-xs font-bold uppercase tracking-wider ${mutedText} mb-2 block`}>Rows</label>
-            <input type="number" min="1" max="1000" value={exportCount} onChange={(e) => setExportCount(Number(e.target.value))} className={`w-full px-3 py-2 text-sm rounded-md border bg-transparent focus:outline-none ${isLight ? "border-gray-200 focus:border-green-400 text-gray-900" : "border-[#1a1a1a] focus:border-[#00e676] text-[#ccc]"}`} />
+            <input type="number" min="1" max="1000" value={exportCount} onChange={(e) => setExportCount(Number(e.target.value))} className={`w-full px-3 py-2 text-sm rounded-md border bg-transparent focus:outline-none ${isLight ? "border-gray-200 focus:border-[#f0a500] text-gray-900" : "border-[#1a1a1a] focus:border-[#f0a500] text-[#ccc]"}`} />
           </div>
         </div>
         <div className="flex gap-3 mt-6">
           <button onClick={() => setIsExportModalOpen(false)} className={`flex-1 px-4 py-2.5 text-sm font-medium rounded-lg border cursor-pointer transition-all ${isLight ? "bg-gray-50 border-gray-200 text-gray-600 hover:text-gray-900 hover:border-gray-300" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#ccc] hover:border-[#333]"}`}>Cancel</button>
-          <button onClick={downloadFile} className="flex-1 px-4 py-2.5 text-sm font-bold text-[#0a0a0a] bg-[#00e676] hover:bg-[#00c868] rounded-lg transition-all duration-150 hover:shadow-lg hover:shadow-[#00e676]/20 cursor-pointer">Download</button>
+          <button onClick={downloadFile} className="flex-1 px-4 py-2.5 text-sm font-bold text-[#0a0a0a] bg-[#f0a500] hover:bg-[#d4920a] rounded-lg transition-all duration-150 hover:shadow-lg hover:shadow-[#f0a500]/20 cursor-pointer">Download</button>
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@ export function PrivacyModal({ isOpen, setIsPrivacyOpen, isLight }) {
           </div>
         </div>
         <div className="mt-5 flex justify-end">
-          <button onClick={() => setIsPrivacyOpen(false)} className="px-5 py-2 text-sm font-bold text-[#0a0a0a] bg-[#00e676] hover:bg-[#00c868] rounded-lg transition-all duration-150 cursor-pointer">Got it</button>
+          <button onClick={() => setIsPrivacyOpen(false)} className="px-5 py-2 text-sm font-bold text-[#0a0a0a] bg-[#f0a500] hover:bg-[#d4920a] rounded-lg transition-all duration-150 cursor-pointer">Got it</button>
         </div>
       </div>
     </div>

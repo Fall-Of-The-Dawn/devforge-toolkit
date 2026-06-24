@@ -61,8 +61,8 @@ export default function Generator({
 
   return (
     <>
-      <aside className={`w-[280px] border-r ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"} p-5 flex flex-col shrink-0 overflow-y-auto transition-colors duration-200`}>
-        <div className="space-y-6">
+      <aside className={`w-full md:w-[280px] border-b md:border-b-0 md:border-r ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"} p-4 md:p-5 flex flex-col shrink-0 overflow-y-auto transition-colors duration-200`}>
+        <div className="space-y-4 md:space-y-6">
           <div>
             <label className={`text-xs font-bold uppercase tracking-wider ${mutedText} mb-3 block`}>Data Type</label>
             <div className="grid grid-cols-2 gap-1.5">
@@ -76,15 +76,15 @@ export default function Generator({
           <div>
             <div className="flex items-center justify-between mb-3">
               <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Fields</label>
-              <button onClick={addField} className="text-xs font-bold text-[#00e676] hover:text-[#00ff88] transition-colors cursor-pointer">+ Add</button>
+              <button onClick={addField} className="text-xs font-bold text-[#f0a500] hover:text-[#d4920a] transition-colors cursor-pointer">+ Add</button>
             </div>
-            <div className="space-y-1.5 max-h-[240px] overflow-y-auto pr-1">
+            <div className="space-y-1.5 max-h-[160px] md:max-h-[240px] overflow-y-auto pr-1">
               {fields.map((f) => {
                 const isDuplicate = fields.filter((field) => field.name.trim() === f.name.trim() && f.name.trim() !== "").length > 1;
                 return (
                   <div key={f.id} className={`flex items-center gap-1.5 p-2 rounded-md border transition-colors duration-150 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
-                    <input type="text" value={f.name} onChange={(e) => updateField(f.id, "name", e.target.value.replace(/\s+/g, "_"))} className={`flex-1 min-w-0 px-2 py-1 text-xs font-mono rounded border bg-transparent focus:outline-none transition-colors duration-150 cursor-text ${isDuplicate ? "border-red-400 focus:border-red-500" : isLight ? "border-gray-200 focus:border-green-400 text-gray-900" : "border-[#1a1a1a] focus:border-[#00e676] text-[#ccc]"}`} />
-                    <select value={f.type} onChange={(e) => updateField(f.id, "type", e.target.value)} className={`px-1.5 py-1 text-[10px] rounded border bg-transparent focus:outline-none cursor-pointer transition-colors duration-150 ${isLight ? "border-gray-200 focus:border-green-400 text-gray-600" : "border-[#1a1a1a] focus:border-[#00e676] text-[#888]"}`}>
+                    <input type="text" value={f.name} onChange={(e) => updateField(f.id, "name", e.target.value.replace(/\s+/g, "_"))} className={`flex-1 min-w-0 px-2 py-1 text-xs font-mono rounded border bg-transparent focus:outline-none transition-colors duration-150 cursor-text ${isDuplicate ? "border-red-400 focus:border-red-500" : isLight ? "border-gray-200 focus:border-[#f0a500] text-gray-900" : "border-[#1a1a1a] focus:border-[#f0a500] text-[#ccc]"}`} />
+                    <select value={f.type} onChange={(e) => updateField(f.id, "type", e.target.value)} className={`px-1.5 py-1 text-[10px] rounded border bg-transparent focus:outline-none cursor-pointer transition-colors duration-150 ${isLight ? "border-gray-200 focus:border-[#f0a500] text-gray-600" : "border-[#1a1a1a] focus:border-[#f0a500] text-[#888]"}`}>
                       {DATA_TYPES.map((t) => (<option key={t.id} value={t.id}>{t.label}</option>))}
                     </select>
                     <button onClick={() => removeField(f.id)} disabled={fields.length <= 1} className={`px-1 transition-colors cursor-pointer ${fields.length <= 1 ? "text-gray-300 cursor-not-allowed" : isLight ? "text-gray-400 hover:text-red-500" : "text-[#444] hover:text-red-400"}`}>×</button>
@@ -106,7 +106,7 @@ export default function Generator({
             <div className={`${cardBg} rounded-lg p-4 border transition-colors duration-200`}>
               <div className="flex justify-between items-center mb-3">
                 <span className={`text-xs ${mutedText} font-mono`}>COUNT</span>
-                <span className="text-sm text-[#00e676] font-mono font-bold bg-[#00e676]/8 px-2.5 py-0.5 rounded">{count}</span>
+                <span className="text-sm text-[#f0a500] font-mono font-bold bg-[#f0a500]/8 px-2.5 py-0.5 rounded">{count}</span>
               </div>
               <input type="range" min="5" max="100" value={count} onChange={(e) => setCount(Number(e.target.value))} className="w-full mb-3" />
               <div className="flex gap-1.5">
@@ -119,21 +119,21 @@ export default function Generator({
         </div>
       </aside>
 
-      <main className="flex-1 flex flex-col min-w-0 p-5">
-        <div className="flex items-center justify-between mb-4">
+      <main className="flex-1 flex flex-col min-w-0 p-4 md:p-5">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div className={`flex items-center gap-2 text-sm ${mutedText} font-mono`}>
-            <span className="text-[#00e676] font-bold">{count}</span>
+            <span className="text-[#f0a500] font-bold">{count}</span>
             <span>·</span>
             <span>{dataType}</span>
             <span>·</span>
-            <span className="text-[#00e676] uppercase font-bold">{activeTab}</span>
+            <span className="text-[#f0a500] uppercase font-bold">{activeTab}</span>
           </div>
           <div className="flex items-center gap-2">
             <button onClick={handleCopy} className={`flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-md border transition-all duration-150 cursor-pointer ${isLight ? "text-gray-600 hover:text-gray-900 bg-gray-50 border-gray-200 hover:border-gray-300" : "text-[#888] hover:text-[#ccc] bg-[#111] border-[#1a1a1a] hover:border-[#333]"}`}>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
               {copied ? "Copied!" : "Copy"}
             </button>
-            <button onClick={() => setIsExportModalOpen(true)} className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#0a0a0a] bg-[#00e676] hover:bg-[#00c868] rounded-md transition-all duration-150 hover:shadow-lg hover:shadow-[#00e676]/20 cursor-pointer">
+            <button onClick={() => setIsExportModalOpen(true)} className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#0a0a0a] bg-[#f0a500] hover:bg-[#d4920a] rounded-md transition-all duration-150 hover:shadow-lg hover:shadow-[#f0a500]/20 cursor-pointer">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
               Export
             </button>
@@ -143,7 +143,7 @@ export default function Generator({
           {activeTab === "json" && highlightedOutput ? (
             <pre dangerouslySetInnerHTML={{ __html: highlightedOutput.join("\n") }} />
           ) : (
-            <pre className="text-[#00e676]">{outputString}</pre>
+            <pre className="text-[#f0a500]">{outputString}</pre>
           )}
         </div>
       </main>

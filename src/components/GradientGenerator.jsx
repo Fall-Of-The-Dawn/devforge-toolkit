@@ -94,7 +94,7 @@ export default function GradientGenerator({ isLight, mutedText }) {
   const [type, setType] = useState("linear");
   const [angle, setAngle] = useState("135");
   const [stops, setStops] = useState([
-    { color: "#00e676", position: "0" },
+    { color: "#f0a500", position: "0" },
     { color: "#1a237e", position: "100" },
   ]);
   const [copied, setCopied] = useState(false);
@@ -152,7 +152,7 @@ export default function GradientGenerator({ isLight, mutedText }) {
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">
             {["linear", "radial", "conic"].map((t) => (
-              <button key={t} onClick={() => setType(t)} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer capitalize ${type === t ? (isLight ? "bg-green-50 border-green-200 text-green-600" : "bg-[#00e676]/10 border-[#00e676]/30 text-[#00e676]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>{t}</button>
+              <button key={t} onClick={() => setType(t)} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer capitalize ${type === t ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>{t}</button>
             ))}
           </div>
           <button onClick={handleCopy} className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer ${isLight ? "bg-gray-50 border-gray-200 text-gray-600 hover:text-gray-900 hover:border-gray-300" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:text-[#ccc] hover:border-[#333]"}`}>
@@ -162,8 +162,8 @@ export default function GradientGenerator({ isLight, mutedText }) {
         </div>
       </div>
 
-      <div className="flex gap-5 flex-1 min-h-0">
-        <div className={`w-[260px] shrink-0 rounded-lg border p-4 space-y-4 overflow-y-auto ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
+      <div className="flex flex-col md:flex-row gap-5 flex-1 min-h-0">
+        <div className={`md:w-[260px] md:shrink-0 rounded-lg border p-4 space-y-4 overflow-y-auto ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
           <div>
             <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>Presets</label>
             <div className="grid grid-cols-3 gap-1.5">
@@ -183,7 +183,7 @@ export default function GradientGenerator({ isLight, mutedText }) {
           <div>
             <div className="flex items-center justify-between mb-2">
               <label className={`text-[10px] font-bold uppercase ${mutedText}`}>Color Stops ({stops.length})</label>
-              <button onClick={addStop} disabled={stops.length >= 8} className="text-[10px] font-bold text-[#00e676] hover:text-[#00ff88] transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">+ Add</button>
+              <button onClick={addStop} disabled={stops.length >= 8} className="text-[10px] font-bold text-[#f0a500] hover:text-[#d4920a] transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">+ Add</button>
             </div>
             <div className="space-y-2">
               {stops.map((s, i) => (
@@ -206,14 +206,14 @@ export default function GradientGenerator({ isLight, mutedText }) {
 
           <GradientBar stops={stops} setStops={setStops} isLight={isLight} />
 
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <div className={`flex-1 rounded-lg border p-3 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
               <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>CSS</label>
-              <code className={`text-xs font-mono break-all ${isLight ? "text-gray-700" : "text-[#00e676]"}`}>{cssOutput}</code>
+              <code className={`text-xs font-mono break-all ${isLight ? "text-gray-700" : "text-[#f0a500]"}`}>{cssOutput}</code>
             </div>
             <div className={`flex-1 rounded-lg border p-3 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
               <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>Tailwind</label>
-              <code className={`text-xs font-mono break-all ${isLight ? "text-gray-700" : "text-[#00e676]"}`}>{tailwindOutput}</code>
+              <code className={`text-xs font-mono break-all ${isLight ? "text-gray-700" : "text-[#f0a500]"}`}>{tailwindOutput}</code>
             </div>
           </div>
         </div>
