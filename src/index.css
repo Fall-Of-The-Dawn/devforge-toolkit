@@ -3,50 +3,303 @@
 @layer base {
   body {
     font-family: 'Geist', sans-serif;
-    background-color: #0d0e12;
-    color: #e4e6eb;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    transition: background-color 0.2s, color 0.2s;
   }
   .font-mono {
     font-family: 'Geist Mono', monospace;
   }
+  button, a, [role="button"] {
+    cursor: pointer;
+  }
 }
 
-/* Custom UI Utility classes for our Cyberpunk SaaS Redesign */
-.cyber-card {
-  background-color: #13151c;
-  border: 1px solid #1f222e;
-  border-radius: 8px;
+/* Green accent utility classes */
+.text-accent {
+  color: #00e676;
 }
 
-.cyber-panel-dark {
-  background-color: #090a0d;
-  border: 1px solid #161821;
+.bg-accent {
+  background-color: #00e676;
 }
 
-.text-cyber-red {
-  color: #ff5a5a;
+.border-accent {
+  border-color: #00e676;
 }
 
-.bg-cyber-red {
-  background-color: #ff5a5a;
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
-.border-cyber-red {
-  border-color: #ff5a5a;
+/* JSON syntax highlighting */
+.json-key {
+  color: #00e676;
 }
 
-/* Slick Custom Scrollbar for our Code Terminal Blocks */
+.json-string {
+  color: #e8a87c;
+}
+
+.json-number {
+  color: #82aaff;
+}
+
+.json-bracket {
+  color: #89ddff;
+}
+
+.json-comma {
+  color: #666;
+}
+
+/* Diff highlighting */
+.diff-line {
+  font-family: 'Geist Mono', monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  padding: 0 12px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.diff-added {
+  background-color: rgba(0, 230, 118, 0.08);
+  color: #4ade80;
+  border-left: 3px solid #00e676;
+}
+
+.diff-removed {
+  background-color: rgba(239, 68, 68, 0.08);
+  color: #f87171;
+  border-left: 3px solid #ef4444;
+}
+
+.diff-unchanged {
+  color: #666;
+  border-left: 3px solid transparent;
+}
+
+.diff-separator {
+  background-color: rgba(0, 230, 118, 0.04);
+  color: #555;
+  font-size: 11px;
+  padding: 4px 12px;
+  border-left: 3px solid transparent;
+  user-select: none;
+}
+
+/* Light theme diff */
+html[data-theme="light"] .diff-added {
+  background-color: rgba(0, 230, 118, 0.12);
+  color: #16a34a;
+}
+
+html[data-theme="light"] .diff-removed {
+  background-color: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+}
+
+html[data-theme="light"] .diff-unchanged {
+  color: #9ca3af;
+}
+
+html[data-theme="light"] .diff-separator {
+  background-color: rgba(0, 0, 0, 0.03);
+  color: #9ca3af;
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #090a0d;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #252936;
+  background: #2a2a2a;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #383d52;
+  background: #3a3a3a;
+}
+
+/* Range slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: #1a1a1a;
+  border-radius: 2px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #00e676;
+  cursor: pointer;
+  border: 3px solid #0a0a0a;
+  box-shadow: 0 0 6px rgba(0, 230, 118, 0.3);
+  transition: box-shadow 0.15s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 12px rgba(0, 230, 118, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #00e676;
+  cursor: pointer;
+  border: 3px solid #0a0a0a;
+}
+
+/* Select dropdown styling */
+select {
+  background-color: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  color: #ccc;
+  font-size: 11px;
+  padding: 4px 8px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+select:focus {
+  border-color: #00e676;
+}
+
+select option {
+  background-color: #111111;
+  color: #ccc;
+}
+
+/* Textarea */
+textarea {
+  cursor: text !important;
+  color: #e0e0e0 !important;
+}
+
+textarea::placeholder {
+  color: #666 !important;
+}
+
+html[data-theme="light"] textarea {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Input text visibility */
+input[type="text"],
+input[type="number"] {
+  color: #e0e0e0 !important;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: #666 !important;
+}
+
+html[data-theme="light"] input[type="text"],
+html[data-theme="light"] input[type="number"] {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] input[type="text"]::placeholder,
+html[data-theme="light"] input[type="number"]::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Pre/code text in dark mode */
+pre, code {
+  color: #e0e0e0 !important;
+}
+
+html[data-theme="light"] pre,
+html[data-theme="light"] code {
+  color: #111827 !important;
+}
+
+/* Select text color */
+select {
+  color: #e0e0e0 !important;
+}
+
+html[data-theme="light"] select {
+  color: #374151 !important;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97) translateY(4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Light theme overrides */
+html[data-theme="light"] body {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+html[data-theme="light"] input[type="range"] {
+  background: #e5e7eb;
+}
+
+html[data-theme="light"] input[type="range"]::-webkit-slider-thumb {
+  border-color: #ffffff;
+}
+
+html[data-theme="light"] select {
+  background-color: #f9fafb;
+  border-color: #e5e7eb;
+  color: #374151;
+}
+
+html[data-theme="light"] select option {
+  background-color: #ffffff;
+  color: #374151;
+}
+
+html[data-theme="light"] .json-key {
+  color: #16a34a;
+}
+
+html[data-theme="light"] .json-string {
+  color: #c2410c;
+}
+
+html[data-theme="light"] .json-number {
+  color: #2563eb;
+}
+
+html[data-theme="light"] .json-bracket {
+  color: #0891b2;
 }
