@@ -197,7 +197,7 @@ export default function Header({ activeTool, setActiveTool, isLight, setTheme, s
             </svg>
           </div>
           <span className={`text-base font-bold ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"} tracking-tight shrink-0 font-display`}>
-            omnidev
+            omnistack
           </span>
           <span className={`text-xs ${mutedText} font-mono shrink-0`}>.tools</span>
         </button>

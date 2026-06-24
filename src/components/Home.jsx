@@ -456,11 +456,11 @@ export default function Home({ setActiveTool, isLight }) {
         </div>
       </section>
 
-      {/* Why OmniDev */}
+      {/* Why OmniStack */}
       <section className="px-5 py-16">
         <div className="max-w-4xl mx-auto">
           <h2 className={`text-2xl md:text-3xl font-black tracking-tight text-center mb-12 font-display ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"}`}>
-            Why developers choose OmniDev
+            Why developers choose OmniStack
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
@@ -491,7 +491,7 @@ export default function Home({ setActiveTool, isLight }) {
                   </svg>
                 ),
                 title: "No sign-up",
-                desc: "Zero friction. Open OmniDev and start working immediately.",
+                desc: "Zero friction. Open OmniStack and start working immediately.",
               },
               {
                 icon: (

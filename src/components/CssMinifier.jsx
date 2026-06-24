@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 
-const DEFAULT_CSS = `/* OmniDev Sample Styles */
+const DEFAULT_CSS = `/* OmniStack Sample Styles */
 .container {
   display: flex;
   flex-direction: column;

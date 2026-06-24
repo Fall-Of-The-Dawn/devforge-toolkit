@@ -20,7 +20,7 @@ export default function Footer({ isLight, mutedText, setActiveTool, adConfig, th
       <div className="flex items-center gap-3 shrink-0">
         <button onClick={() => setActiveTool("home")} className={`hover:text-current transition-colors cursor-pointer ${isLight ? "hover:text-[#1a1d26]" : "hover:text-[#c8ccd4]"}`}>Home</button>
         <span>·</span>
-        <span>{new Date().getFullYear()} OmniDev</span>
+        <span>{new Date().getFullYear()} OmniStack</span>
       </div>
     </div>
   );

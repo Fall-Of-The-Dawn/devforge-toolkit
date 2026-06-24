@@ -29,7 +29,7 @@ import { DATA_TYPE_PRESETS, AD_CONFIG, THEME_VARS } from "./utils/constants";
 
 export default function App() {
   const [activeTool, setActiveTool] = useState("home");
-  const [theme, setTheme] = useState(() => localStorage.getItem("omnidev-theme") || "dark");
+  const [theme, setTheme] = useState(() => localStorage.getItem("omnistack-theme") || "dark");
   const isLight = theme === "light";
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
@@ -45,7 +45,7 @@ export default function App() {
 
   const handleSetTheme = (t) => {
     setTheme(t);
-    localStorage.setItem("omnidev-theme", t);
+    localStorage.setItem("omnistack-theme", t);
   };
 
   const t = THEME_VARS[isLight ? "light" : "dark"];

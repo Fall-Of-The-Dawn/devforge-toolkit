@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 
-const DEFAULT_MD = `# OmniDev
+const DEFAULT_MD = `# OmniStack
 
 ## Features
 
