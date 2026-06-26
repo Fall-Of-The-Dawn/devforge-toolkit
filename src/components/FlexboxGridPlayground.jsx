@@ -52,7 +52,7 @@ export default function FlexboxGridPlayground({ isLight, mutedText }) {
   const renderControl = (label, value, options, onChange) => (
     <div className="flex flex-col gap-1">
       <label className={`text-[10px] font-bold uppercase ${mutedText}`}>{label}</label>
-      <select value={value} onChange={(e) => onChange(e.target.value)} className={`px-2 py-1.5 text-xs rounded border bg-transparent focus:outline-none cursor-pointer transition-colors ${isLight ? "border-gray-200 focus:border-[#f0a500] text-gray-700" : "border-[#1a1a1a] focus:border-[#f0a500] text-[#ccc]"}`}>
+      <select value={value} onChange={(e) => onChange(e.target.value)} className={`px-2 py-1.5 text-xs rounded border bg-transparent focus:outline-none cursor-pointer transition-colors ${isLight ? "border-gray-200 focus:border-[#FF6B6B] text-gray-700" : "border-[#1a1a1a] focus:border-[#FF6B6B] text-[#ccc]"}`}>
         {options.map((o) => <option key={o} value={o}>{o}</option>)}
       </select>
     </div>
@@ -64,8 +64,8 @@ export default function FlexboxGridPlayground({ isLight, mutedText }) {
         <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Flexbox / Grid Playground</label>
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">
-            <button onClick={() => setMode("flex")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer ${mode === "flex" ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>Flexbox</button>
-            <button onClick={() => setMode("grid")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer ${mode === "grid" ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>Grid</button>
+            <button onClick={() => setMode("flex")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer ${mode === "flex" ? (isLight ? "bg-[#fff0f0] border-[#e0d0d0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 border-[#FF6B6B]/30 text-[#FF6B6B]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>Flexbox</button>
+            <button onClick={() => setMode("grid")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer ${mode === "grid" ? (isLight ? "bg-[#fff0f0] border-[#e0d0d0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 border-[#FF6B6B]/30 text-[#FF6B6B]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>Grid</button>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function FlexboxGridPlayground({ isLight, mutedText }) {
               {renderControl("Wrap", flex.wrap, ["nowrap", "wrap", "wrap-reverse"], (v) => updateFlex("wrap", v))}
               <div className="flex flex-col gap-1">
                 <label className={`text-[10px] font-bold uppercase ${mutedText}`}>Gap (px)</label>
-                <input type="number" value={flex.gap} onChange={(e) => updateFlex("gap", e.target.value)} className={`px-2 py-1.5 text-xs rounded border bg-transparent focus:outline-none transition-colors ${isLight ? "border-gray-200 focus:border-[#f0a500] text-gray-700" : "border-[#1a1a1a] focus:border-[#f0a500] text-[#ccc]"}`} />
+                <input type="number" value={flex.gap} onChange={(e) => updateFlex("gap", e.target.value)} className={`px-2 py-1.5 text-xs rounded border bg-transparent focus:outline-none transition-colors ${isLight ? "border-gray-200 focus:border-[#FF6B6B] text-gray-700" : "border-[#1a1a1a] focus:border-[#FF6B6B] text-[#ccc]"}`} />
               </div>
             </>
           ) : (
@@ -88,7 +88,7 @@ export default function FlexboxGridPlayground({ isLight, mutedText }) {
               {renderControl("Columns", grid.columns, ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], (v) => updateGrid("columns", v))}
               <div className="flex flex-col gap-1">
                 <label className={`text-[10px] font-bold uppercase ${mutedText}`}>Gap (px)</label>
-                <input type="number" value={grid.gap} onChange={(e) => updateGrid("gap", e.target.value)} className={`px-2 py-1.5 text-xs rounded border bg-transparent focus:outline-none transition-colors ${isLight ? "border-gray-200 focus:border-[#f0a500] text-gray-700" : "border-[#1a1a1a] focus:border-[#f0a500] text-[#ccc]"}`} />
+                <input type="number" value={grid.gap} onChange={(e) => updateGrid("gap", e.target.value)} className={`px-2 py-1.5 text-xs rounded border bg-transparent focus:outline-none transition-colors ${isLight ? "border-gray-200 focus:border-[#FF6B6B] text-gray-700" : "border-[#1a1a1a] focus:border-[#FF6B6B] text-[#ccc]"}`} />
               </div>
             </>
           )}
@@ -103,7 +103,7 @@ export default function FlexboxGridPlayground({ isLight, mutedText }) {
           <div className={`flex-1 rounded-lg border p-4 overflow-auto ${isLight ? "bg-gray-100 border-gray-200" : "bg-[#080808] border-[#161616]"}`}>
             <div style={mode === "flex" ? { display: "flex", flexDirection: flex.direction, justifyContent: flex.justify, alignItems: flex.align, flexWrap: flex.wrap, gap: `${flex.gap}px` } : { display: "grid", gridTemplateColumns: `repeat(${grid.columns}, 1fr)`, gap: `${grid.gap}px` }}>
               {Array.from({ length: itemCount }, (_, i) => (
-                <div key={i} className={`w-16 h-16 rounded-md flex items-center justify-center text-xs font-mono font-bold ${isLight ? "bg-[#fff3d6] text-[#c87d0a] border border-[#f0dfc0]" : "bg-[#f0a500]/10 text-[#f0a500] border border-[#f0a500]/20"}`}>
+                <div key={i} className={`w-16 h-16 rounded-md flex items-center justify-center text-xs font-mono font-bold ${isLight ? "bg-[#fff0f0] text-[#c53a3a] border border-[#e0d0d0]" : "bg-[#FF6B6B]/10 text-[#FF6B6B] border border-[#FF6B6B]/20"}`}>
                   {i + 1}
                 </div>
               ))}
@@ -113,11 +113,11 @@ export default function FlexboxGridPlayground({ isLight, mutedText }) {
           <div className="flex flex-col md:flex-row gap-4">
             <div className={`flex-1 rounded-lg border p-3 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
               <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>Tailwind</label>
-              <code className={`text-xs font-mono break-all ${isLight ? "text-gray-700" : "text-[#f0a500]"}`}>{tailwindOutput}</code>
+              <code className={`text-xs font-mono break-all ${isLight ? "text-gray-700" : "text-[#FF6B6B]"}`}>{tailwindOutput}</code>
             </div>
             <div className={`flex-1 rounded-lg border p-3 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
               <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>CSS</label>
-              <pre className={`text-xs font-mono whitespace-pre-wrap ${isLight ? "text-gray-700" : "text-[#f0a500]"}`}>{cssOutput}</pre>
+              <pre className={`text-xs font-mono whitespace-pre-wrap ${isLight ? "text-gray-700" : "text-[#FF6B6B]"}`}>{cssOutput}</pre>
             </div>
           </div>
         </div>

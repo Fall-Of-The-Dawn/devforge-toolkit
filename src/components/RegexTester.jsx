@@ -50,7 +50,7 @@ export default function RegexTester({ isLight, mutedText }) {
           <div className={`flex items-center gap-1 px-2 py-1 rounded border text-[10px] font-mono ${isLight ? "bg-gray-50 border-gray-200 text-gray-500" : "bg-[#111] border-[#1a1a1a] text-[#666]"}`}>
             <span className={`${mutedText}`}>FLAGS:</span>
             {["g", "i", "m", "s"].map((f) => (
-              <button key={f} onClick={() => setFlags(flags.includes(f) ? flags.replace(f, "") : flags + f)} className={`w-5 h-5 rounded text-[10px] font-bold transition-all cursor-pointer ${flags.includes(f) ? (isLight ? "bg-[#fff8ed] text-[#c87d0a]" : "bg-[#f0a500]/10 text-[#f0a500]") : (isLight ? "text-gray-400 hover:text-gray-600" : "text-[#444] hover:text-[#888]")}`}>{f}</button>
+              <button key={f} onClick={() => setFlags(flags.includes(f) ? flags.replace(f, "") : flags + f)} className={`w-5 h-5 rounded text-[10px] font-bold transition-all cursor-pointer ${flags.includes(f) ? (isLight ? "bg-[#fff0f0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 text-[#FF6B6B]") : (isLight ? "text-gray-400 hover:text-gray-600" : "text-[#444] hover:text-[#888]")}`}>{f}</button>
             ))}
           </div>
         </div>
@@ -62,7 +62,7 @@ export default function RegexTester({ isLight, mutedText }) {
           type="text"
           value={pattern}
           onChange={(e) => setPattern(e.target.value)}
-          className={`flex-1 px-3 py-2 font-mono text-sm rounded-md border bg-transparent focus:outline-none transition-colors ${isLight ? "border-gray-200 focus:border-[#f0a500] text-gray-900" : "border-[#1a1a1a] focus:border-[#f0a500] text-[#e0e0e0]"}`}
+          className={`flex-1 px-3 py-2 font-mono text-sm rounded-md border bg-transparent focus:outline-none transition-colors ${isLight ? "border-gray-200 focus:border-[#FF6B6B] text-gray-900" : "border-[#1a1a1a] focus:border-[#FF6B6B] text-[#e0e0e0]"}`}
           placeholder="Enter regex pattern... e.g. \b\w+@\w+\.\w+\b"
         />
         <span className={`text-lg font-mono ${isLight ? "text-gray-400" : "text-[#555]"}`}>/</span>
@@ -81,7 +81,7 @@ export default function RegexTester({ isLight, mutedText }) {
           <textarea
             value={testString}
             onChange={(e) => setTestString(e.target.value)}
-            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#f0a500] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#f0a500] text-[#e0e0e0]"}`}
+            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#FF6B6B] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#FF6B6B] text-[#e0e0e0]"}`}
             placeholder="Enter test string to match against...\n\nExample:\njohn@example.com and jane@test.org are emails."
             spellCheck={false}
           />
@@ -97,7 +97,7 @@ export default function RegexTester({ isLight, mutedText }) {
             ) : (
               <span className="whitespace-pre-wrap">
                 {result.highlighted.map((part, i) => part.highlight ? (
-                  <span key={i} className="bg-[#f0a500]/20 text-[#f0a500] rounded px-0.5">{part.text}</span>
+                  <span key={i} className="bg-[#FF6B6B]/20 text-[#FF6B6B] rounded px-0.5">{part.text}</span>
                 ) : (
                   <span key={i} className={isLight ? "text-gray-700" : "text-[#888]"}>{part.text}</span>
                 ))}
@@ -114,7 +114,7 @@ export default function RegexTester({ isLight, mutedText }) {
             {result.matches.slice(0, 10).map((m, i) => (
               <div key={i} className={`flex items-center gap-3 text-xs font-mono ${isLight ? "text-gray-600" : "text-[#888]"}`}>
                 <span className={`w-6 text-right ${mutedText}`}>#{i + 1}</span>
-                <span className="text-[#f0a500]">"{m.value}"</span>
+                <span className="text-[#FF6B6B]">"{m.value}"</span>
                 <span className={mutedText}>at index {m.index}</span>
                 {m.groups.length > 0 && (
                   <span className={mutedText}>groups: [{m.groups.map((g) => `"${g}"`).join(", ")}]</span>

@@ -47,12 +47,12 @@ export default function UrlEncoder({ isLight, mutedText }) {
         <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>URL Encoder / Decoder</label>
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">
-            <button onClick={() => setMode("encode")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer ${mode === "encode" ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>Encode</button>
-            <button onClick={() => setMode("decode")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer ${mode === "decode" ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>Decode</button>
+            <button onClick={() => setMode("encode")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer ${mode === "encode" ? (isLight ? "bg-[#fff0f0] border-[#e0d0d0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 border-[#FF6B6B]/30 text-[#FF6B6B]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>Encode</button>
+            <button onClick={() => setMode("decode")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer ${mode === "decode" ? (isLight ? "bg-[#fff0f0] border-[#e0d0d0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 border-[#FF6B6B]/30 text-[#FF6B6B]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>Decode</button>
           </div>
           {mode === "encode" && (
             <label className={`flex items-center gap-1.5 text-[10px] ${mutedText} cursor-pointer`}>
-              <input type="checkbox" checked={encodeComponent} onChange={(e) => setEncodeComponent(e.target.checked)} className="w-3 h-3 accent-[#f0a500]" />
+              <input type="checkbox" checked={encodeComponent} onChange={(e) => setEncodeComponent(e.target.checked)} className="w-3 h-3 accent-[#FF6B6B]" />
               Component
             </label>
           )}
@@ -75,7 +75,7 @@ export default function UrlEncoder({ isLight, mutedText }) {
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#f0a500] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#f0a500] text-[#e0e0e0]"}`}
+            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#FF6B6B] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#FF6B6B] text-[#e0e0e0]"}`}
             placeholder={mode === "encode" ? 'Enter URL or text to encode...\n\nExample:\nhttps://example.com/search?q=hello world&lang=en' : 'Enter URL encoded string to decode...\n\nExample:\nhttps%3A%2F%2Fexample.com%2Fsearch%3Fq%3Dhello%20world'}
             spellCheck={false}
           />
@@ -92,11 +92,11 @@ export default function UrlEncoder({ isLight, mutedText }) {
         <div className={`mt-3 rounded-lg border p-3 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
           <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>Parsed URL Components</label>
           <div className={`grid grid-cols-2 gap-2 text-xs font-mono ${isLight ? "text-gray-600" : "text-[#888]"}`}>
-            {parsedUrl.protocol && <div><span className={mutedText}>protocol: </span><span className="text-[#f0a500]">{parsedUrl.protocol}</span></div>}
-            {parsedUrl.hostname && <div><span className={mutedText}>hostname: </span><span className="text-[#f0a500]">{parsedUrl.hostname}</span></div>}
-            {parsedUrl.pathname && <div><span className={mutedText}>pathname: </span><span className="text-[#f0a500]">{parsedUrl.pathname}</span></div>}
-            {parsedUrl.search && <div><span className={mutedText}>search: </span><span className="text-[#f0a500]">{parsedUrl.search}</span></div>}
-            {parsedUrl.hash && <div><span className={mutedText}>hash: </span><span className="text-[#f0a500]">{parsedUrl.hash}</span></div>}
+            {parsedUrl.protocol && <div><span className={mutedText}>protocol: </span><span className="text-[#FF6B6B]">{parsedUrl.protocol}</span></div>}
+            {parsedUrl.hostname && <div><span className={mutedText}>hostname: </span><span className="text-[#FF6B6B]">{parsedUrl.hostname}</span></div>}
+            {parsedUrl.pathname && <div><span className={mutedText}>pathname: </span><span className="text-[#FF6B6B]">{parsedUrl.pathname}</span></div>}
+            {parsedUrl.search && <div><span className={mutedText}>search: </span><span className="text-[#FF6B6B]">{parsedUrl.search}</span></div>}
+            {parsedUrl.hash && <div><span className={mutedText}>hash: </span><span className="text-[#FF6B6B]">{parsedUrl.hash}</span></div>}
           </div>
         </div>
       )}

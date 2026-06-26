@@ -297,6 +297,16 @@ export default function Home({ setActiveTool, isLight }) {
         </svg>
       ),
     },
+    {
+      id: "tokenizer", category: "converter",
+      title: "Text Tokenizer",
+      description: "Count tokens, words, characters, and lines for LLM prompt limits.",
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M4 7h16M4 12h16M4 17h10" />
+        </svg>
+      ),
+    },
   ], []);
 
   const filteredTools = activeCategory === "all"
@@ -304,14 +314,14 @@ export default function Home({ setActiveTool, isLight }) {
     : tools.filter((t) => t.category === activeCategory);
 
   return (
-    <div className="flex-1 flex flex-col overflow-auto">
+    <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">
       {/* Hero */}
-      <section className="relative px-5 pt-16 pb-12 md:pt-24 md:pb-16 overflow-hidden">
+      <section className="relative px-5 pt-16 pb-12 md:pt-24 md:pb-16">
         {/* Dot grid background */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: `radial-gradient(circle, ${isLight ? "#1a1d26" : "#c8ccd4"} 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle, ${isLight ? "#1a1a1a" : "#888888"} 1px, transparent 1px)`,
             backgroundSize: "24px 24px",
           }}
         />
@@ -319,36 +329,37 @@ export default function Home({ setActiveTool, isLight }) {
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] opacity-20 pointer-events-none"
           style={{
-            background: `radial-gradient(ellipse at center, ${isLight ? "rgba(200,125,10,0.15)" : "rgba(240,165,0,0.12)"}, transparent 70%)`,
+            background: `radial-gradient(ellipse at center, ${isLight ? "rgba(229,91,91,0.15)" : "rgba(255,107,107,0.12)"}, transparent 70%)`,
           }}
         />
 
         <div className="relative max-w-3xl mx-auto text-center">
           {/* Logo */}
           <div className="flex justify-center mb-6">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="drop-shadow-lg">
-              <path d="M12 14l6-6 2 2-6 6 6 6-2 2-6-6z" fill={isLight ? "#c87d0a" : "#f0a500"} />
-              <path d="M36 14l-6-6-2 2 6 6-6 6 2 2 6-6z" fill={isLight ? "#c87d0a" : "#f0a500"} />
-              <circle cx="24" cy="24" r="4" fill={isLight ? "#c87d0a" : "#f0a500"} opacity="0.5" />
-            </svg>
+            <img src="/logo.png" alt="OmniStack" className="w-16 h-16 object-contain drop-shadow-lg rounded-full" />
           </div>
 
-          <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6 ${isLight ? "bg-[#fff8ed] text-[#c87d0a] border border-[#f0dfc0]" : "bg-[rgba(240,165,0,0.08)] text-[#f0a500] border border-[rgba(240,165,0,0.15)]"}`}>
+          <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6 ${isLight ? "bg-[#fff0f0] text-[#c53a3a] border border-[#e0d0d0]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B] border border-[rgba(255,107,107,0.15)]"}`}>
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" style={{ animation: "dotPulse 2s ease-in-out infinite" }} />
             21 tools · all client-side
           </div>
 
-          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-4 leading-[1.1] ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"}`}>
-            Build faster with
+          <h1 style={{ color: isLight ? "#1a1a1a" : "#e8e8e8" }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-4 leading-[1.1]">
+            The only dev toolkit
             <br />
-            <span className="text-accent">every tool in one place</span>
+            <span className="text-accent relative inline-block">
+              you need.
+              <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
+                <path d="M2 5.5C35 2.5 75 1.5 100 3.5C125 5.5 165 7 198 3.5" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" opacity="0.5" />
+              </svg>
+            </span>
           </h1>
 
-          <div className={`text-lg md:text-xl h-8 mb-6 ${isLight ? "text-[#5a5f6e]" : "text-[#505868]"}`}>
+          <div className={`text-lg md:text-xl h-8 mb-6 ${isLight ? "text-[#555555]" : "text-[#555555]"}`}>
             <Typewriter />
           </div>
 
-          <p className={`text-sm max-w-lg mx-auto mb-8 leading-relaxed ${isLight ? "text-[#5a5f6e]" : "text-[#505868]"}`}>
+          <p style={{ color: isLight ? "#555555" : "#555555" }} className="text-sm max-w-lg mx-auto mb-8 leading-relaxed">
             Mock data, CSS conversion, JSON formatting, encoding, layout builders, QR codes, and more — every tool runs in your browser. No server. No sign-up. Fully private.
           </p>
 
@@ -359,8 +370,8 @@ export default function Home({ setActiveTool, isLight }) {
               { value: "100%", label: "Private" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className={`text-lg font-bold font-display ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"}`}>{stat.value}</div>
-                <div className={isLight ? "text-[#9ca3b0]" : "text-[#505868]"}>{stat.label}</div>
+                <div style={{ color: isLight ? "#1a1a1a" : "#e8e8e8" }} className="text-lg font-bold font-display">{stat.value}</div>
+                <div style={{ color: isLight ? "#888888" : "#555555" }}>{stat.label}</div>
               </div>
             ))}
           </div>
@@ -399,8 +410,8 @@ export default function Home({ setActiveTool, isLight }) {
                 onClick={() => setActiveTool(tool.id)}
                 className={`animate-slide-up text-left p-5 rounded-xl border transition-all duration-200 cursor-pointer group relative ${
                   isLight
-                    ? "bg-white border-[#e2e0da] hover:border-[#c87d0a]/40 hover:shadow-lg hover:shadow-[#c87d0a]/5"
-                    : "bg-[#12151e] border-[#1c2030] hover:border-[rgba(240,165,0,0.3)] hover:shadow-lg hover:shadow-[rgba(240,165,0,0.05)]"
+                    ? "bg-white border-[#e2e0da] hover:border-[#c53a3a]/40 hover:shadow-lg hover:shadow-[#c53a3a]/5"
+                    : "bg-[#12151e] border-[#1c2030] hover:border-[rgba(255,107,107,0.3)] hover:shadow-lg hover:shadow-[rgba(255,107,107,0.05)]"
                 }`}
               >
                 {/* Left accent bar */}
@@ -408,8 +419,8 @@ export default function Home({ setActiveTool, isLight }) {
 
                 <div className={`w-9 h-9 rounded-lg flex items-center justify-center mb-3 transition-colors ${
                   isLight
-                    ? "bg-[#fff8ed] text-[#c87d0a] group-hover:bg-[#c87d0a] group-hover:text-white"
-                    : "bg-[rgba(240,165,0,0.08)] text-[#f0a500] group-hover:bg-[#f0a500] group-hover:text-[#0c0e14]"
+                    ? "bg-[#fff0f0] text-[#c53a3a] group-hover:bg-[#c53a3a] group-hover:text-white"
+                    : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B] group-hover:bg-[#FF6B6B] group-hover:text-[#0c0e14]"
                 }`}>
                   {tool.icon}
                 </div>
@@ -443,8 +454,8 @@ export default function Home({ setActiveTool, isLight }) {
               <div key={item.step} className="text-center relative">
                 <div className={`w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center text-lg font-bold font-display relative z-10 ${
                   isLight
-                    ? "bg-white border border-[#e2e0da] text-[#c87d0a]"
-                    : "bg-[#12151e] border border-[#1c2030] text-[#f0a500]"
+                    ? "bg-white border border-[#e2e0da] text-[#c53a3a]"
+                    : "bg-[#12151e] border border-[#1c2030] text-[#FF6B6B]"
                 }`}>
                   {item.step}
                 </div>
@@ -509,7 +520,7 @@ export default function Home({ setActiveTool, isLight }) {
                 isLight ? "bg-white border-[#e2e0da] hover:border-[#d0cec8]" : "bg-[#12151e] border-[#1c2030] hover:border-[#2a3045]"
               }`}>
                 <div className={`w-9 h-9 rounded-lg shrink-0 flex items-center justify-center ${
-                  isLight ? "bg-[#fff8ed] text-[#c87d0a]" : "bg-[rgba(240,165,0,0.08)] text-[#f0a500]"
+                  isLight ? "bg-[#fff0f0] text-[#c53a3a]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B]"
                 }`}>
                   {item.icon}
                 </div>

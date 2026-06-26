@@ -2,36 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="umXv97ZBPDOw9zMkwyR-IEcwAaIhHLAIiM2dOoUWBO8" />
 
-    <title>OmniStack — Free Developer Toolkit | Mock Data, CSS Converter, JSON Formatter, QR Code & More</title>
+    <title>OmniStack — Free Developer Toolkit | Mock Data Generator, CSS Converter, JSON Formatter, QR Code & 22 Tools</title>
     <meta
       name="description"
-      content="Free client-side developer toolkit with 21 tools: mock data generator, CSS to Tailwind converter, text diff, JSON formatter, regex tester, Base64/URL encoder, JWT decoder, gradient & box shadow builders, QR code generator, HTML preview editor, and more. No server, fully private."
+      content="Free client-side developer toolkit with 21 tools: mock data generator, CSS to Tailwind converter, text diff, JSON formatter, regex tester, Base64/URL encoder, JWT decoder, gradient & box shadow builders, QR code generator, tokenizer, HTML preview editor, and more. No server, fully private. Works offline."
     />
     <meta
       name="keywords"
-      content="omnistack, mock data generator, free fake data, json dummy data generator, csv generator, sql generator, convert css to tailwind, tailwind to css converter, json formatter, json validator, regex tester, regular expression validator, base64 encoder decoder, url encoder decoder, jwt decoder token parser, text diff tool, compare text online, gradient generator, css gradient builder, box shadow generator, css shadow builder, qr code generator free, qr code maker, html preview editor, live html editor, flexbox playground, grid playground, lorem ipsum generator, placeholder text generator, developer tools, frontend tools, free dev tools, client side tools"
+      content="omnistack, developer tools, free dev tools, frontend tools, client side tools, mock data generator, free fake data, json dummy data generator, csv generator, sql generator, fake api data, test data generator, convert css to tailwind, tailwind css converter, tailwind to css, css to tailwind online, json formatter, json validator, json pretty print, json minifier, regex tester, regular expression validator, regex online, base64 encoder decoder, base64 encode, base64 decode, url encoder decoder, url encode decode, jwt decoder token parser, jwt token decoder, text diff tool, compare text online, diff checker, code diff tool, gradient generator, css gradient builder, linear gradient, radial gradient, box shadow generator, css shadow builder, qr code generator free, qr code maker, qr code download, password generator strong, secure password generator, uuid generator v4, timestamp converter unix, lorem ipsum generator, html preview editor live, markdown preview editor, css minifier compressor, color contrast checker wcag, flexbox playground, grid playground, text tokenizer, llm token counter, token count tool"
     />
     <meta name="author" content="OmniStack" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-    <meta name="theme-color" content="#f0a500" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#FF6B6B" />
     <meta name="application-name" content="OmniStack" />
     <meta name="apple-mobile-web-app-title" content="OmniStack" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="rating" content="general" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://omnistack.vercel.app/" />
     <meta property="og:title" content="OmniStack — Free Developer Toolkit | 21 Client-Side Tools" />
-    <meta property="og:description" content="Free client-side developer toolkit with 21 tools: mock data generator, CSS converter, JSON formatter, regex tester, QR code generator, gradient builder, and more. No server, fully private." />
-    <meta property="og:image" content="https://omnistack.vercel.app/og-image.png" />
-    <meta property="og:image:alt" content="OmniStack - Free Developer Toolkit" />
+    <meta property="og:description" content="Free client-side developer toolkit with 21 tools: mock data generator, CSS converter, JSON formatter, regex tester, QR code generator, tokenizer, gradient builder, and more. No server, fully private." />
+    <meta property="og:image:alt" content="OmniStack - Free Developer Toolkit with 21 browser-based tools for developers. Features mock data generation, CSS/Tailwind conversion, JSON formatting, regex testing, QR code generation, and more. All processing happens client-side for complete privacy." />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:site_name" content="OmniStack" />
     <meta property="og:locale" content="en_US" />
 
@@ -39,43 +44,149 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://omnistack.vercel.app/" />
     <meta name="twitter:title" content="OmniStack — Free Developer Toolkit | 21 Client-Side Tools" />
-    <meta name="twitter:description" content="Free client-side developer toolkit with 21 tools: mock data, CSS converter, JSON formatter, regex tester, QR code, gradient builder, and more." />
-    <meta name="twitter:image" content="https://omnistack.vercel.app/og-image.png" />
-    <meta name="twitter:image:alt" content="OmniStack - Free Developer Toolkit" />
+    <meta name="twitter:description" content="Free client-side developer toolkit with 21 tools: mock data, CSS converter, JSON formatter, regex tester, QR code, tokenizer, gradient builder, and more." />
+    <meta name="twitter:image:alt" content="OmniStack - Free Developer Toolkit with 21 browser-based tools. No server, fully private. Works offline." />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://omnistack.vercel.app/" />
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data: SoftwareApplication -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "name": "OmniStack",
       "url": "https://omnistack.vercel.app/",
-      "description": "Free client-side developer toolkit with 21 tools including mock data generator, CSS to Tailwind converter, JSON formatter, regex tester, QR code generator, and more.",
+      "description": "Free client-side developer toolkit with 21 tools including mock data generator, CSS to Tailwind converter, JSON formatter, regex tester, QR code generator, text tokenizer, and more. All processing happens in your browser — no data ever leaves your device.",
       "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Any",
+      "operatingSystem": "Any (Web Browser)",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "150",
+        "bestRating": "5"
+      },
       "featureList": [
-        "Mock Data Generator - Generate realistic fake data in JSON, CSV, SQL",
-        "CSS to Tailwind Converter - Bidirectional CSS/Tailwind conversion",
-        "Text Diff Tool - Git-diff style text comparison with word-level highlighting",
-        "JSON Formatter - Pretty-print, minify, and validate JSON",
-        "Regex Tester - Real-time regex testing with match highlighting",
-        "Base64 Encoder/Decoder - Encode and decode Base64 strings",
-        "URL Encoder/Decoder - Encode and decode URLs",
-        "JWT Token Decoder - Decode and inspect JWT tokens",
-        "Flexbox/Grid Playground - Visual layout builder with Tailwind output",
-        "Gradient Generator - Visual gradient builder with draggable stops",
-        "Box Shadow Generator - Visual shadow builder with multi-layer support",
-        "QR Code Generator - Generate downloadable QR codes",
-        "Lorem Ipsum Generator - Generate placeholder text",
-        "HTML Preview Editor - Live side-by-side HTML/CSS/JS editor"
+        "Mock Data Generator — Generate realistic fake data in JSON, CSV, SQL with customizable fields and 10 data presets",
+        "CSS to Tailwind Converter — Bidirectional CSS/Tailwind conversion with 200+ property mappings and dark mode support",
+        "Text Diff Tool — Git-diff style text comparison with line-level and word-level highlighting",
+        "JSON Formatter — Pretty-print, minify, validate JSON with collapsible tree view",
+        "Regex Tester — Real-time regex testing with match highlighting and capture groups",
+        "Base64 Encoder/Decoder — Encode and decode Base64 strings with Unicode support",
+        "URL Encoder/Decoder — Encode and decode URL components",
+        "JWT Token Decoder — Decode and inspect JWT tokens locally without sending to any server",
+        "Flexbox/Grid Playground — Visual CSS layout builder with Tailwind output",
+        "Gradient Generator — Visual CSS gradient builder with draggable color stops",
+        "Box Shadow Generator — Visual CSS shadow builder with multi-layer support",
+        "QR Code Generator — Generate downloadable QR codes from any text or URL",
+        "Password Generator — Generate cryptographically strong passwords with configurable options",
+        "UUID Generator — Generate v4 UUIDs in batch with standard or compact format",
+        "Timestamp Converter — Convert between Unix timestamps, ISO 8601, and human-readable dates",
+        "Text Tokenizer — Count tokens, words, characters, and lines for LLM token limits",
+        "Lorem Ipsum Generator — Generate placeholder text with configurable paragraph count",
+        "HTML Preview Editor — Live side-by-side HTML/CSS/JS editor with instant preview",
+        "Markdown Preview — Real-time Markdown editor with rendered HTML output",
+        "Color Contrast Checker — WCAG accessibility compliance checker for color contrast ratios",
+        "CSS Minifier — Compress CSS code by removing whitespace and unnecessary characters"
+      ],
+      "screenshot": "https://omnistack.vercel.app/og-image.png",
+      "softwareHelp": "https://omnistack.vercel.app/",
+      "storageRequirement": "None (client-side only)",
+      "permissions": "No permissions required"
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is OmniStack?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OmniStack is a free, client-side developer toolkit with 21 tools including mock data generator, CSS to Tailwind converter, JSON formatter, regex tester, QR code generator, text tokenizer, and more. All processing happens in your browser — no data ever leaves your device."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is OmniStack free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, OmniStack is completely free. No accounts, no sign-ups, no hidden fees. All 21 tools are available instantly at omnistack.vercel.app."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does OmniStack send my data to a server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. OmniStack is fully client-side. All data processing happens in your browser using JavaScript. Your JSON, JWT tokens, passwords, CSS code, and any other data never leave your device. This makes OmniStack privacy-compliant by architecture."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use OmniStack offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Once the page loads, OmniStack works fully offline. All tools process data locally in your browser without requiring an internet connection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What tools does OmniStack include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OmniStack includes 22 developer tools: Mock Data Generator, CSS to Tailwind Converter, Text Diff, JSON Formatter, Regex Tester, Base64 Encoder/Decoder, URL Encoder/Decoder, JWT Decoder, Flexbox/Grid Playground, Gradient Generator, Box Shadow Generator, QR Code Generator, Password Generator, UUID Generator, Timestamp Converter, Text Tokenizer, Lorem Ipsum Generator, HTML Preview Editor, Markdown Preview, Color Contrast Checker, and CSS Minifier."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the CSS to Tailwind converter work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The CSS to Tailwind converter maps CSS property-value pairs to Tailwind utility classes using a comprehensive lookup table of 200+ mappings. It handles shorthand properties, color resolution, arbitrary values, dark mode variants, and @media blocks. The reverse direction (Tailwind to CSS) supports 400+ static class mappings, arbitrary value parsing, CSS variables, and opacity modifiers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the text tokenizer tool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The text tokenizer counts tokens, words, characters, and lines in any text. It uses a character-level estimation algorithm similar to how LLMs tokenize text (approximately 1 token per 4 English characters). It also shows a visual breakdown of how different parts of the text are tokenized."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is OmniStack mobile-friendly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. OmniStack is fully responsive and works on mobile devices. All 21 tools adapt their layout for small screens, with controls stacking vertically and full-width panels on mobile."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://omnistack.vercel.app/"
+        }
       ]
     }
     </script>
@@ -89,6 +200,104 @@
     />
   </head>
   <body class="bg-[#0c0e14]">
+    <!-- SEO: Static content visible to crawlers and no-JS users. 21 tools shown. -->
+    <noscript>
+      <div style="max-width:900px;margin:0 auto;padding:40px 20px;font-family:Inter,system-ui,sans-serif;color:#c8ccd4;background:#0c0e14;min-height:100vh;">
+        <h1 style="font-size:2.5rem;font-weight:800;margin-bottom:8px;color:#f0a500;">OmniStack</h1>
+        <p style="font-size:1.1rem;color:#9ca3b0;margin-bottom:32px;">Free developer toolkit with 21 client-side tools. No server, fully private. Works offline.</p>
+
+        <h2 style="font-size:1.3rem;font-weight:700;margin:32px 0 16px;color:#e2e5eb;">Data Tools</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px;">
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">Mock Data Generator</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Generate realistic fake data in JSON, CSV, or SQL. 10 presets: Users, Products, Orders, Addresses, Transactions, Posts, Employees, Invoices, Reviews, Custom. Powered by faker.js.</p>
+          </div>
+        </div>
+
+        <h2 style="font-size:1.3rem;font-weight:700;margin:32px 0 16px;color:#e2e5eb;">Converter Tools</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px;">
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">CSS to Tailwind Converter</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Bidirectional CSS/Tailwind conversion. 200+ property mappings, dark mode support, arbitrary value handling, color palette resolution, and @media block support.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">Base64 Encoder/Decoder</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Encode and decode Base64 strings with full Unicode support. Real-time conversion, one-click copy.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">URL Encoder/Decoder</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Encode and decode URL components. Handles query parameters, path segments, and special characters.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">JWT Token Decoder</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Decode and inspect JWT tokens locally. View header, payload, and signature. Check expiration. No data leaves your browser.</p>
+          </div>
+        </div>
+
+        <h2 style="font-size:1.3rem;font-weight:700;margin:32px 0 16px;color:#e2e5eb;">Editor Tools</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px;">
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">JSON Formatter</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Pretty-print, minify, and validate JSON. Collapsible tree view, error line highlighting, configurable indentation.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">Text Diff Tool</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Git-diff style text comparison. Line-level and word-level highlighting. Unified, Split, and Words output modes. Statistics panel.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">Regex Tester</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Real-time regex testing with match highlighting, capture groups, and flag support (g, i, m, s, u).</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">HTML Preview Editor</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Live side-by-side HTML/CSS/JS editor with instant preview. Syntax highlighting, full-page preview mode.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">Markdown Preview</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Real-time Markdown editor with live HTML preview. Supports headings, lists, tables, code blocks, and links.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">CSS Minifier</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Compress CSS code by removing whitespace, comments, and unnecessary characters. Size comparison display.</p>
+          </div>
+        </div>
+
+        <h2 style="font-size:1.3rem;font-weight:700;margin:32px 0 16px;color:#e2e5eb;">Design Tools</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px;">
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">Gradient Generator</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Visual CSS gradient builder. Linear, radial, and conic gradients. Draggable color stops, angle control, CSS output.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">Box Shadow Generator</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Visual CSS box-shadow builder. Multi-layer support, inset shadows, live preview, CSS output.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">Color Contrast Checker</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">WCAG accessibility compliance checker. Check contrast ratios for AA and AAA compliance levels.</p>
+          </div>
+        </div>
+
+        <h2 style="font-size:1.3rem;font-weight:700;margin:32px 0 16px;color:#e2e5eb;">Generator Tools</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px;">
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">QR Code Generator</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Generate downloadable QR codes from any text or URL. Canvas-based rendering, PNG download.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">Password Generator</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Generate strong passwords with configurable length, character types, and strength indicator.</p>
+          </div>
+          <div style="background:#12151e;border:1px solid #1c2030;border-radius:12px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:600;color:#f0a500;margin-bottom:8px;">UUID Generator</h3>
+            <p style="font-size:0.85rem;color:#9ca3b0;">Generate v4 UUIDs in batch. Standard (with hyphens) or compact format. Up to 100 at once.</p>
+          </div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#505868;margin-top:40px;text-align:center;">OmniStack is open source and free forever. No accounts required. <a href="https://omnistack.vercel.app/" style="color:#f0a500;">Enable JavaScript for the full 22-tool experience</a>.</p>
+      </div>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

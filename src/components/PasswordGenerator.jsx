@@ -45,7 +45,7 @@ function analyzePassword(pw) {
   let strength;
   if (score <= 2) strength = { label: "Weak", color: "#ef4444", percent: 25 };
   else if (score <= 3) strength = { label: "Fair", color: "#f59e0b", percent: 50 };
-  else if (score <= 4) strength = { label: "Strong", color: "#f0a500", percent: 75 };
+  else if (score <= 4) strength = { label: "Strong", color: "#FF6B6B", percent: 75 };
   else strength = { label: "Very Strong", color: "#22c55e", percent: 100 };
 
   let crackTime;
@@ -107,8 +107,8 @@ export default function PasswordGenerator({ isLight, mutedText }) {
             <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>Character Types</label>
             <div className="space-y-1.5">
               {Object.entries({ lowercase: "Lowercase (a-z)", uppercase: "Uppercase (A-Z)", numbers: "Numbers (0-9)", symbols: "Symbols (!@#)" }).map(([key, label]) => (
-                <button key={key} onClick={() => toggleOption(key)} className={`w-full flex items-center gap-2 px-2.5 py-1.5 text-[10px] rounded border transition-all cursor-pointer text-left ${options[key] ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-white border-gray-200 text-gray-500" : "bg-[#111] border-[#1a1a1a] text-[#666]")}`}>
-                  <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center ${options[key] ? (isLight ? "bg-[#fff8ed]0 border-green-500" : "bg-[#f0a500] border-[#f0a500]") : (isLight ? "bg-white border-gray-300" : "bg-[#111] border-[#333]")}`}>
+                <button key={key} onClick={() => toggleOption(key)} className={`w-full flex items-center gap-2 px-2.5 py-1.5 text-[10px] rounded border transition-all cursor-pointer text-left ${options[key] ? (isLight ? "bg-[#fff0f0] border-[#e0d0d0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 border-[#FF6B6B]/30 text-[#FF6B6B]") : (isLight ? "bg-white border-gray-200 text-gray-500" : "bg-[#111] border-[#1a1a1a] text-[#666]")}`}>
+                  <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center ${options[key] ? (isLight ? "bg-[#fff0f0]0 border-green-500" : "bg-[#FF6B6B] border-[#FF6B6B]") : (isLight ? "bg-white border-gray-300" : "bg-[#111] border-[#333]")}`}>
                     {options[key] && <span className="text-[8px] text-black font-bold">&#10003;</span>}
                   </div>
                   {label}
@@ -117,7 +117,7 @@ export default function PasswordGenerator({ isLight, mutedText }) {
             </div>
           </div>
 
-          <button onClick={generate} className={`w-full py-2.5 text-xs font-bold rounded-md transition-all cursor-pointer ${isLight ? "bg-[#fff8ed] text-[#c87d0a] hover:bg-[#fff3d6]" : "bg-[#f0a500]/10 text-[#f0a500] hover:bg-[#f0a500]/20"}`}>Generate Password</button>
+          <button onClick={generate} className={`w-full py-2.5 text-xs font-bold rounded-md transition-all cursor-pointer ${isLight ? "bg-[#fff0f0] text-[#c53a3a] hover:bg-[#fff0f0]" : "bg-[#FF6B6B]/10 text-[#FF6B6B] hover:bg-[#FF6B6B]/20"}`}>Generate Password</button>
 
           {history.length > 0 && (
             <div>
@@ -135,7 +135,7 @@ export default function PasswordGenerator({ isLight, mutedText }) {
           {password ? (
             <>
               <div className={`rounded-lg border p-4 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
-                <code className={`text-lg font-mono break-all ${isLight ? "text-gray-900" : "text-[#f0a500]"}`}>{password}</code>
+                <code className={`text-lg font-mono break-all ${isLight ? "text-gray-900" : "text-[#FF6B6B]"}`}>{password}</code>
               </div>
 
               {analysis && (
@@ -151,7 +151,7 @@ export default function PasswordGenerator({ isLight, mutedText }) {
                   </div>
                   <div className={`flex-1 rounded-lg border p-4 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
                     <span className={`text-[10px] font-bold uppercase ${mutedText} block mb-1`}>Entropy</span>
-                    <span className={`text-lg font-mono font-bold ${isLight ? "text-gray-900" : "text-[#f0a500]"}`}>{analysis.entropy} bits</span>
+                    <span className={`text-lg font-mono font-bold ${isLight ? "text-gray-900" : "text-[#FF6B6B]"}`}>{analysis.entropy} bits</span>
                   </div>
                   <div className={`flex-1 rounded-lg border p-4 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
                     <span className={`text-[10px] font-bold uppercase ${mutedText} block mb-1`}>Crack Time</span>

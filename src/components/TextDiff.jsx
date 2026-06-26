@@ -15,7 +15,7 @@ function WordDiff({ wordDiff }) {
         }
         if (seg.type === "added") {
           return (
-            <span key={i} className="bg-[#f0a500]/10 text-[#f0a500] rounded-sm px-0.5">
+            <span key={i} className="bg-[#FF6B6B]/10 text-[#FF6B6B] rounded-sm px-0.5">
               {seg.value}
             </span>
           );
@@ -40,7 +40,7 @@ function LightWordDiff({ wordDiff }) {
         }
         if (seg.type === "added") {
           return (
-            <span key={i} className="bg-[#fff8ed] text-[#c87d0a] rounded-sm px-0.5">
+            <span key={i} className="bg-[#fff0f0] text-[#c53a3a] rounded-sm px-0.5">
               {seg.value}
             </span>
           );
@@ -141,7 +141,7 @@ function WordFinder({ textA, setTextA, textB, setTextB, isLight, mutedText }) {
           onChange={(e) => { setSearch(e.target.value); setSelected(new Set()); }}
           placeholder='Type to find words (e.g. "fe", "ad")...'
           className={`flex-1 px-3 py-1.5 text-xs font-mono rounded-md border bg-transparent focus:outline-none transition-colors ${
-            isLight ? "border-[#e2e0da] focus:border-[#c87d0a] text-[#1a1d26] placeholder:text-[#9ca3b0]" : "border-[#1c2030] focus:border-[#f0a500] text-[#c8ccd4] placeholder:text-[#505868]"
+            isLight ? "border-[#e2e0da] focus:border-[#c53a3a] text-[#1a1d26] placeholder:text-[#9ca3b0]" : "border-[#1c2030] focus:border-[#FF6B6B] text-[#c8ccd4] placeholder:text-[#505868]"
           }`}
         />
       </div>
@@ -186,8 +186,8 @@ function WordFinder({ textA, setTextA, textB, setTextB, isLight, mutedText }) {
                     isSelected
                       ? "border-red-500/40 bg-red-500/10 text-red-400 line-through"
                       : isLight
-                        ? "border-[#e2e0da] bg-[#f7f6f3] text-[#1a1d26] hover:border-[#c87d0a]/40"
-                        : "border-[#1c2030] bg-[#0c0e14] text-[#c8ccd4] hover:border-[rgba(240,165,0,0.3)]"
+                        ? "border-[#e2e0da] bg-[#f7f6f3] text-[#1a1d26] hover:border-[#c53a3a]/40"
+                        : "border-[#1c2030] bg-[#0c0e14] text-[#c8ccd4] hover:border-[rgba(255,107,107,0.3)]"
                   }`}
                 >
                   {m.word}
@@ -213,7 +213,7 @@ function WordFinder({ textA, setTextA, textB, setTextB, isLight, mutedText }) {
 function DiffFilter({ filter, setFilter, stats, isLight, mutedText }) {
   const filters = [
     { id: "all", label: "All", count: stats.total },
-    { id: "added", label: "Added", count: stats.added, color: "text-[#f0a500]" },
+    { id: "added", label: "Added", count: stats.added, color: "text-[#FF6B6B]" },
     { id: "removed", label: "Removed", count: stats.removed, color: "text-red-400" },
     { id: "unchanged", label: "Unchanged", count: stats.unchanged, color: mutedText },
   ];
@@ -273,7 +273,7 @@ export default function TextDiff({ isLight, mutedText }) {
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
         <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Text Diff</label>
-        <button onClick={() => setShowOutput(!showOutput)} className={`px-3.5 py-2 text-xs font-bold text-[#0c0e14] bg-[#f0a500] hover:bg-[#d4920a] rounded-md transition-all duration-150 hover:shadow-lg hover:shadow-[#f0a500]/20 cursor-pointer`}>
+        <button onClick={() => setShowOutput(!showOutput)} className={`px-3.5 py-2 text-xs font-bold text-[#0c0e14] bg-[#FF6B6B] hover:bg-[#c53a3a] rounded-md transition-all duration-150 hover:shadow-lg hover:shadow-[#FF6B6B]/20 cursor-pointer`}>
           {showOutput ? "Edit" : "Compare"}
         </button>
       </div>
@@ -287,7 +287,7 @@ export default function TextDiff({ isLight, mutedText }) {
               <textarea
                 value={textA}
                 onChange={(e) => setTextA(e.target.value)}
-                className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-[#e2e0da] focus:border-[#c87d0a] text-[#1a1d26] placeholder:text-[#9ca3b0]" : "bg-[#0a0c12] border-[#1c2030] focus:border-[#f0a500] text-[#c8ccd4] placeholder:text-[#505868]"}`}
+                className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-[#e2e0da] focus:border-[#c53a3a] text-[#1a1d26] placeholder:text-[#9ca3b0]" : "bg-[#0a0c12] border-[#1c2030] focus:border-[#FF6B6B] text-[#c8ccd4] placeholder:text-[#505868]"}`}
                 placeholder="Paste the original or left-side text to compare...&#10;&#10;This is the baseline version of your content."
                 spellCheck={false}
               />
@@ -297,7 +297,7 @@ export default function TextDiff({ isLight, mutedText }) {
               <textarea
                 value={textB}
                 onChange={(e) => setTextB(e.target.value)}
-                className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-[#e2e0da] focus:border-[#c87d0a] text-[#1a1d26] placeholder:text-[#9ca3b0]" : "bg-[#0a0c12] border-[#1c2030] focus:border-[#f0a500] text-[#c8ccd4] placeholder:text-[#505868]"}`}
+                className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-[#e2e0da] focus:border-[#c53a3a] text-[#1a1d26] placeholder:text-[#9ca3b0]" : "bg-[#0a0c12] border-[#1c2030] focus:border-[#FF6B6B] text-[#c8ccd4] placeholder:text-[#505868]"}`}
                 placeholder="Paste the modified or right-side text to compare...&#10;&#10;Changes against the original will be highlighted."
                 spellCheck={false}
               />
@@ -339,10 +339,10 @@ export default function TextDiff({ isLight, mutedText }) {
                       <span className="w-8 shrink-0 px-1 py-1.5 text-center text-[11px] font-bold select-none text-red-500">-</span>
                       <span className="flex-1 px-3 py-1.5 text-red-400"><WordComp wordDiff={line.wordDiff.filter(s => s.type !== "added")} /></span>
                     </div>
-                    <div className="flex border-l-2 border-l-[#f0a500] bg-[#f0a500]/5">
-                      <span className="w-12 shrink-0 px-2 py-1.5 text-right text-[10px] select-none border-r bg-[#f0a500]/10 text-[#f0a500]">{line.newNum}</span>
-                      <span className="w-8 shrink-0 px-1 py-1.5 text-center text-[11px] font-bold select-none text-[#f0a500]">+</span>
-                      <span className="flex-1 px-3 py-1.5 text-[#f0a500]"><WordComp wordDiff={line.wordDiff.filter(s => s.type !== "removed")} /></span>
+                    <div className="flex border-l-2 border-l-[#FF6B6B] bg-[#FF6B6B]/5">
+                      <span className="w-12 shrink-0 px-2 py-1.5 text-right text-[10px] select-none border-r bg-[#FF6B6B]/10 text-[#FF6B6B]">{line.newNum}</span>
+                      <span className="w-8 shrink-0 px-1 py-1.5 text-center text-[11px] font-bold select-none text-[#FF6B6B]">+</span>
+                      <span className="flex-1 px-3 py-1.5 text-[#FF6B6B]"><WordComp wordDiff={line.wordDiff.filter(s => s.type !== "removed")} /></span>
                     </div>
                   </div>
                 );
@@ -362,10 +362,10 @@ export default function TextDiff({ isLight, mutedText }) {
               if (line.type === "added") {
                 const WordComp = isLight ? LightWordDiff : WordDiff;
                 return (
-                  <div key={idx} className="flex border-l-2 border-l-[#f0a500] bg-[#f0a500]/5">
-                    <span className="w-12 shrink-0 px-2 py-1.5 text-right text-[10px] select-none border-r bg-[#f0a500]/10 text-[#f0a500]">{line.newNum}</span>
-                    <span className="w-8 shrink-0 px-1 py-1.5 text-center text-[11px] font-bold select-none text-[#f0a500]">+</span>
-                    <span className="flex-1 px-3 py-1.5 text-[#f0a500]"><WordComp wordDiff={line.wordDiff} /></span>
+                  <div key={idx} className="flex border-l-2 border-l-[#FF6B6B] bg-[#FF6B6B]/5">
+                    <span className="w-12 shrink-0 px-2 py-1.5 text-right text-[10px] select-none border-r bg-[#FF6B6B]/10 text-[#FF6B6B]">{line.newNum}</span>
+                    <span className="w-8 shrink-0 px-1 py-1.5 text-center text-[11px] font-bold select-none text-[#FF6B6B]">+</span>
+                    <span className="flex-1 px-3 py-1.5 text-[#FF6B6B]"><WordComp wordDiff={line.wordDiff} /></span>
                   </div>
                 );
               }

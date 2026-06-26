@@ -41,8 +41,8 @@ export default function CssConverter({ isLight, mutedText, activeBtn, inactiveBt
           <textarea
             value={activeDirection === "css-to-tailwind" ? cssInput : tailwindInput}
             onChange={(e) => activeDirection === "css-to-tailwind" ? convertCss(e.target.value) : convertTailwind(e.target.value)}
-            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#f0a500] text-gray-800" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#f0a500] text-[#ccc]"}`}
-            placeholder={activeDirection === "css-to-tailwind" ? 'Paste CSS code to convert to Tailwind classes...\n\nExample:\n.box {\n  display: flex;\n  padding: 1rem;\n  background: #f0a500;\n  border-radius: 0.5rem;\n}' : 'Paste Tailwind utility classes to convert to CSS...\n\nExample:\nflex p-4 bg-[#fff8ed]0 rounded-lg hover:bg-green-600'}
+            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#FF6B6B] text-gray-800" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#FF6B6B] text-[#ccc]"}`}
+            placeholder={activeDirection === "css-to-tailwind" ? 'Paste CSS code to convert to Tailwind classes...\n\nExample:\n.box {\n  display: flex;\n  padding: 1rem;\n  background: #FF6B6B;\n  border-radius: 0.5rem;\n}' : 'Paste Tailwind utility classes to convert to CSS...\n\nExample:\nflex p-4 bg-[#fff0f0]0 rounded-lg hover:bg-green-600'}
             spellCheck={false}
           />
         </div>

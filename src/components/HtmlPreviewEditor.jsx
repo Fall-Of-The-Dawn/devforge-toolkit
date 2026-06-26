@@ -8,11 +8,11 @@ const DEFAULT_HTML = `<!DOCTYPE html>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: system-ui, sans-serif; padding: 2rem; background: #0a0a0a; color: #e0e0e0; }
-    h1 { color: #f0a500; margin-bottom: 1rem; }
+    h1 { color: #FF6B6B; margin-bottom: 1rem; }
     p { line-height: 1.6; color: #aaa; margin-bottom: 1rem; }
     .card { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 1.5rem; }
-    button { background: #f0a500; color: #000; border: none; padding: 0.5rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer; }
-    button:hover { background: #d4920a; }
+    button { background: #FF6B6B; color: #000; border: none; padding: 0.5rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer; }
+    button:hover { background: #c53a3a; }
   </style>
 </head>
 <body>
@@ -61,11 +61,11 @@ export default function HtmlPreviewEditor({ isLight, mutedText }) {
         <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>HTML Preview Editor</label>
         <div className="flex items-center gap-2">
           <label className={`flex items-center gap-1.5 text-[10px] ${mutedText} cursor-pointer`}>
-            <input type="checkbox" checked={autoRun} onChange={(e) => setAutoRun(e.target.checked)} className="w-3 h-3 accent-[#f0a500]" />
+            <input type="checkbox" checked={autoRun} onChange={(e) => setAutoRun(e.target.checked)} className="w-3 h-3 accent-[#FF6B6B]" />
             Auto-run
           </label>
           {!autoRun && (
-            <button onClick={handleRun} className={`px-3 py-1.5 text-xs font-bold text-[#0a0a0a] bg-[#f0a500] hover:bg-[#d4920a] rounded-md transition-all cursor-pointer`}>
+            <button onClick={handleRun} className={`px-3 py-1.5 text-xs font-bold text-[#0a0a0a] bg-[#FF6B6B] hover:bg-[#c53a3a] rounded-md transition-all cursor-pointer`}>
               Run ▶
             </button>
           )}
@@ -82,7 +82,7 @@ export default function HtmlPreviewEditor({ isLight, mutedText }) {
           <textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#f0a500] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#f0a500] text-[#e0e0e0]"}`}
+            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#FF6B6B] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#FF6B6B] text-[#e0e0e0]"}`}
             placeholder="Write or paste HTML, CSS, and JavaScript here..."
             spellCheck={false}
           />

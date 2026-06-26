@@ -39,7 +39,7 @@ export default function Sidebar({ isLight, mutedText, adConfig, theme, setActive
         <div className="flex-1 overflow-y-auto p-3 space-y-3">
           <div className={`rounded-lg border p-3 ${isLight ? "bg-white border-[#e2e0da]" : "bg-[#12151e] border-[#1c2030]"}`}>
             <div className="flex items-center gap-2 mb-2">
-              <div className={`w-7 h-7 rounded-md flex items-center justify-center ${isLight ? "bg-[#fff8ed]" : "bg-[#181c28]"}`}>
+              <div className={`w-7 h-7 rounded-md flex items-center justify-center ${isLight ? "bg-[#fff0f0]" : "bg-[#181c28]"}`}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                 </svg>
@@ -88,7 +88,7 @@ export default function Sidebar({ isLight, mutedText, adConfig, theme, setActive
 
       {!expanded && (
         <div className="flex-1 flex flex-col items-center gap-2 pt-2">
-          <div className={`w-7 h-7 rounded-md flex items-center justify-center ${isLight ? "bg-[#fff8ed]" : "bg-[#181c28]"}`}>
+          <div className={`w-7 h-7 rounded-md flex items-center justify-center ${isLight ? "bg-[#fff0f0]" : "bg-[#181c28]"}`}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             </svg>

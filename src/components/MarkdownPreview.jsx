@@ -41,11 +41,11 @@ function parseMarkdown(md) {
 
   // Code blocks
   html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => {
-    return `<pre class="bg-[#0d0d0d] rounded-lg p-4 my-3 overflow-x-auto text-sm"><code class="text-[#f0a500]">${code.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>`;
+    return `<pre class="bg-[#0d0d0d] rounded-lg p-4 my-3 overflow-x-auto text-sm"><code class="text-[#FF6B6B]">${code.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>`;
   });
 
   // Inline code
-  html = html.replace(/`([^`]+)`/g, '<code class="bg-[#1a1a1a] px-1.5 py-0.5 rounded text-sm text-[#f0a500]">$1</code>');
+  html = html.replace(/`([^`]+)`/g, '<code class="bg-[#1a1a1a] px-1.5 py-0.5 rounded text-sm text-[#FF6B6B]">$1</code>');
 
   // Headers
   html = html.replace(/^### (.+)$/gm, '<h3 class="text-lg font-bold text-white mt-6 mb-2">$1</h3>');
@@ -57,10 +57,10 @@ function parseMarkdown(md) {
   html = html.replace(/\*(.+?)\*/g, '<em class="italic text-gray-300">$1</em>');
 
   // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[#f0a500] hover:underline" target="_blank" rel="noopener">$1</a>');
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[#FF6B6B] hover:underline" target="_blank" rel="noopener">$1</a>');
 
   // Blockquote
-  html = html.replace(/^> (.+)$/gm, '<blockquote class="border-l-2 border-[#f0a500] pl-4 py-1 my-2 text-gray-400 italic">$1</blockquote>');
+  html = html.replace(/^> (.+)$/gm, '<blockquote class="border-l-2 border-[#FF6B6B] pl-4 py-1 my-2 text-gray-400 italic">$1</blockquote>');
 
   // Horizontal rule
   html = html.replace(/^---$/gm, '<hr class="border-[#222] my-6" />');
@@ -112,7 +112,7 @@ export default function MarkdownPreview({ isLight, mutedText }) {
           <textarea
             value={md}
             onChange={(e) => setMd(e.target.value)}
-            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#f0a500] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#f0a500] text-[#e0e0e0]"}`}
+            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#FF6B6B] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#FF6B6B] text-[#e0e0e0]"}`}
             placeholder="Write Markdown here..."
             spellCheck={false}
           />

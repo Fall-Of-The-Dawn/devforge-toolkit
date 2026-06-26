@@ -22,6 +22,7 @@ import UuidGenerator from "./components/UuidGenerator";
 import MarkdownPreview from "./components/MarkdownPreview";
 import PasswordGenerator from "./components/PasswordGenerator";
 import CssMinifier from "./components/CssMinifier";
+import Tokenizer from "./components/Tokenizer";
 import Footer from "./components/Footer";
 import AdBanner from "./components/AdBanner";
 import { ExportModal, PrivacyModal } from "./components/Modals";
@@ -58,7 +59,7 @@ export default function App() {
   const codeBg = t.codeBg;
 
   return (
-    <div className={`h-screen flex flex-col font-sans transition-colors duration-200 ${isLight ? "bg-[#f7f6f3] text-[#1a1d26]" : "bg-[#0c0e14] text-[#c8ccd4]"}`}>
+    <div className={`h-screen flex flex-col font-sans transition-colors duration-300 ${isLight ? "bg-[#f5f4f0] text-[#1a1d26]" : "bg-[#080a10] text-[#c8ccd4]"}`}>
       <Header
         activeTool={activeTool} setActiveTool={setActiveTool}
         isLight={isLight} setTheme={handleSetTheme}
@@ -66,7 +67,11 @@ export default function App() {
         mutedText={mutedText} mutedText2={mutedText2} activeBtn={activeBtn}
       />
 
-      {activeTool === "home" && <Home setActiveTool={setActiveTool} isLight={isLight} />}
+      {activeTool === "home" && (
+        <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+          <Home setActiveTool={setActiveTool} isLight={isLight} />
+        </div>
+      )}
 
       {activeTool !== "home" && (
         <>
@@ -208,6 +213,12 @@ export default function App() {
               {activeTool === "css-minifier" && (
                 <div className="flex-1 flex flex-col min-h-0">
                   <CssMinifier isLight={isLight} mutedText={mutedText} />
+                </div>
+              )}
+
+              {activeTool === "tokenizer" && (
+                <div className="flex-1 flex flex-col min-h-0">
+                  <Tokenizer isLight={isLight} mutedText={mutedText} activeBtn={activeBtn} inactiveBtn={inactiveBtn} />
                 </div>
               )}
 

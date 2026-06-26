@@ -67,12 +67,12 @@ export default function UuidGenerator({ isLight, mutedText }) {
                 { id: "no-dash", label: "No dashes" },
                 { id: "uppercase", label: "UPPERCASE" },
               ].map((f) => (
-                <button key={f.id} onClick={() => setFormat(f.id)} className={`w-full text-left px-2.5 py-1.5 text-[10px] rounded border transition-all cursor-pointer ${format === f.id ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-white border-gray-200 text-gray-500" : "bg-[#111] border-[#1a1a1a] text-[#666]")}`}>{f.label}</button>
+                <button key={f.id} onClick={() => setFormat(f.id)} className={`w-full text-left px-2.5 py-1.5 text-[10px] rounded border transition-all cursor-pointer ${format === f.id ? (isLight ? "bg-[#fff0f0] border-[#e0d0d0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 border-[#FF6B6B]/30 text-[#FF6B6B]") : (isLight ? "bg-white border-gray-200 text-gray-500" : "bg-[#111] border-[#1a1a1a] text-[#666]")}`}>{f.label}</button>
               ))}
             </div>
           </div>
 
-          <button onClick={generate} className={`w-full py-2 text-xs font-bold rounded-md transition-all cursor-pointer ${isLight ? "bg-[#fff8ed] text-[#c87d0a] hover:bg-[#fff3d6]" : "bg-[#f0a500]/10 text-[#f0a500] hover:bg-[#f0a500]/20"}`}>Generate New</button>
+          <button onClick={generate} className={`w-full py-2 text-xs font-bold rounded-md transition-all cursor-pointer ${isLight ? "bg-[#fff0f0] text-[#c53a3a] hover:bg-[#fff0f0]" : "bg-[#FF6B6B]/10 text-[#FF6B6B] hover:bg-[#FF6B6B]/20"}`}>Generate New</button>
         </div>
 
         <div className={`flex-1 rounded-lg border p-4 overflow-auto ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
@@ -80,7 +80,7 @@ export default function UuidGenerator({ isLight, mutedText }) {
             {uuids.map((uuid, i) => (
               <div key={i} className={`flex items-center gap-3 px-3 py-2 rounded-md text-xs font-mono group ${isLight ? "bg-white hover:bg-gray-100" : "bg-[#111] hover:bg-[#1a1a1a]"}`}>
                 <span className={`w-6 text-right ${mutedText}`}>{i + 1}</span>
-                <code className={`flex-1 ${isLight ? "text-gray-700" : "text-[#f0a500]"}`}>{formatUUID(uuid)}</code>
+                <code className={`flex-1 ${isLight ? "text-gray-700" : "text-[#FF6B6B]"}`}>{formatUUID(uuid)}</code>
                 <button onClick={() => handleCopyOne(uuid)} className={`px-2 py-0.5 text-[10px] rounded border opacity-0 group-hover:opacity-100 transition-all cursor-pointer ${isLight ? "border-gray-200 text-gray-500 hover:text-gray-900" : "border-[#1a1a1a] text-[#666] hover:text-[#ccc]"}`}>Copy</button>
               </div>
             ))}

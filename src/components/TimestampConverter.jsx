@@ -71,12 +71,12 @@ export default function TimestampConverter({ isLight, mutedText }) {
         <div className={`md:w-[260px] md:shrink-0 rounded-lg border p-4 space-y-4 overflow-y-auto ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
           <div className="flex flex-col gap-1">
             <label className={`text-[10px] font-bold uppercase ${mutedText}`}>Input</label>
-            <input type="text" value={input} onChange={(e) => setInput(e.target.value)} className={`w-full px-3 py-2 text-sm font-mono rounded-md border bg-transparent focus:outline-none transition-colors ${isLight ? "border-gray-200 focus:border-[#f0a500] text-gray-900" : "border-[#1a1a1a] focus:border-[#f0a500] text-[#e0e0e0]"}`} placeholder="Enter timestamp..." />
+            <input type="text" value={input} onChange={(e) => setInput(e.target.value)} className={`w-full px-3 py-2 text-sm font-mono rounded-md border bg-transparent focus:outline-none transition-colors ${isLight ? "border-gray-200 focus:border-[#FF6B6B] text-gray-900" : "border-[#1a1a1a] focus:border-[#FF6B6B] text-[#e0e0e0]"}`} placeholder="Enter timestamp..." />
           </div>
 
           <div className="flex gap-2">
             {["seconds", "milliseconds"].map((u) => (
-              <button key={u} onClick={() => setUnit(u)} className={`flex-1 px-2 py-1.5 text-[10px] font-medium rounded border transition-all cursor-pointer capitalize ${unit === u ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-white border-gray-200 text-gray-500" : "bg-[#111] border-[#1a1a1a] text-[#666]")}`}>{u}</button>
+              <button key={u} onClick={() => setUnit(u)} className={`flex-1 px-2 py-1.5 text-[10px] font-medium rounded border transition-all cursor-pointer capitalize ${unit === u ? (isLight ? "bg-[#fff0f0] border-[#e0d0d0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 border-[#FF6B6B]/30 text-[#FF6B6B]") : (isLight ? "bg-white border-gray-200 text-gray-500" : "bg-[#111] border-[#1a1a1a] text-[#666]")}`}>{u}</button>
             ))}
           </div>
 
@@ -97,7 +97,7 @@ export default function TimestampConverter({ isLight, mutedText }) {
                 { label: "1 week ago", value: Math.floor(Date.now() / 1000) - 604800 },
                 { label: "1 month ago", value: Math.floor(Date.now() / 1000) - 2592000 },
               ].map((q) => (
-                <button key={q.label} onClick={() => setInput(String(q.value))} className={`w-full text-left px-2.5 py-1.5 text-[10px] rounded border transition-all cursor-pointer ${isLight ? "bg-white border-gray-200 text-gray-600 hover:border-[#e8c870]" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:border-[#f0a500]/30"}`}>{q.label}</button>
+                <button key={q.label} onClick={() => setInput(String(q.value))} className={`w-full text-left px-2.5 py-1.5 text-[10px] rounded border transition-all cursor-pointer ${isLight ? "bg-white border-gray-200 text-gray-600 hover:border-[#e0d0d0]" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:border-[#FF6B6B]/30"}`}>{q.label}</button>
               ))}
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function TimestampConverter({ isLight, mutedText }) {
               ].map((row) => (
                 <div key={row.label} className={`flex items-center gap-3 rounded-lg border p-3 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
                   <span className={`text-[10px] font-bold uppercase ${mutedText} w-28 shrink-0`}>{row.label}</span>
-                  <code className={`flex-1 text-xs font-mono truncate ${isLight ? "text-gray-700" : "text-[#f0a500]"}`}>{row.value}</code>
+                  <code className={`flex-1 text-xs font-mono truncate ${isLight ? "text-gray-700" : "text-[#FF6B6B]"}`}>{row.value}</code>
                   <button onClick={() => handleCopy(row.value)} className={`px-2 py-1 text-[10px] font-medium rounded border transition-all cursor-pointer shrink-0 ${isLight ? "bg-white border-gray-200 text-gray-500 hover:text-gray-900" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#ccc]"}`}>Copy</button>
                 </div>
               ))}

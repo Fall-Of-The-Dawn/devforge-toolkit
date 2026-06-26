@@ -105,7 +105,7 @@ export default function LoremIpsumGenerator({ isLight, mutedText }) {
       <div className="flex items-center gap-4 mb-4">
         <div className="flex gap-1.5">
           {["paragraphs", "sentences", "words"].map((t) => (
-            <button key={t} onClick={() => setType(t)} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer capitalize ${type === t ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-white border-[#e2e0da] text-[#5a5f6e] hover:text-[#1a1d26]" : "bg-[#12151e] border-[#1c2030] text-[#505868] hover:text-[#c8ccd4]")}`}>{t}</button>
+            <button key={t} onClick={() => setType(t)} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer capitalize ${type === t ? (isLight ? "bg-[#fff0f0] border-[#e0d0d0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 border-[#FF6B6B]/30 text-[#FF6B6B]") : (isLight ? "bg-white border-[#e2e0da] text-[#5a5f6e] hover:text-[#1a1d26]" : "bg-[#12151e] border-[#1c2030] text-[#505868] hover:text-[#c8ccd4]")}`}>{t}</button>
           ))}
         </div>
         <div className="flex items-center gap-2">
@@ -119,7 +119,7 @@ export default function LoremIpsumGenerator({ isLight, mutedText }) {
               const v = parseInt(e.target.value, 10);
               if (!isNaN(v)) setCount(Math.min(500, Math.max(1, v)));
             }}
-            className={`w-16 px-2 py-1 text-sm font-mono text-center rounded border bg-transparent focus:outline-none transition-colors ${isLight ? "border-[#e2e0da] focus:border-[#c87d0a] text-[#1a1d26]" : "border-[#1c2030] focus:border-[#f0a500] text-[#c8ccd4]"}`}
+            className={`w-16 px-2 py-1 text-sm font-mono text-center rounded border bg-transparent focus:outline-none transition-colors ${isLight ? "border-[#e2e0da] focus:border-[#c53a3a] text-[#1a1d26]" : "border-[#1c2030] focus:border-[#FF6B6B] text-[#c8ccd4]"}`}
           />
           <button onClick={() => setCount(Math.min(500, count + 1))} className={`w-7 h-7 rounded border text-sm font-bold transition-all cursor-pointer ${isLight ? "bg-white border-[#e2e0da] text-[#5a5f6e] hover:text-[#1a1d26]" : "bg-[#12151e] border-[#1c2030] text-[#505868] hover:text-[#c8ccd4]"}`}>+</button>
         </div>

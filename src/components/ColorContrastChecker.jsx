@@ -25,7 +25,7 @@ function contrastRatio(hex1, hex2) {
 
 function getRating(ratio) {
   if (ratio >= 7) return { level: "AAA", label: "Excellent", color: "#22c55e" };
-  if (ratio >= 4.5) return { level: "AA", label: "Good", color: "#f0a500" };
+  if (ratio >= 4.5) return { level: "AA", label: "Good", color: "#FF6B6B" };
   if (ratio >= 3) return { level: "AA Large", label: "OK for large text", color: "#f59e0b" };
   return { level: "Fail", label: "Poor contrast", color: "#ef4444" };
 }
@@ -33,7 +33,7 @@ function getRating(ratio) {
 const PRESETS = [
   { name: "White on Black", fg: "#ffffff", bg: "#000000" },
   { name: "Black on White", fg: "#000000", bg: "#ffffff" },
-  { name: "Green on Dark", fg: "#f0a500", bg: "#0a0a0a" },
+  { name: "Green on Dark", fg: "#FF6B6B", bg: "#0a0a0a" },
   { name: "Gray on Dark", fg: "#9ca3af", bg: "#111827" },
 ];
 
@@ -79,13 +79,13 @@ export default function ColorContrastChecker({ isLight, mutedText }) {
             </div>
           </div>
 
-          <button onClick={() => { setFg(bg); setBg(fg); }} className={`w-full py-2 text-xs font-medium rounded-md border transition-all cursor-pointer ${isLight ? "bg-white border-gray-200 text-gray-600 hover:border-[#e8c870]" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:border-[#f0a500]/30"}`}>Swap Colors</button>
+          <button onClick={() => { setFg(bg); setBg(fg); }} className={`w-full py-2 text-xs font-medium rounded-md border transition-all cursor-pointer ${isLight ? "bg-white border-gray-200 text-gray-600 hover:border-[#e0d0d0]" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:border-[#FF6B6B]/30"}`}>Swap Colors</button>
 
           <div>
             <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>Presets</label>
             <div className="space-y-1.5">
               {PRESETS.map((p) => (
-                <button key={p.name} onClick={() => { setFg(p.fg); setBg(p.bg); }} className={`w-full text-left px-2.5 py-1.5 text-[10px] rounded border transition-all cursor-pointer ${isLight ? "bg-white border-gray-200 text-gray-600 hover:border-[#e8c870]" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:border-[#f0a500]/30"}`}>{p.name}</button>
+                <button key={p.name} onClick={() => { setFg(p.fg); setBg(p.bg); }} className={`w-full text-left px-2.5 py-1.5 text-[10px] rounded border transition-all cursor-pointer ${isLight ? "bg-white border-gray-200 text-gray-600 hover:border-[#e0d0d0]" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:border-[#FF6B6B]/30"}`}>{p.name}</button>
               ))}
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function ColorContrastChecker({ isLight, mutedText }) {
                 { label: "Large Text AAA", required: 4.5 },
               ].map((check) => (
                 <div key={check.label} className="flex items-center gap-2">
-                  <div className={`w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold ${ratio >= check.required ? "bg-[#fff8ed]0/20 text-green-400" : "bg-red-500/20 text-red-400"}`}>
+                  <div className={`w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold ${ratio >= check.required ? "bg-[#fff0f0]0/20 text-green-400" : "bg-red-500/20 text-red-400"}`}>
                     {ratio >= check.required ? "\u2713" : "\u2717"}
                   </div>
                   <div>

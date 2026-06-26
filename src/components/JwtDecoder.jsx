@@ -67,7 +67,7 @@ export default function JwtDecoder({ isLight, mutedText }) {
       <textarea
         value={token}
         onChange={(e) => setToken(e.target.value)}
-        className={`w-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 mb-4 ${isLight ? "bg-white border-gray-200 focus:border-[#f0a500] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#f0a500] text-[#e0e0e0]"}`}
+        className={`w-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 mb-4 ${isLight ? "bg-white border-gray-200 focus:border-[#FF6B6B] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#FF6B6B] text-[#e0e0e0]"}`}
         placeholder='Paste a JWT token here...\n\nExample:\neyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.\neyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
         rows={4}
         spellCheck={false}
@@ -89,7 +89,7 @@ export default function JwtDecoder({ isLight, mutedText }) {
             <div className="flex items-center justify-between mb-2">
               <label className={`text-xs ${mutedText} font-mono`}>PAYLOAD</label>
               {result.data.isExpired !== null && (
-                <span className={`text-[10px] font-mono px-2 py-0.5 rounded ${result.data.isExpired ? "bg-red-500/10 text-red-400 border border-red-500/20" : "bg-[#fff8ed]0/10 text-green-400 border border-green-500/20"}`}>
+                <span className={`text-[10px] font-mono px-2 py-0.5 rounded ${result.data.isExpired ? "bg-red-500/10 text-red-400 border border-red-500/20" : "bg-[#fff0f0]0/10 text-green-400 border border-green-500/20"}`}>
                   {result.data.isExpired ? "Expired" : "Valid"}
                 </span>
               )}
@@ -110,8 +110,8 @@ export default function JwtDecoder({ isLight, mutedText }) {
             <div className={`rounded-lg border p-3 ${isLight ? "bg-gray-50 border-gray-200" : "bg-[#0d0d0d] border-[#1a1a1a]"}`}>
               <label className={`text-[10px] font-bold uppercase ${mutedText} mb-2 block`}>Token Info</label>
               <div className={`flex flex-wrap gap-4 text-xs font-mono ${isLight ? "text-gray-600" : "text-[#888]"}`}>
-                {result.data.issuedAt && <div><span className={mutedText}>Issued: </span><span className="text-[#f0a500]">{result.data.issuedAt}</span></div>}
-                {result.data.expiresAt && <div><span className={mutedText}>Expires: </span><span className="text-[#f0a500]">{result.data.expiresAt}</span></div>}
+                {result.data.issuedAt && <div><span className={mutedText}>Issued: </span><span className="text-[#FF6B6B]">{result.data.issuedAt}</span></div>}
+                {result.data.expiresAt && <div><span className={mutedText}>Expires: </span><span className="text-[#FF6B6B]">{result.data.expiresAt}</span></div>}
               </div>
             </div>
           )}

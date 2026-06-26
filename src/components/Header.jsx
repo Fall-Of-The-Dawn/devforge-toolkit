@@ -108,7 +108,7 @@ function Dropdown({ group, activeTool, setActiveTool, isLight, mutedText2, activ
               onClick={() => { setActiveTool(item.id); setOpen(false); }}
               className={`w-full text-left px-3 py-2 text-[13px] font-medium transition-colors cursor-pointer ${
                 activeTool === item.id
-                  ? isLight ? "bg-[#fff8ed] text-[#c87d0a]" : "bg-[rgba(240,165,0,0.08)] text-[#f0a500]"
+                  ? isLight ? "bg-[#fff0f0] text-[#c53a3a]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B]"
                   : isLight ? "text-[#5a5f6e] hover:bg-[#f0efe9]" : "text-[#8891a4] hover:bg-[#1e2333]"
               }`}
             >
@@ -161,7 +161,7 @@ function MobileMenu({ open, setOpen, activeTool, setActiveTool, isLight }) {
                       onClick={() => { setActiveTool(item.id); setOpen(false); }}
                       className={`w-full text-left px-3 py-2 rounded-md text-[13px] transition-colors ${
                         activeTool === item.id
-                          ? isLight ? "bg-[#fff8ed] text-[#c87d0a]" : "bg-[rgba(240,165,0,0.08)] text-[#f0a500]"
+                          ? isLight ? "bg-[#fff0f0] text-[#c53a3a]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B]"
                           : isLight ? "text-[#5a5f6e] hover:bg-[#f0efe9]" : "text-[#8891a4] hover:bg-[#181c28]"
                       }`}
                     >
@@ -188,13 +188,8 @@ export default function Header({ activeTool, setActiveTool, isLight, setTheme, s
           onClick={() => setActiveTool("home")}
           className="flex items-center gap-2 no-underline cursor-pointer shrink-0 mr-2"
         >
-          <div className={`w-7 h-7 ${isLight ? "bg-[#fff8ed] border-[#f0dfc0]" : "bg-[#181c28] border-[#1c2030]"} border rounded-md flex items-center justify-center shrink-0`}>
-            <svg width="15" height="15" viewBox="0 0 48 48" fill="none">
-              <rect width="48" height="48" rx="10" fill={isLight ? "#f7f6f3" : "#12151e"}/>
-              <path d="M12 14l6-6 2 2-6 6 6 6-2 2-6-6z" fill={isLight ? "#c87d0a" : "#f0a500"}/>
-              <path d="M36 14l-6-6-2 2 6 6-6 6 2 2 6-6z" fill={isLight ? "#c87d0a" : "#f0a500"}/>
-              <circle cx="24" cy="24" r="4" fill={isLight ? "#c87d0a" : "#f0a500"} opacity="0.5"/>
-            </svg>
+          <div className={`w-8 h-8 ${isLight ? "bg-[#fff0f0] border-[#e0d0d0]" : "bg-[#000000] border-[#1a1a1a]"} border rounded-full flex items-center justify-center shrink-0 overflow-hidden`}>
+            <img src="/logo.png" alt="OmniStack" className="w-full h-full object-cover rounded-full" />
           </div>
           <span className={`text-base font-bold ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"} tracking-tight shrink-0 font-display`}>
             omnistack

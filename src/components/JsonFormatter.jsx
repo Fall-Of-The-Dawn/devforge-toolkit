@@ -36,7 +36,7 @@ export default function JsonFormatter({ isLight, mutedText }) {
           <div className="flex items-center gap-1.5">
             <label className={`text-[10px] ${mutedText}`}>INDENT</label>
             {[2, 4, 8].map((v) => (
-              <button key={v} onClick={() => setIndent(v)} className={`px-2 py-1 text-[10px] font-bold rounded border transition-all cursor-pointer ${indent === v ? (isLight ? "bg-[#fff8ed] border-[#f0dfc0] text-[#c87d0a]" : "bg-[#f0a500]/10 border-[#f0a500]/30 text-[#f0a500]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>{v}</button>
+              <button key={v} onClick={() => setIndent(v)} className={`px-2 py-1 text-[10px] font-bold rounded border transition-all cursor-pointer ${indent === v ? (isLight ? "bg-[#fff0f0] border-[#e0d0d0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 border-[#FF6B6B]/30 text-[#FF6B6B]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>{v}</button>
             ))}
           </div>
           <button onClick={handleCopy} disabled={!parsed.result} className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${isLight ? "bg-gray-50 border-gray-200 text-gray-600 hover:text-gray-900 hover:border-gray-300" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:text-[#ccc] hover:border-[#333]"}`}>
@@ -74,7 +74,7 @@ export default function JsonFormatter({ isLight, mutedText }) {
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#f0a500] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#f0a500] text-[#e0e0e0]"}`}
+            className={`w-full h-full resize-none rounded-lg p-4 font-mono text-sm leading-relaxed border focus:outline-none transition-colors duration-150 ${isLight ? "bg-white border-gray-200 focus:border-[#FF6B6B] text-gray-900" : "bg-[#0a0a0a] border-[#1a1a1a] focus:border-[#FF6B6B] text-[#e0e0e0]"}`}
             placeholder={'Paste JSON here...\n\nExample:\n{\n  "name": "John",\n  "age": 30,\n  "tags": ["dev", "tools"]\n}'}
             spellCheck={false}
           />
