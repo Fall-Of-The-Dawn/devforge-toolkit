@@ -46,7 +46,7 @@ export default function QrCodeGenerator({ isLight, mutedText }) {
   return (
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
-        <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>QR Code Generator</label>
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>QR Code Generator</h1>
         <div className="flex items-center gap-2">
           <button onClick={() => handleDownload("svg")} disabled={!text.trim()} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${isLight ? "bg-gray-50 border-gray-200 text-gray-600 hover:text-gray-900 hover:border-gray-300" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:text-[#ccc] hover:border-[#333]"}`}>SVG</button>
           <button onClick={() => handleDownload("png")} disabled={!text.trim()} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${isLight ? "bg-gray-50 border-gray-200 text-gray-600 hover:text-gray-900 hover:border-gray-300" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:text-[#ccc] hover:border-[#333]"}`}>PNG</button>

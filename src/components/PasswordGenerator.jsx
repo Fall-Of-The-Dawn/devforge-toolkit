@@ -32,7 +32,6 @@ function analyzePassword(pw) {
   if (/[^a-zA-Z0-9]/.test(pw)) pool += 32;
 
   const entropy = Math.round(pw.length * Math.log2(pool || 1));
-  const combinations = Math.pow(pool || 1, pw.length);
 
   let score = 0;
   if (pw.length >= 8) score++;
@@ -87,7 +86,7 @@ export default function PasswordGenerator({ isLight, mutedText }) {
   return (
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
-        <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Password Generator</label>
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Password Generator</h1>
         <div className="flex items-center gap-2">
           <button onClick={handleCopy} disabled={!password} className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${isLight ? "bg-gray-50 border-gray-200 text-gray-600 hover:text-gray-900 hover:border-gray-300" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:text-[#ccc] hover:border-[#333]"}`}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>

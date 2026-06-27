@@ -29,7 +29,7 @@ export default function CssConverter({ isLight, mutedText, activeBtn, inactiveBt
   return (
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
-        <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>CSS ↔ Tailwind</label>
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>CSS ↔ Tailwind</h1>
         <div className="flex gap-1.5">
           <button onClick={() => setActiveDirection("css-to-tailwind")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all duration-150 cursor-pointer ${activeDirection === "css-to-tailwind" ? activeBtn : inactiveBtn}`}>CSS → Tailwind</button>
           <button onClick={() => setActiveDirection("tailwind-to-css")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all duration-150 cursor-pointer ${activeDirection === "tailwind-to-css" ? activeBtn : inactiveBtn}`}>Tailwind → CSS</button>

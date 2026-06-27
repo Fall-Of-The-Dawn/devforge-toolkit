@@ -39,7 +39,7 @@ export function ExportModal({ isOpen, setIsExportModalOpen, isLight, mutedText, 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className={`rounded-xl p-6 max-w-sm w-full shadow-2xl ${isLight ? "bg-white border border-gray-200" : "bg-[#111] border border-[#1a1a1a]"}`} onClick={(e) => e.stopPropagation()}>
-        <h3 className={`text-lg font-bold mb-4 ${isLight ? "text-gray-900" : "text-white"}`}>Export</h3>
+        <p className={`text-lg font-bold mb-4 ${isLight ? "text-gray-900" : "text-white"}`}>Export</p>
         <div className="space-y-4">
           <div>
             <label className={`text-xs font-bold uppercase tracking-wider ${mutedText} mb-2 block`}>Format</label>
@@ -73,7 +73,7 @@ export function PrivacyModal({ isOpen, setIsPrivacyOpen, isLight }) {
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setIsPrivacyOpen(false)}>
       <div className={`rounded-xl p-6 max-w-3xl w-full shadow-2xl ${isLight ? "bg-white border border-gray-200" : "bg-[#111] border border-[#1a1a1a]"}`} onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-5">
-          <h3 className={`text-lg font-bold ${isLight ? "text-gray-900" : "text-white"}`}>Privacy</h3>
+          <p className={`text-lg font-bold ${isLight ? "text-gray-900" : "text-white"}`}>Privacy</p>
           <button onClick={() => setIsPrivacyOpen(false)} className={`text-xl cursor-pointer ${isLight ? "text-gray-400 hover:text-gray-600" : "text-[#555] hover:text-[#999]"}`}>×</button>
         </div>
         <div className={`grid grid-cols-2 gap-x-8 gap-y-3 text-sm ${isLight ? "text-gray-600" : "text-[#888]"}`}>

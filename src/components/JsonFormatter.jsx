@@ -31,7 +31,7 @@ export default function JsonFormatter({ isLight, mutedText }) {
   return (
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
-        <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>JSON Formatter</label>
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>JSON Formatter</h1>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5">
             <label className={`text-[10px] ${mutedText}`}>INDENT</label>

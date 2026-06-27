@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo } from "react";
 
 const WORDS = [
   "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit",
@@ -82,7 +82,7 @@ export default function LoremIpsumGenerator({ isLight, mutedText }) {
   return (
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
-        <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Lorem Ipsum Generator</label>
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Lorem Ipsum Generator</h1>
         <div className="flex items-center gap-3">
           <span className={`text-[10px] font-mono ${mutedText}`}>{wordCount} words · {charCount} chars</span>
           <button

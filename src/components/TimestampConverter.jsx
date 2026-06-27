@@ -1,11 +1,4 @@
-import { useState, useMemo } from "react";
-
-function formatUnix(ts, unit) {
-  const ms = unit === "seconds" ? ts * 1000 : ts;
-  const d = new Date(ms);
-  if (isNaN(d.getTime())) return "Invalid timestamp";
-  return d.toISOString();
-}
+import { useState, useMemo, useEffect } from "react";
 
 function formatRelative(ts, unit) {
   const ms = unit === "seconds" ? ts * 1000 : ts;
@@ -29,8 +22,14 @@ export default function TimestampConverter({ isLight, mutedText }) {
   const [input, setInput] = useState("");
   const [unit, setUnit] = useState("seconds");
   const [tz, setTz] = useState("UTC");
+  const [now, setNow] = useState(() => Math.floor(Date.now() / (unit === "seconds" ? 1000 : 1)));
 
-  const now = useMemo(() => Math.floor(Date.now() / (unit === "seconds" ? 1000 : 1)), [unit]);
+  useEffect(() => {
+    const tick = () => setNow(Math.floor(Date.now() / (unit === "seconds" ? 1000 : 1)));
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [unit]);
 
   const results = useMemo(() => {
     const ts = parseInt(input, 10);
@@ -63,7 +62,7 @@ export default function TimestampConverter({ isLight, mutedText }) {
   return (
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
-        <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Timestamp Converter</label>
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Timestamp Converter</h1>
         <span className={`text-[10px] font-mono ${mutedText}`}>Now: {now}</span>
       </div>
 
@@ -92,10 +91,10 @@ export default function TimestampConverter({ isLight, mutedText }) {
             <div className="space-y-1.5">
               {[
                 { label: "Now", value: now },
-                { label: "1 hour ago", value: Math.floor(Date.now() / 1000) - 3600 },
-                { label: "1 day ago", value: Math.floor(Date.now() / 1000) - 86400 },
-                { label: "1 week ago", value: Math.floor(Date.now() / 1000) - 604800 },
-                { label: "1 month ago", value: Math.floor(Date.now() / 1000) - 2592000 },
+                { label: "1 hour ago", value: now - 3600 },
+                { label: "1 day ago", value: now - 86400 },
+                { label: "1 week ago", value: now - 604800 },
+                { label: "1 month ago", value: now - 2592000 },
               ].map((q) => (
                 <button key={q.label} onClick={() => setInput(String(q.value))} className={`w-full text-left px-2.5 py-1.5 text-[10px] rounded border transition-all cursor-pointer ${isLight ? "bg-white border-gray-200 text-gray-600 hover:border-[#e0d0d0]" : "bg-[#111] border-[#1a1a1a] text-[#888] hover:border-[#FF6B6B]/30"}`}>{q.label}</button>
               ))}

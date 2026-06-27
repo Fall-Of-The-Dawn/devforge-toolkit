@@ -210,7 +210,7 @@ function WordFinder({ textA, setTextA, textB, setTextB, isLight, mutedText }) {
   );
 }
 
-function DiffFilter({ filter, setFilter, stats, isLight, mutedText }) {
+function DiffFilter({ filter, setFilter, stats, isLight, mutedText, changeSummary, setChangeSummary }) {
   const filters = [
     { id: "all", label: "All", count: stats.total },
     { id: "added", label: "Added", count: stats.added, color: "text-[#FF6B6B]" },
@@ -223,7 +223,20 @@ function DiffFilter({ filter, setFilter, stats, isLight, mutedText }) {
       {filters.map((f) => (
         <button
           key={f.id}
-          onClick={() => setFilter(f.id)}
+          onClick={() => {
+            if (f.id === "added" || f.id === "removed") {
+              if (changeSummary === f.id) {
+                setChangeSummary(null);
+                setFilter("all");
+              } else {
+                setChangeSummary(f.id);
+                setFilter(f.id);
+              }
+            } else {
+              setChangeSummary(null);
+              setFilter(f.id);
+            }
+          }}
           className={`px-2.5 py-1 text-[10px] font-bold rounded-md border transition-all cursor-pointer ${
             filter === f.id
               ? isLight ? "bg-[#1a1d26] text-[#f7f6f3] border-[#1a1d26]" : "bg-[#e2e5eb] text-[#0c0e14] border-[#e2e5eb]"
@@ -240,11 +253,142 @@ function DiffFilter({ filter, setFilter, stats, isLight, mutedText }) {
   );
 }
 
+function ChangeSummary({ changeSummary, result, isLight }) {
+  const changes = useMemo(() => {
+    if (!changeSummary) return [];
+
+    const filtered = result.filter((line) => {
+      if (changeSummary === "added") return line.type === "added" || line.type === "changed";
+      if (changeSummary === "removed") return line.type === "removed" || line.type === "changed";
+      return false;
+    });
+
+    if (filtered.length === 0) return [];
+
+    const groups = [];
+    let currentGroup = null;
+
+    for (const line of filtered) {
+      const lineNum = changeSummary === "added" ? line.newNum : line.oldNum;
+
+      if (line.type === "changed") {
+        const wordDiff = changeSummary === "added"
+          ? line.wordDiff.filter((s) => s.type !== "removed")
+          : line.wordDiff.filter((s) => s.type !== "added");
+
+        const changedWords = wordDiff.filter((s) => s.type !== "equal");
+        if (changedWords.length === 0) continue;
+
+        const oldWords = line.wordDiff.filter((s) => s.type !== "added").map((s) => s.value).join("");
+        const newWords = line.wordDiff.filter((s) => s.type !== "removed").map((s) => s.value).join("");
+
+        if (currentGroup && lineNum === currentGroup.endLine + 1) {
+          currentGroup.endLine = lineNum;
+          currentGroup.changes.push({
+            from: oldWords.trim(),
+            to: newWords.trim(),
+          });
+        } else {
+          currentGroup = {
+            startLine: lineNum,
+            endLine: lineNum,
+            changes: [{
+              from: oldWords.trim(),
+              to: newWords.trim(),
+            }],
+          };
+          groups.push(currentGroup);
+        }
+      } else if (line.type === "added" || line.type === "removed") {
+        const text = (line.oldLine || line.newLine || "").trim();
+        if (!text) continue;
+
+        if (currentGroup && lineNum === currentGroup.endLine + 1) {
+          currentGroup.endLine = lineNum;
+          currentGroup.changes.push({
+            from: changeSummary === "removed" ? text : "",
+            to: changeSummary === "added" ? text : "",
+          });
+        } else {
+          currentGroup = {
+            startLine: lineNum,
+            endLine: lineNum,
+            changes: [{
+              from: changeSummary === "removed" ? text : "",
+              to: changeSummary === "added" ? text : "",
+            }],
+          };
+          groups.push(currentGroup);
+        }
+      }
+    }
+
+    return groups;
+  }, [changeSummary, result]);
+
+  if (!changeSummary || changes.length === 0) {
+    if (changeSummary && changes.length === 0) {
+      return (
+        <div className={`mb-3 px-3 py-2 rounded-lg border text-xs ${isLight ? "bg-[#f9fafb] border-[#e5e7eb] text-[#9ca3af]" : "bg-[#0d0f14] border-[#1f2937] text-[#6b7280]"}`}>
+          No {changeSummary} lines found.
+        </div>
+      );
+    }
+    return null;
+  }
+
+  const accentColor = changeSummary === "added" ? "#FF6B6B" : "#ef4444";
+
+  return (
+    <div className={`mb-3 rounded-lg border overflow-hidden ${isLight ? "bg-[#f9fafb] border-[#e5e7eb]" : "bg-[#0d0f14] border-[#1f2937]"}`}>
+      <div className={`px-3 py-2 border-b text-[10px] font-bold uppercase tracking-wider ${isLight ? "border-[#e5e7eb] text-[#9ca3af]" : "border-[#1f2937] text-[#6b7280]"}`}>
+        {changeSummary === "added" ? "Added" : "Removed"} Changes Summary
+      </div>
+      <div className="px-3 py-2 space-y-2 max-h-[200px] overflow-y-auto scrollbar-hide">
+        {changes.map((group, i) => {
+          const lineLabel = group.startLine === group.endLine
+            ? `line ${group.startLine}`
+            : `lines ${group.startLine}–${group.endLine}`;
+
+          return (
+            <div key={i} className="flex items-start gap-2">
+              <span
+                className="shrink-0 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold"
+                style={{ backgroundColor: `${accentColor}18`, color: accentColor }}
+              >
+                {lineLabel}
+              </span>
+              <div className="flex-1 min-w-0">
+                {group.changes.map((c, j) => (
+                  <div key={j} className="flex items-center gap-1.5 text-xs font-mono flex-wrap">
+                    {c.from && c.to ? (
+                      <>
+                        <span className={isLight ? "text-red-500" : "text-red-400"}>{c.from}</span>
+                        <span className={isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}>→</span>
+                        <span style={{ color: accentColor }}>{c.to}</span>
+                      </>
+                    ) : c.to ? (
+                      <span style={{ color: accentColor }}>+ {c.to}</span>
+                    ) : (
+                      <span className={isLight ? "text-red-500" : "text-red-400"}>- {c.from}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function TextDiff({ isLight, mutedText }) {
   const [textA, setTextA] = useState("");
   const [textB, setTextB] = useState("");
   const [showOutput, setShowOutput] = useState(false);
   const [diffFilter, setDiffFilter] = useState("all");
+  const [changeSummary, setChangeSummary] = useState(null);
 
   const result = computeDiff(textA, textB);
 
@@ -272,7 +416,7 @@ export default function TextDiff({ isLight, mutedText }) {
   return (
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
-        <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Text Diff</label>
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Text Diff</h1>
         <button onClick={() => setShowOutput(!showOutput)} className={`px-3.5 py-2 text-xs font-bold text-[#0c0e14] bg-[#FF6B6B] hover:bg-[#c53a3a] rounded-md transition-all duration-150 hover:shadow-lg hover:shadow-[#FF6B6B]/20 cursor-pointer`}>
           {showOutput ? "Edit" : "Compare"}
         </button>
@@ -306,7 +450,8 @@ export default function TextDiff({ isLight, mutedText }) {
         </div>
       ) : (
         <div className="flex-1 flex flex-col min-w-0 gap-0">
-          <DiffFilter filter={diffFilter} setFilter={setDiffFilter} stats={stats} isLight={isLight} mutedText={mutedText} />
+          <DiffFilter filter={diffFilter} setFilter={setDiffFilter} stats={stats} isLight={isLight} mutedText={mutedText} changeSummary={changeSummary} setChangeSummary={setChangeSummary} />
+          <ChangeSummary changeSummary={changeSummary} result={result} isLight={isLight} />
           <div className={`flex-1 overflow-auto border rounded-lg font-mono text-sm ${isLight ? "bg-white border-[#e2e0da]" : "bg-[#0a0c12] border-[#1c2030]"}`}>
             {filteredResult.length === 0 && (
               <div className={`text-center py-8 text-xs ${mutedText}`}>No lines match this filter</div>

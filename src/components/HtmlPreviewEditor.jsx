@@ -58,7 +58,7 @@ export default function HtmlPreviewEditor({ isLight, mutedText }) {
   return (
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
-        <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>HTML Preview Editor</label>
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>HTML Preview Editor</h1>
         <div className="flex items-center gap-2">
           <label className={`flex items-center gap-1.5 text-[10px] ${mutedText} cursor-pointer`}>
             <input type="checkbox" checked={autoRun} onChange={(e) => setAutoRun(e.target.checked)} className="w-3 h-3 accent-[#FF6B6B]" />

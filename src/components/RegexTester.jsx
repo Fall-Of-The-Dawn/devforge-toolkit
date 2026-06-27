@@ -45,7 +45,7 @@ export default function RegexTester({ isLight, mutedText }) {
   return (
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
-        <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Regex Tester</label>
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Regex Tester</h1>
         <div className="flex items-center gap-2">
           <div className={`flex items-center gap-1 px-2 py-1 rounded border text-[10px] font-mono ${isLight ? "bg-gray-50 border-gray-200 text-gray-500" : "bg-[#111] border-[#1a1a1a] text-[#666]"}`}>
             <span className={`${mutedText}`}>FLAGS:</span>

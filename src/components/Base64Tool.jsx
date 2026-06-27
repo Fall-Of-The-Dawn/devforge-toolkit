@@ -34,7 +34,7 @@ export default function Base64Tool({ isLight, mutedText }) {
   return (
     <div className="flex-1 flex flex-col min-w-0 p-5">
       <div className="flex items-center justify-between mb-4">
-        <label className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Base64 {mode === "encode" ? "Encoder" : "Decoder"}</label>
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText}`}>Base64 {mode === "encode" ? "Encoder" : "Decoder"}</h1>
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">
             <button onClick={() => setMode("encode")} className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all cursor-pointer ${mode === "encode" ? (isLight ? "bg-[#fff0f0] border-[#e0d0d0] text-[#c53a3a]" : "bg-[#FF6B6B]/10 border-[#FF6B6B]/30 text-[#FF6B6B]") : (isLight ? "bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700" : "bg-[#111] border-[#1a1a1a] text-[#666] hover:text-[#999]")}`}>Encode</button>

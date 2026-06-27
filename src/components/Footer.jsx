@@ -1,4 +1,4 @@
-export default function Footer({ isLight, mutedText, setActiveTool, adConfig, theme }) {
+export default function Footer({ isLight, setActiveTool }) {
   const toolCategories = [
     {
       title: "Data",
@@ -54,9 +54,9 @@ export default function Footer({ isLight, mutedText, setActiveTool, adConfig, th
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
           {toolCategories.map((category) => (
             <div key={category.title}>
-              <h3 className={`text-sm font-semibold mb-4 ${isLight ? "text-[#1a1a1a]" : "text-[#e8e8e8]"}`}>
+              <p className={`text-sm font-semibold mb-4 ${isLight ? "text-[#1a1a1a]" : "text-[#e8e8e8]"}`}>
                 {category.title}
-              </h3>
+              </p>
               <ul className="space-y-2.5">
                 {category.tools.map((tool) => (
                   <li key={tool.id}>

@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef, forwardRef, useImperativeHandle } from "react";
+import Footer from "./Footer";
 
 const CATEGORIES = [
   { id: "all", label: "All tools" },
@@ -32,8 +33,10 @@ function Typewriter() {
     if (!isDeleting && displayText === currentPhrase) {
       timeout = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && displayText === "") {
-      setIsDeleting(false);
-      setPhraseIndex((prev) => (prev + 1) % TYPEWRITER_PHRASES.length);
+      timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setPhraseIndex((prev) => (prev + 1) % TYPEWRITER_PHRASES.length);
+      }, 0);
     } else {
       timeout = setTimeout(
         () => {
@@ -50,15 +53,361 @@ function Typewriter() {
   }, [displayText, isDeleting, phraseIndex]);
 
   return (
-    <span className="font-display">
+    <span className="font-sans">
       {displayText}
       <span className="inline-block w-[2px] h-[1em] bg-[var(--accent)] ml-0.5 align-middle" style={{ animation: "blink 1s step-end infinite" }} />
     </span>
   );
 }
 
+const TOOL_NAME_MAP = {
+  "generator": "generator",
+  "mock data": "generator",
+  "mock data generator": "generator",
+  "json formatter": "json-formatter",
+  "json": "json-formatter",
+  "text diff": "text-diff",
+  "diff": "text-diff",
+  "regex": "regex-tester",
+  "regex tester": "regex-tester",
+  "css converter": "css-converter",
+  "css": "css-converter",
+  "tailwind": "css-converter",
+  "css to tailwind": "css-converter",
+  "base64": "base64",
+  "base64 encoder": "base64",
+  "url encoder": "url-encoder",
+  "url": "url-encoder",
+  "jwt": "jwt-decoder",
+  "jwt decoder": "jwt-decoder",
+  "css minifier": "css-minifier",
+  "minifier": "css-minifier",
+  "gradient": "gradient",
+  "gradient generator": "gradient",
+  "box shadow": "box-shadow",
+  "shadow": "box-shadow",
+  "layout": "layout",
+  "layout playground": "layout",
+  "flexbox": "layout",
+  "color contrast": "color-contrast",
+  "contrast": "color-contrast",
+  "html preview": "html-preview",
+  "html": "html-preview",
+  "markdown": "markdown",
+  "markdown preview": "markdown",
+  "qr code": "qr-code",
+  "qr": "qr-code",
+  "qr code generator": "qr-code",
+  "password": "password",
+  "password generator": "password",
+  "uuid": "uuid",
+  "uuid generator": "uuid",
+  "timestamp": "timestamp",
+  "timestamp converter": "timestamp",
+  "lorem": "lorem",
+  "lorem ipsum": "lorem",
+  "tokenizer": "tokenizer",
+  "token": "tokenizer",
+};
+
+const TOOL_LIST = [
+  "mock data generator", "json formatter", "text diff", "regex tester",
+  "css converter", "base64 encoder", "url encoder", "jwt decoder",
+  "css minifier", "gradient generator", "box shadow", "layout playground",
+  "color contrast", "html preview", "markdown preview", "qr code generator",
+  "password generator", "uuid generator", "timestamp converter", "lorem ipsum", "tokenizer",
+];
+
+function Toast({ message, onClose, isLight }) {
+  useEffect(() => {
+    const t = setTimeout(onClose, 4000);
+    return () => clearTimeout(t);
+  }, [onClose]);
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50 animate-slide-up">
+      <div className="px-5 py-3 rounded-lg border border-[var(--accent)]/30 bg-[#111111] text-sm shadow-lg flex items-center gap-2"
+        style={{ color: isLight ? "#374151" : "#d1d5db" }}>
+        <span className="text-[var(--accent)]">&#9889;</span>
+        <span>{message}</span>
+      </div>
+    </div>
+  );
+}
+
+const TerminalDemo = forwardRef(function TerminalDemo({ isLight, setActiveTool }, ref) {
+  const [history, setHistory] = useState([]);
+  const [input, setInput] = useState("");
+  const [cursorVisible, setCursorVisible] = useState(true);
+  const inputRef = useRef(null);
+  const scrollRef = useRef(null);
+
+  const typeHelp = () => {
+    const cmd = "help";
+    let i = 0;
+    setInput("");
+    const iv = setInterval(() => {
+      if (i <= cmd.length) {
+        setInput(cmd.substring(0, i));
+        i++;
+      } else {
+        clearInterval(iv);
+        setTimeout(() => {
+          setHistory((prev) => [
+            ...prev,
+            { type: "input", text: cmd },
+            { type: "success", text: "Available commands:" },
+            { type: "output", text: "  open <tool>    — Switch to a tool" },
+            { type: "output", text: "  list            — Show all tools" },
+            { type: "output", text: "  help            — Show this message" },
+            { type: "output", text: "  clear           — Clear terminal" },
+            { type: "output", text: "  home            — Go to home page" },
+            { type: "output", text: "" },
+          ]);
+          setInput("");
+          setTimeout(() => scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" }), 50);
+        }, 200);
+      }
+    }, 50);
+  };
+
+  useImperativeHandle(ref, () => ({
+    focus: () => inputRef.current?.focus(),
+    typeHelp,
+  }));
+
+  // Auto-type onboarding demo on mount
+  useEffect(() => {
+    const demoCommand = "omnistack mock-data --users 3 --format json";
+    const demoOutput = `{
+  "users": [
+    { "id": 1, "name": "Sarah Chen", "email": "sarah@example.com", "role": "developer" },
+    { "id": 2, "name": "Marcus Johnson", "email": "marcus@example.com", "role": "designer" },
+    { "id": 3, "name": "Aisha Patel", "email": "aisha@example.com", "role": "pm" }
+  ],
+  "total": 3
+}`;
+
+    let step = 0;
+    const welcomeLines = [
+      { type: "output", text: "Welcome to OmniStack CLI v1.0" },
+      { type: "output", text: "" },
+    ];
+
+    const typeInterval = setInterval(() => {
+      if (step < welcomeLines.length) {
+        const line = welcomeLines[step];
+        step++;
+        setHistory((prev) => [...prev, line]);
+      } else {
+        clearInterval(typeInterval);
+        // Start auto-typing the demo command
+        let charIndex = 0;
+        const typeCmdInterval = setInterval(() => {
+          if (charIndex <= demoCommand.length) {
+            setInput(demoCommand.substring(0, charIndex));
+            charIndex++;
+          } else {
+            clearInterval(typeCmdInterval);
+            setTimeout(() => {
+              setHistory((prev) => [
+                ...prev,
+                { type: "input", text: demoCommand },
+                { type: "success", text: "3 users generated successfully" },
+                { type: "json", text: demoOutput },
+                { type: "output", text: "" },
+                { type: "output", text: "Type 'help' for available commands." },
+              ]);
+              setInput("");
+            }, 400);
+          }
+        }, 35);
+      }
+    }, 600);
+
+    return () => {
+      clearInterval(typeInterval);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [history]);
+
+  useEffect(() => {
+    const id = setInterval(() => setCursorVisible((v) => !v), 530);
+    return () => clearInterval(id);
+  }, []);
+
+  const processCommand = (cmd) => {
+    const trimmed = cmd.trim().toLowerCase();
+    const newHistory = [...history, { type: "input", text: cmd }];
+
+    if (!trimmed) {
+      setHistory(newHistory);
+      return;
+    }
+
+    if (trimmed === "help") {
+      newHistory.push({
+        type: "output",
+        text: [
+          "Available commands:",
+          "  open <tool>    — Open a tool (e.g. 'open json formatter')",
+          "  list           — List all available tools",
+          "  clear          — Clear terminal",
+          "  home           — Go back to home",
+          "  help           — Show this help message",
+        ].join("\n"),
+      });
+    } else if (trimmed === "list") {
+      newHistory.push({
+        type: "output",
+        text: "Available tools:\n" + TOOL_LIST.map((t, i) => `  ${String(i + 1).padStart(2, " ")}. ${t}`).join("\n"),
+      });
+    } else if (trimmed === "clear") {
+      setHistory([]);
+      setInput("");
+      return;
+    } else if (trimmed === "home") {
+      newHistory.push({ type: "output", text: "Navigating to home..." });
+      setHistory(newHistory);
+      setTimeout(() => setActiveTool("home"), 300);
+      return;
+    } else if (trimmed.startsWith("open ")) {
+      const toolQuery = trimmed.slice(5).trim();
+      const toolId = TOOL_NAME_MAP[toolQuery];
+
+      if (toolId) {
+        const toolLabel = TOOL_LIST.find((t) => {
+          const mapped = TOOL_NAME_MAP[t];
+          return mapped === toolId;
+        }) || toolQuery;
+        newHistory.push({
+          type: "success",
+          text: `Opening ${toolLabel}...`,
+        });
+        setHistory(newHistory);
+        setTimeout(() => setActiveTool(toolId), 300);
+        return;
+      } else {
+        newHistory.push({
+          type: "error",
+          text: `Tool not found: '${toolQuery}'. Type 'list' to see available tools.`,
+        });
+      }
+    } else {
+      newHistory.push({
+        type: "error",
+        text: `Command not found: '${trimmed}'. Type 'help' for available commands.`,
+      });
+    }
+
+    setHistory(newHistory);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      processCommand(input);
+      setInput("");
+    }
+  };
+
+  return (
+    <div className="w-full">
+        <div
+          className={`rounded-xl border overflow-hidden cursor-text ${isLight ? "bg-[#fafafa] border-[#e5e7eb] shadow-lg shadow-black/5" : "bg-[#0d0f14] border-[#1f2937] shadow-2xl shadow-black/30"}`}
+          onClick={() => inputRef.current?.focus()}
+        >
+          {/* Terminal top bar */}
+          <div className={`flex items-center gap-2 px-4 py-2.5 border-b ${isLight ? "bg-[#f3f4f6] border-[#e5e7eb]" : "bg-[#111318] border-[#1f2937]"}`}>
+            <div className="flex gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-[#ef4444]" />
+              <div className="w-3 h-3 rounded-full bg-[#eab308]" />
+              <div className="w-3 h-3 rounded-full bg-[#22c55e]" />
+            </div>
+            <span className={`text-[11px] ml-2 font-mono ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>~/omnistack</span>
+          </div>
+
+          {/* Terminal body */}
+          <div
+            ref={scrollRef}
+            className={`p-4 font-mono text-[13px] leading-relaxed max-h-[240px] overflow-y-auto scrollbar-hide ${isLight ? "text-[#374151]" : "text-[#d1d5db]"}`}
+          >
+            {history.filter(Boolean).map((entry, i) => (
+              <div key={i} className="whitespace-pre-wrap mb-0.5">
+                {entry.type === "input" && (
+                  <div className="flex items-center gap-2">
+                    <span style={{ color: "#22c55e" }}>$</span>
+                    <span>{entry.text}</span>
+                  </div>
+                )}
+                {entry.type === "output" && (
+                  <div style={{ color: isLight ? "#6b7280" : "#6b7280" }}>{entry.text}</div>
+                )}
+                {entry.type === "success" && (
+                  <div style={{ color: "#22c55e" }}>{entry.text}</div>
+                )}
+                {entry.type === "error" && (
+                  <div style={{ color: "#ef4444" }}>{entry.text}</div>
+                )}
+                {entry.type === "json" && (
+                  <div className="text-xs">
+                    {entry.text.split("\n").map((line, j) => {
+                      const highlighted = line
+                        .replace(/("[\w]+")\s*:/g, '<span style="color:#FF6B6B">$1</span>:')
+                        .replace(/:\s*(".*?")/g, ': <span style="color:#a5d6a7">$1</span>')
+                        .replace(/:\s*(\d+)/g, ': <span style="color:#82aaff">$1</span>');
+                      return (
+                        <div key={j} dangerouslySetInnerHTML={{ __html: highlighted }} />
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Current input line */}
+            <div className="flex items-center gap-2">
+              <span style={{ color: "#22c55e" }}>$</span>
+              <span className="flex-1 relative">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className="bg-transparent border-none outline-none w-full font-mono text-[13px] caret-transparent"
+                  style={{ color: isLight ? "#374151" : "#d1d5db" }}
+                  autoFocus
+                />
+                {/* Custom cursor */}
+                <span
+                  className="absolute top-0 pointer-events-none"
+                  style={{
+                    left: `${input.length * 7.8}px`,
+                    width: "2px",
+                    height: "16px",
+                    backgroundColor: isLight ? "#1a1a1a" : "#e8e8e8",
+                    opacity: cursorVisible ? 1 : 0,
+                    transition: "opacity 0.1s",
+                  }}
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+    </div>
+  );
+});
+
 export default function Home({ setActiveTool, isLight }) {
   const [activeCategory, setActiveCategory] = useState("all");
+  const terminalRef = useRef(null);
+  const mobileTerminalRef = useRef(null);
+  const [toast, setToast] = useState(null);
   const tools = useMemo(() => [
     {
       id: "generator", category: "data",
@@ -309,55 +658,40 @@ export default function Home({ setActiveTool, isLight }) {
     },
   ], []);
 
-  const CATEGORY_SUBTITLES = {
-    all: "21 client-side utilities to skip the tedious work.",
-    data: "Generate realistic fake data for testing and prototyping.",
-    converter: "Transform data between formats instantly.",
-    design: "Visual tools for gradients, shadows, and layouts.",
-    editor: "Edit, format, and preview content with ease.",
-    generator: "Create passwords, QR codes, UUIDs, and more.",
-  };
-
   const filteredTools = activeCategory === "all"
     ? tools
     : tools.filter((t) => t.category === activeCategory);
 
   return (
     <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">
-      {/* Hero */}
-      <section className="relative px-5 pt-16 pb-12 md:pt-20 md:pb-16 overflow-hidden">
-        {/* Abstract watermark blob */}
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] opacity-[0.03] pointer-events-none">
-          <svg viewBox="0 0 200 200" className="w-full h-full">
-            <defs>
-              <linearGradient id="blob-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="var(--accent)" />
-                <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.3" />
-              </linearGradient>
-            </defs>
-            <path fill="url(#blob-gradient)" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.5,90,-16.3,88.1,-1.1C86.2,14.1,79.8,28.2,71.4,40.1C63,52,52.6,61.7,40.4,68.8C28.2,75.9,14.1,80.4,0.3,79.8C-13.5,79.2,-27,73.5,-39.4,65.6C-51.8,57.7,-63.1,47.6,-70.5,35.1C-77.9,22.6,-81.4,7.7,-79.2,-6.7C-77,-21.1,-69.1,-35,-58.5,-45.8C-47.9,-56.6,-34.6,-64.3,-21.1,-70.8C-7.6,-77.3,6.1,-82.6,20.1,-81.5C34.1,-80.4,48.4,-72.9,44.7,-76.4Z" transform="translate(100 100)" />
-          </svg>
-        </div>
-
+      {/* Hero — Split Layout */}
+      <section className="relative px-5 pt-16 pb-10 md:pt-20 md:pb-12">
         {/* Dot grid background */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
           style={{
-            backgroundImage: `radial-gradient(circle, ${isLight ? "#1a1a1a" : "#666666"} 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle, ${isLight ? "#1a1a1a" : "#888888"} 1px, transparent 1px)`,
             backgroundSize: "24px 24px",
+          }}
+        />
+        {/* Coral glow behind hero */}
+        <div
+          className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none"
+          style={{
+            background: `radial-gradient(ellipse at center, ${isLight ? "rgba(229,91,91,0.08)" : "rgba(255,107,107,0.06)"}, transparent 70%)`,
           }}
         />
 
         <div className="relative max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Text content */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+            {/* Left: Copy & Actions */}
             <div className="text-left">
-              <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-5 ${isLight ? "bg-[#fff5f5] text-[#E55B5B] border border-[#fce4e4]" : "bg-[rgba(255,107,107,0.06)] text-[#FF6B6B] border border-[rgba(255,107,107,0.12)]"}`}>
+              <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6 ${isLight ? "bg-[#fff0f0] text-[#c53a3a] border border-[#e0d0d0]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B] border border-[rgba(255,107,107,0.15)]"}`}>
                 <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" style={{ animation: "dotPulse 2s ease-in-out infinite" }} />
                 21 tools · all client-side
               </div>
 
-              <h1 style={{ color: isLight ? "#111827" : "#f9fafb" }} className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-4 leading-[1.05] font-display">
+              <h1 style={{ color: isLight ? "#1a1a1a" : "#e8e8e8" }} className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-black tracking-tight mb-4 leading-[1.08]">
                 The only dev toolkit
                 <br />
                 <span className="text-accent relative inline-block">
@@ -368,71 +702,73 @@ export default function Home({ setActiveTool, isLight }) {
                 </span>
               </h1>
 
-              <div className={`text-lg md:text-xl h-8 mb-5 ${isLight ? "text-[#6b7280]" : "text-[#9ca3af]"}`}>
+              <div className="text-lg md:text-xl min-h-[2rem] mb-5" style={{ color: isLight ? "#555555" : "#888888" }}>
                 <Typewriter />
               </div>
 
-              <p className={`text-[15px] max-w-md mb-8 leading-relaxed ${isLight ? "text-[#6b7280]" : "text-[#9ca3af]"}`}>
-                {CATEGORY_SUBTITLES[activeCategory] || CATEGORY_SUBTITLES.all}
+              <p style={{ color: isLight ? "#555555" : "#888888" }} className="text-sm max-w-md mb-6 leading-relaxed">
+                21 client-side utilities to skip the tedious work. No servers. No sign-up. Fully private.
               </p>
 
-              <div className="flex items-center gap-8">
+              {/* CTA Buttons */}
+              <div className="flex items-center gap-3 mb-8">
+                <button
+                  onClick={() => {
+                    document.getElementById("tool-grid")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="px-6 py-2.5 text-sm font-semibold rounded-lg bg-[var(--accent)] text-white hover:brightness-110 transition-all duration-200 shadow-lg shadow-[var(--accent)]/20 cursor-pointer"
+                >
+                  Explore Tools
+                </button>
+                <button
+                  onClick={() => {
+                    document.getElementById("terminal-demo")?.scrollIntoView({ behavior: "smooth" });
+                    setTimeout(() => {
+                      const ref = window.innerWidth >= 768 ? terminalRef : mobileTerminalRef;
+                      ref.current?.focus();
+                      ref.current?.typeHelp();
+                    }, 300);
+                    setToast({ text: "Terminal active — try typing help", duration: 4000 });
+                  }}
+                  className={`px-6 py-2.5 text-sm font-semibold rounded-lg border transition-all duration-200 cursor-pointer ${
+                    isLight
+                      ? "border-[#d1d5db] text-[#374151] hover:border-[#FF6B6B] hover:text-[#FF6B6B]"
+                      : "border-[#374151] text-[#d1d5db] hover:border-[#FF6B6B] hover:text-[#FF6B6B]"
+                  }`}
+                >
+                  Try CLI
+                </button>
+              </div>
+
+              <div className="flex items-center gap-6 text-xs">
                 {[
                   { value: "21", label: "Tools" },
                   { value: "0", label: "Servers" },
                   { value: "100%", label: "Private" },
                 ].map((stat) => (
-                  <div key={stat.label}>
-                    <div style={{ color: isLight ? "#111827" : "#f9fafb" }} className="text-2xl font-bold font-display">{stat.value}</div>
-                    <div className={`text-xs ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>{stat.label}</div>
+                  <div key={stat.label} className="text-center">
+                    <div style={{ color: isLight ? "#1a1a1a" : "#e8e8e8" }} className="text-lg font-bold font-display">{stat.value}</div>
+                    <div style={{ color: isLight ? "#888888" : "#555555" }}>{stat.label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right: Live mini-preview */}
-            <div className={`hidden lg:block rounded-2xl border p-6 ${isLight ? "bg-white border-[#e5e7eb] shadow-xl shadow-black/5" : "bg-gradient-to-br from-[#111827] to-[#0a0f1a] border-[#1f2937] shadow-2xl shadow-black/20"}`}>
-              <div className={`flex items-center gap-2 mb-4 pb-3 border-b ${isLight ? "border-[#e5e7eb]" : "border-[#1f2937]"}`}>
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-[#ef4444]" />
-                  <div className="w-3 h-3 rounded-full bg-[#eab308]" />
-                  <div className="w-3 h-3 rounded-full bg-[#22c55e]" />
-                </div>
-                <span className={`text-xs ml-2 font-mono ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>mock-data.json</span>
-              </div>
-              <pre className={`text-xs font-mono leading-relaxed overflow-hidden ${isLight ? "text-[#374151]" : "text-[#d1d5db]"}`}>
-{`{
-  "users": [
-    {
-      "id": "1",
-      "name": "Sarah Chen",
-      "email": "sarah@example.com",
-      "role": "developer"
-    },
-    {
-      "id": "2",
-      "name": "Marcus Johnson",
-      "email": "marcus@example.com",
-      "role": "designer"
-    }
-  ],
-  "total": 2,
-  "page": 1
-}`}
-              </pre>
-              <div className={`mt-4 flex items-center gap-2 text-xs ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                <span>Generated instantly in your browser</span>
-              </div>
+            {/* Right: Terminal */}
+            <div className="hidden md:block">
+              <TerminalDemo ref={terminalRef} isLight={isLight} setActiveTool={setActiveTool} />
             </div>
           </div>
         </div>
       </section>
 
+      {/* Mobile: Terminal below hero (visible only on small screens) */}
+      <div className="md:hidden px-5 pb-8" id="terminal-demo">
+        <TerminalDemo ref={mobileTerminalRef} isLight={isLight} setActiveTool={setActiveTool} />
+      </div>
+
       {/* Tool Grid */}
-      <section className="px-5 pb-16">
+      <section id="tool-grid" className="px-5 pb-16">
         <div className="max-w-6xl mx-auto">
           {/* Category filters */}
           <div className="flex items-center gap-2 mb-8 overflow-x-auto scrollbar-hide pb-2">
@@ -489,9 +825,9 @@ export default function Home({ setActiveTool, isLight }) {
                   }`}>
                     {tool.icon}
                   </div>
-                  <h3 className={`text-[15px] font-semibold mb-2 tracking-tight ${isLight ? "text-[#1a1d26]" : "text-[#e8e8e8]"} group-hover:text-[var(--accent)] transition-colors duration-200`}>
+                  <p className={`text-[15px] font-semibold mb-2 tracking-tight ${isLight ? "text-[#1a1d26]" : "text-[#e8e8e8]"} group-hover:text-[var(--accent)] transition-colors duration-200`}>
                     {tool.title}
-                  </h3>
+                  </p>
                   <p className={`text-[13px] leading-relaxed ${isLight ? "text-[#6b7280]" : "text-[#6b7280]"}`}>
                     {tool.description}
                   </p>
@@ -614,7 +950,7 @@ export default function Home({ setActiveTool, isLight }) {
                   {item.icon}
                 </div>
                 <div>
-                  <h3 className={`text-[15px] font-bold mb-1.5 ${isLight ? "text-[#111827]" : "text-[#f9fafb]"}`}>{item.title}</h3>
+                  <p className={`text-[15px] font-bold mb-1.5 ${isLight ? "text-[#111827]" : "text-[#f9fafb]"}`}>{item.title}</p>
                   <p className={`text-[13px] leading-relaxed ${isLight ? "text-[#6b7280]" : "text-[#9ca3af]"}`}>{item.desc}</p>
                 </div>
               </div>
@@ -623,10 +959,13 @@ export default function Home({ setActiveTool, isLight }) {
         </div>
       </section>
 
-      {/* Bottom line */}
-      <div className={`px-5 pb-8 text-center text-xs ${isLight ? "text-[#9ca3b0]" : "text-[#505868]"}`}>
-        <p>100% client-side · No data sent to servers · Open source</p>
-      </div>
+      {/* Footer */}
+      <Footer isLight={isLight} setActiveTool={setActiveTool} />
+
+      {/* Toast notification */}
+      {toast && (
+        <Toast message={toast.text} onClose={() => setToast(null)} isLight={isLight} />
+      )}
     </div>
   );
 }
