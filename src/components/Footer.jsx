@@ -1,27 +1,95 @@
 export default function Footer({ isLight, mutedText, setActiveTool, adConfig, theme }) {
-  const isLightAd = theme === "light";
+  const toolCategories = [
+    {
+      title: "Data",
+      tools: [
+        { id: "generator", label: "Mock Data Generator" },
+      ],
+    },
+    {
+      title: "Converters",
+      tools: [
+        { id: "css-converter", label: "CSS ↔ Tailwind" },
+        { id: "base64", label: "Base64 Encoder" },
+        { id: "url-encoder", label: "URL Encoder" },
+        { id: "jwt-decoder", label: "JWT Decoder" },
+        { id: "css-minifier", label: "CSS Minifier" },
+        { id: "tokenizer", label: "Text Tokenizer" },
+      ],
+    },
+    {
+      title: "Design",
+      tools: [
+        { id: "gradient", label: "Gradient Generator" },
+        { id: "box-shadow", label: "Box Shadow" },
+        { id: "layout", label: "Layout Playground" },
+        { id: "color-contrast", label: "Color Contrast" },
+      ],
+    },
+    {
+      title: "Editors",
+      tools: [
+        { id: "json-formatter", label: "JSON Formatter" },
+        { id: "text-diff", label: "Text Diff" },
+        { id: "regex-tester", label: "Regex Tester" },
+        { id: "html-preview", label: "HTML Preview" },
+        { id: "markdown", label: "Markdown Preview" },
+      ],
+    },
+    {
+      title: "Generators",
+      tools: [
+        { id: "qr-code", label: "QR Code Generator" },
+        { id: "password", label: "Password Generator" },
+        { id: "uuid", label: "UUID Generator" },
+        { id: "timestamp", label: "Timestamp Converter" },
+        { id: "lorem", label: "Lorem Ipsum" },
+      ],
+    },
+  ];
+
   return (
-    <div className={`px-5 py-2.5 flex items-center justify-between text-xs shrink-0 border-t ${isLight ? "text-[#9ca3b0] border-[#e2e0da]" : "text-[#505868] border-[#1c2030]"}`}>
-      <div className="flex items-center gap-4 min-w-0">
-        <span className="shrink-0">100% client-side · No data leaves your browser</span>
-        {adConfig?.enabled && (
-          <span className={`hidden md:inline-flex items-center gap-2 pl-4 border-l ${isLight ? "border-[#e2e0da]" : "border-[#1c2030]"}`}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-            </svg>
-            <span className={`font-medium ${isLightAd ? "text-[#5a5f6e]" : "text-[#8891a4]"}`}>{adConfig.title}</span>
-            <span className={`hidden lg:inline ${isLightAd ? "text-[#9ca3b0]" : "text-[#505868]"}`}>· {adConfig.description}</span>
-            <a href={adConfig.ctaUrl} className="text-accent font-bold hover:opacity-80 transition-opacity shrink-0">
-              {adConfig.ctaText} →
-            </a>
-          </span>
-        )}
+    <footer className={`border-t ${isLight ? "glass-light border-[#e0e0e0]/50" : "glass border-[#1a1a1a]/50"}`}>
+      <div className="max-w-6xl mx-auto px-5 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+          {toolCategories.map((category) => (
+            <div key={category.title}>
+              <h3 className={`text-sm font-semibold mb-4 ${isLight ? "text-[#1a1a1a]" : "text-[#e8e8e8]"}`}>
+                {category.title}
+              </h3>
+              <ul className="space-y-2.5">
+                {category.tools.map((tool) => (
+                  <li key={tool.id}>
+                    <button
+                      onClick={() => setActiveTool(tool.id)}
+                      className={`text-sm transition-colors hover:text-[var(--accent)] ${isLight ? "text-[#555555]" : "text-[#888888]"}`}
+                    >
+                      {tool.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className={`mt-12 pt-8 border-t ${isLight ? "border-[#e0e0e0]" : "border-[#1a1a1a]"}`}>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <button onClick={() => setActiveTool("home")} className={`text-sm transition-colors hover:text-[var(--accent)] ${isLight ? "text-[#555555]" : "text-[#888888]"}`}>
+                Home
+              </button>
+              <span className={`text-sm ${isLight ? "text-[#888888]" : "text-[#555555]"}`}>·</span>
+              <span className={`text-sm ${isLight ? "text-[#888888]" : "text-[#555555]"}`}>
+                {new Date().getFullYear()} OmniStack
+              </span>
+            </div>
+            <div className={`text-xs ${isLight ? "text-[#888888]" : "text-[#555555]"}`}>
+              100% client-side · No data leaves your browser
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="flex items-center gap-3 shrink-0">
-        <button onClick={() => setActiveTool("home")} className={`hover:text-current transition-colors cursor-pointer ${isLight ? "hover:text-[#1a1d26]" : "hover:text-[#c8ccd4]"}`}>Home</button>
-        <span>·</span>
-        <span>{new Date().getFullYear()} OmniStack</span>
-      </div>
-    </div>
+    </footer>
   );
 }
