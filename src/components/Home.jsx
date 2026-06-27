@@ -309,6 +309,15 @@ export default function Home({ setActiveTool, isLight }) {
     },
   ], []);
 
+  const CATEGORY_SUBTITLES = {
+    all: "21 client-side utilities to skip the tedious work.",
+    data: "Generate realistic fake data for testing and prototyping.",
+    converter: "Transform data between formats instantly.",
+    design: "Visual tools for gradients, shadows, and layouts.",
+    editor: "Edit, format, and preview content with ease.",
+    generator: "Create passwords, QR codes, UUIDs, and more.",
+  };
+
   const filteredTools = activeCategory === "all"
     ? tools
     : tools.filter((t) => t.category === activeCategory);
@@ -316,64 +325,108 @@ export default function Home({ setActiveTool, isLight }) {
   return (
     <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">
       {/* Hero */}
-      <section className="relative px-5 pt-16 pb-12 md:pt-24 md:pb-16">
+      <section className="relative px-5 pt-16 pb-12 md:pt-20 md:pb-16 overflow-hidden">
+        {/* Abstract watermark blob */}
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] opacity-[0.03] pointer-events-none">
+          <svg viewBox="0 0 200 200" className="w-full h-full">
+            <defs>
+              <linearGradient id="blob-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="var(--accent)" />
+                <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.3" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#blob-gradient)" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.5,90,-16.3,88.1,-1.1C86.2,14.1,79.8,28.2,71.4,40.1C63,52,52.6,61.7,40.4,68.8C28.2,75.9,14.1,80.4,0.3,79.8C-13.5,79.2,-27,73.5,-39.4,65.6C-51.8,57.7,-63.1,47.6,-70.5,35.1C-77.9,22.6,-81.4,7.7,-79.2,-6.7C-77,-21.1,-69.1,-35,-58.5,-45.8C-47.9,-56.6,-34.6,-64.3,-21.1,-70.8C-7.6,-77.3,6.1,-82.6,20.1,-81.5C34.1,-80.4,48.4,-72.9,44.7,-76.4Z" transform="translate(100 100)" />
+          </svg>
+        </div>
+
         {/* Dot grid background */}
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: `radial-gradient(circle, ${isLight ? "#1a1a1a" : "#888888"} 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle, ${isLight ? "#1a1a1a" : "#666666"} 1px, transparent 1px)`,
             backgroundSize: "24px 24px",
           }}
         />
-        {/* Radial glow */}
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] opacity-20 pointer-events-none"
-          style={{
-            background: `radial-gradient(ellipse at center, ${isLight ? "rgba(229,91,91,0.15)" : "rgba(255,107,107,0.12)"}, transparent 70%)`,
-          }}
-        />
 
-        <div className="relative max-w-3xl mx-auto text-center">
-          {/* Logo */}
-          <div className="flex justify-center mb-6">
-            <img src="/logo.png" alt="OmniStack" className="w-16 h-16 object-contain drop-shadow-lg rounded-full" />
-          </div>
-
-          <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6 ${isLight ? "bg-[#fff0f0] text-[#c53a3a] border border-[#e0d0d0]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B] border border-[rgba(255,107,107,0.15)]"}`}>
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" style={{ animation: "dotPulse 2s ease-in-out infinite" }} />
-            21 tools · all client-side
-          </div>
-
-          <h1 style={{ color: isLight ? "#1a1a1a" : "#e8e8e8" }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-4 leading-[1.1]">
-            The only dev toolkit
-            <br />
-            <span className="text-accent relative inline-block">
-              you need.
-              <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
-                <path d="M2 5.5C35 2.5 75 1.5 100 3.5C125 5.5 165 7 198 3.5" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" opacity="0.5" />
-              </svg>
-            </span>
-          </h1>
-
-          <div className={`text-lg md:text-xl h-8 mb-6 ${isLight ? "text-[#555555]" : "text-[#555555]"}`}>
-            <Typewriter />
-          </div>
-
-          <p style={{ color: isLight ? "#555555" : "#555555" }} className="text-sm max-w-lg mx-auto mb-8 leading-relaxed">
-            Mock data, CSS conversion, JSON formatting, encoding, layout builders, QR codes, and more — every tool runs in your browser. No server. No sign-up. Fully private.
-          </p>
-
-          <div className="flex items-center justify-center gap-6 text-xs">
-            {[
-              { value: "21", label: "Tools" },
-              { value: "0", label: "Servers" },
-              { value: "100%", label: "Private" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div style={{ color: isLight ? "#1a1a1a" : "#e8e8e8" }} className="text-lg font-bold font-display">{stat.value}</div>
-                <div style={{ color: isLight ? "#888888" : "#555555" }}>{stat.label}</div>
+        <div className="relative max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Text content */}
+            <div className="text-left">
+              <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-5 ${isLight ? "bg-[#fff5f5] text-[#E55B5B] border border-[#fce4e4]" : "bg-[rgba(255,107,107,0.06)] text-[#FF6B6B] border border-[rgba(255,107,107,0.12)]"}`}>
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" style={{ animation: "dotPulse 2s ease-in-out infinite" }} />
+                21 tools · all client-side
               </div>
-            ))}
+
+              <h1 style={{ color: isLight ? "#111827" : "#f9fafb" }} className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-4 leading-[1.05] font-display">
+                The only dev toolkit
+                <br />
+                <span className="text-accent relative inline-block">
+                  you need.
+                  <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
+                    <path d="M2 5.5C35 2.5 75 1.5 100 3.5C125 5.5 165 7 198 3.5" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" opacity="0.5" />
+                  </svg>
+                </span>
+              </h1>
+
+              <div className={`text-lg md:text-xl h-8 mb-5 ${isLight ? "text-[#6b7280]" : "text-[#9ca3af]"}`}>
+                <Typewriter />
+              </div>
+
+              <p className={`text-[15px] max-w-md mb-8 leading-relaxed ${isLight ? "text-[#6b7280]" : "text-[#9ca3af]"}`}>
+                {CATEGORY_SUBTITLES[activeCategory] || CATEGORY_SUBTITLES.all}
+              </p>
+
+              <div className="flex items-center gap-8">
+                {[
+                  { value: "21", label: "Tools" },
+                  { value: "0", label: "Servers" },
+                  { value: "100%", label: "Private" },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <div style={{ color: isLight ? "#111827" : "#f9fafb" }} className="text-2xl font-bold font-display">{stat.value}</div>
+                    <div className={`text-xs ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Live mini-preview */}
+            <div className={`hidden lg:block rounded-2xl border p-6 ${isLight ? "bg-white border-[#e5e7eb] shadow-xl shadow-black/5" : "bg-gradient-to-br from-[#111827] to-[#0a0f1a] border-[#1f2937] shadow-2xl shadow-black/20"}`}>
+              <div className={`flex items-center gap-2 mb-4 pb-3 border-b ${isLight ? "border-[#e5e7eb]" : "border-[#1f2937]"}`}>
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-[#ef4444]" />
+                  <div className="w-3 h-3 rounded-full bg-[#eab308]" />
+                  <div className="w-3 h-3 rounded-full bg-[#22c55e]" />
+                </div>
+                <span className={`text-xs ml-2 font-mono ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>mock-data.json</span>
+              </div>
+              <pre className={`text-xs font-mono leading-relaxed overflow-hidden ${isLight ? "text-[#374151]" : "text-[#d1d5db]"}`}>
+{`{
+  "users": [
+    {
+      "id": "1",
+      "name": "Sarah Chen",
+      "email": "sarah@example.com",
+      "role": "developer"
+    },
+    {
+      "id": "2",
+      "name": "Marcus Johnson",
+      "email": "marcus@example.com",
+      "role": "designer"
+    }
+  ],
+  "total": 2,
+  "page": 1
+}`}
+              </pre>
+              <div className={`mt-4 flex items-center gap-2 text-xs ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>Generated instantly in your browser</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -387,14 +440,14 @@ export default function Home({ setActiveTool, isLight }) {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 text-sm font-medium rounded-full border transition-all duration-200 cursor-pointer whitespace-nowrap ${
+                className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 cursor-pointer whitespace-nowrap ${
                   activeCategory === cat.id
                     ? isLight
-                      ? "bg-[#1a1d26] text-[#f7f6f3] border-[#1a1d26]"
-                      : "bg-[#e2e5eb] text-[#0c0e14] border-[#e2e5eb]"
+                      ? "bg-[#111827] text-white border-[#111827]"
+                      : "bg-[rgba(255,107,107,0.1)] text-[#FF6B6B] border-[rgba(255,107,107,0.2)]"
                     : isLight
-                      ? "bg-transparent text-[#5a5f6e] border-[#e2e0da] hover:border-[#d0cec8] hover:text-[#1a1d26]"
-                      : "bg-transparent text-[#505868] border-[#1c2030] hover:border-[#2a3045] hover:text-[#c8ccd4]"
+                      ? "bg-white text-[#6b7280] border-[#e5e7eb] hover:border-[#d1d5db] hover:text-[#374151]"
+                      : "bg-transparent text-[#6b7280] border-[#1f2937] hover:border-[#374151] hover:text-[#9ca3af]"
                 }`}
               >
                 {cat.label}
@@ -461,30 +514,36 @@ export default function Home({ setActiveTool, isLight }) {
       </section>
 
       {/* How it works */}
-      <section className={`px-5 py-16 ${isLight ? "bg-[#f0efe9]" : "bg-[#0a0c12]"}`}>
-        <div className="max-w-4xl mx-auto">
-          <h2 className={`text-2xl md:text-3xl font-black tracking-tight text-center mb-12 font-display ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"}`}>
-            Three steps. Zero friction.
-          </h2>
+      <section className={`px-5 py-20 ${isLight ? "bg-[#f8f7f4]" : "bg-[#0d0f14]"}`}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <span className={`text-xs font-semibold tracking-widest uppercase mb-3 block ${isLight ? "text-[#E55B5B]" : "text-[#FF6B6B]"}`}>How it works</span>
+            <h2 className={`text-3xl md:text-4xl font-black tracking-tight font-display ${isLight ? "text-[#111827]" : "text-[#f9fafb]"}`}>
+              Three steps. Zero friction.
+            </h2>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-            {/* Connecting line (desktop) */}
-            <div className={`hidden md:block absolute top-8 left-[20%] right-[20%] h-px ${isLight ? "bg-[#e2e0da]" : "bg-[#1c2030]"}`} />
+            {/* Animated dashed connecting line (desktop) */}
+            <div className={`hidden md:block absolute top-10 left-[15%] right-[15%] h-[2px] ${isLight ? "bg-[#e5e7eb]" : "bg-[#1f2937]"}`}>
+              <div className={`absolute inset-0 ${isLight ? "bg-[#E55B5B]" : "bg-[#FF6B6B]"}`} style={{ width: "30%", animation: "shimmer 3s ease-in-out infinite" }} />
+            </div>
 
             {[
               { step: "01", title: "Pick a tool", desc: "Choose from 21 developer tools — data generators, converters, editors, and design utilities." },
               { step: "02", title: "Enter your data", desc: "Type, paste, or configure inputs. Every tool has helpful defaults and smart validation." },
               { step: "03", title: "Copy or download", desc: "Get instant results. Copy to clipboard, download as a file, or export in multiple formats." },
-            ].map((item) => (
-              <div key={item.step} className="text-center relative">
-                <div className={`w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center text-lg font-bold font-display relative z-10 ${
+            ].map((item, i) => (
+              <div key={item.step} className={`text-center relative ${i === 1 ? "md:mt-8" : ""}`}>
+                <div className={`w-16 h-16 rounded-2xl mx-auto mb-6 flex items-center justify-center text-lg font-bold font-display relative z-10 transition-all duration-300 ${
                   isLight
-                    ? "bg-white border border-[#e2e0da] text-[#c53a3a]"
-                    : "bg-[#12151e] border border-[#1c2030] text-[#FF6B6B]"
+                    ? "bg-white border-2 border-[#e5e7eb] text-[#E55B5B] shadow-lg shadow-black/5"
+                    : "bg-gradient-to-br from-[#1a1f2e] to-[#111827] border-2 border-[#2d3748] text-[#FF6B6B] shadow-lg shadow-black/20"
                 }`}>
                   {item.step}
                 </div>
-                <h3 className={`text-base font-semibold mb-2 ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"}`}>{item.title}</h3>
-                <p className={`text-sm leading-relaxed max-w-xs mx-auto ${isLight ? "text-[#5a5f6e]" : "text-[#505868]"}`}>{item.desc}</p>
+                <h3 className={`text-lg font-bold mb-3 ${isLight ? "text-[#111827]" : "text-[#f9fafb]"}`}>{item.title}</h3>
+                <p className={`text-sm leading-relaxed max-w-xs mx-auto ${isLight ? "text-[#6b7280]" : "text-[#9ca3af]"}`}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -492,16 +551,20 @@ export default function Home({ setActiveTool, isLight }) {
       </section>
 
       {/* Why OmniStack */}
-      <section className="px-5 py-16">
-        <div className="max-w-4xl mx-auto">
-          <h2 className={`text-2xl md:text-3xl font-black tracking-tight text-center mb-12 font-display ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"}`}>
-            Why developers choose OmniStack
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <section className={`px-5 py-20 ${isLight ? "bg-white" : "bg-[#0a0d12]"}`}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <span className={`text-xs font-semibold tracking-widest uppercase mb-3 block ${isLight ? "text-[#E55B5B]" : "text-[#FF6B6B]"}`}>Why OmniStack</span>
+            <h2 className={`text-3xl md:text-4xl font-black tracking-tight font-display ${isLight ? "text-[#111827]" : "text-[#f9fafb]"}`}>
+              Built for developers who value their time
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {[
               {
                 icon: (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
@@ -511,7 +574,7 @@ export default function Home({ setActiveTool, isLight }) {
               },
               {
                 icon: (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                   </svg>
                 ),
@@ -520,7 +583,7 @@ export default function Home({ setActiveTool, isLight }) {
               },
               {
                 icon: (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
@@ -530,7 +593,7 @@ export default function Home({ setActiveTool, isLight }) {
               },
               {
                 icon: (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
                     <line x1="8" y1="21" x2="16" y2="21" />
                     <line x1="12" y1="17" x2="12" y2="21" />
@@ -540,17 +603,19 @@ export default function Home({ setActiveTool, isLight }) {
                 desc: "Responsive on mobile, tablet, and desktop. No installation required.",
               },
             ].map((item) => (
-              <div key={item.title} className={`flex items-start gap-4 p-5 rounded-xl border transition-colors ${
-                isLight ? "bg-white border-[#e2e0da] hover:border-[#d0cec8]" : "bg-[#12151e] border-[#1c2030] hover:border-[#2a3045]"
+              <div key={item.title} className={`flex items-start gap-4 p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
+                isLight 
+                  ? "bg-[#f9fafb] border-[#e5e7eb] hover:border-[#d1d5db] hover:shadow-lg hover:shadow-black/5" 
+                  : "bg-gradient-to-br from-[#111827] to-[#0d1017] border-[#1f2937] hover:border-[#374151] hover:shadow-lg hover:shadow-black/20"
               }`}>
-                <div className={`w-9 h-9 rounded-lg shrink-0 flex items-center justify-center ${
-                  isLight ? "bg-[#fff0f0] text-[#c53a3a]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B]"
+                <div className={`w-10 h-10 rounded-xl shrink-0 flex items-center justify-center ${
+                  isLight ? "bg-[#fff5f5] text-[#E55B5B]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B]"
                 }`}>
                   {item.icon}
                 </div>
                 <div>
-                  <h3 className={`text-sm font-semibold mb-1 ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"}`}>{item.title}</h3>
-                  <p className={`text-xs leading-relaxed ${isLight ? "text-[#5a5f6e]" : "text-[#505868]"}`}>{item.desc}</p>
+                  <h3 className={`text-[15px] font-bold mb-1.5 ${isLight ? "text-[#111827]" : "text-[#f9fafb]"}`}>{item.title}</h3>
+                  <p className={`text-[13px] leading-relaxed ${isLight ? "text-[#6b7280]" : "text-[#9ca3af]"}`}>{item.desc}</p>
                 </div>
               </div>
             ))}
