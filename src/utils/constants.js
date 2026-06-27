@@ -119,3 +119,138 @@ export const AD_CONFIG = {
   ctaText: "Start free trial",
   ctaUrl: "#",
 };
+
+export const TOOL_SEO = {
+  home: {
+    title: "OmniStack | 21 Free Client-Side Developer Tools",
+    description: "Free, 100% private client-side developer toolkit with 21 tools: mock data generator, CSS to Tailwind, JSON formatter, regex tester, and more. No server.",
+    keywords: "developer tools, free dev tools, frontend tools, client side tools",
+    slug: "",
+  },
+  generator: {
+    title: "Free JSON Dummy Data Generator | OmniStack",
+    description: "Generate custom, realistic fake JSON, CSV, or SQL data instantly. 10 presets, custom schemas, powered by faker.js. 100% client-side and private.",
+    keywords: "json dummy data generator, fake data generator, mock data, test data generator, json generator, csv generator, sql generator",
+    slug: "generator",
+  },
+  "json-formatter": {
+    title: "JSON Formatter & Validator | OmniStack",
+    description: "Pretty-print, minify, and validate JSON instantly. Syntax highlighting, collapsible tree view, error line highlighting. Free, client-side.",
+    keywords: "json formatter, json validator, json pretty print, json minifier, format json online",
+    slug: "json-formatter",
+  },
+  "text-diff": {
+    title: "Text Diff Tool — Compare Text Online | OmniStack",
+    description: "Git-diff style text comparison with line-level and word-level highlighting. Unified, split, and words output modes. Free, private, client-side.",
+    keywords: "text diff tool, compare text online, diff checker, code diff tool, text comparison",
+    slug: "text-diff",
+  },
+  "regex-tester": {
+    title: "Regex Tester — Test Regular Expressions | OmniStack",
+    description: "Test regex patterns in real-time with match highlighting, capture groups, and flag support. Free, client-side regex validator.",
+    keywords: "regex tester, regular expression validator, regex online, regex test, regex checker",
+    slug: "regex-tester",
+  },
+  "css-converter": {
+    title: "CSS to Tailwind Converter | OmniStack",
+    description: "Bidirectional CSS/Tailwind conversion with 200+ property mappings. Dark mode support, arbitrary values, color palette resolution. Free, client-side.",
+    keywords: "css to tailwind, tailwind css converter, tailwind to css, css converter online",
+    slug: "css-converter",
+  },
+  base64: {
+    title: "Base64 Encoder & Decoder | OmniStack",
+    description: "Encode and decode Base64 strings with full Unicode support. Real-time conversion, one-click copy. Free, client-side.",
+    keywords: "base64 encoder decoder, base64 encode, base64 decode, base64 converter",
+    slug: "base64",
+  },
+  "url-encoder": {
+    title: "URL Encoder & Decoder | OmniStack",
+    description: "Encode and decode URL components instantly. Handles query parameters, path segments, and special characters. Free, client-side.",
+    keywords: "url encoder decoder, url encode, url decode, percent encoding",
+    slug: "url-encoder",
+  },
+  "jwt-decoder": {
+    title: "JWT Token Decoder — Inspect JWT Locally | OmniStack",
+    description: "Decode and inspect JWT tokens locally without sending to any server. View header, payload, signature, and expiration. 100% private.",
+    keywords: "jwt decoder, jwt token decoder, jwt parser, json web token decoder",
+    slug: "jwt-decoder",
+  },
+  layout: {
+    title: "Flexbox & Grid Playground | OmniStack",
+    description: "Visual CSS flexbox and grid layout builder with live preview and Tailwind output. Drag, drop, and learn CSS layout. Free, client-side.",
+    keywords: "flexbox playground, css grid playground, flexbox visualizer, grid layout builder",
+    slug: "layout",
+  },
+  gradient: {
+    title: "CSS Gradient Generator | OmniStack",
+    description: "Visual CSS gradient builder with linear, radial, and conic gradients. Draggable color stops, angle control, live CSS output. Free, client-side.",
+    keywords: "gradient generator, css gradient builder, linear gradient, radial gradient, css gradient maker",
+    slug: "gradient",
+  },
+  "box-shadow": {
+    title: "CSS Box Shadow Generator | OmniStack",
+    description: "Visual CSS box-shadow builder with multi-layer support, inset shadows, live preview, and CSS output. Free, client-side.",
+    keywords: "box shadow generator, css shadow builder, box shadow css, css box shadow",
+    slug: "box-shadow",
+  },
+  "qr-code": {
+    title: "Free QR Code Generator | OmniStack",
+    description: "Generate downloadable QR codes from any text or URL. Canvas-based rendering, PNG download. Free, no sign-up, client-side.",
+    keywords: "qr code generator free, qr code maker, qr code download, create qr code",
+    slug: "qr-code",
+  },
+  password: {
+    title: "Strong Password Generator | OmniStack",
+    description: "Generate cryptographically strong passwords with configurable length, character types, and strength indicator. Free, client-side.",
+    keywords: "password generator strong, secure password generator, random password, password creator",
+    slug: "password",
+  },
+  uuid: {
+    title: "UUID Generator v4 | OmniStack",
+    description: "Generate v4 UUIDs in batch. Standard (with hyphens) or compact format. Up to 100 at once. Free, client-side.",
+    keywords: "uuid generator v4, generate uuid, uuid creator, random uuid",
+    slug: "uuid",
+  },
+  timestamp: {
+    title: "Unix Timestamp Converter | OmniStack",
+    description: "Convert between Unix timestamps, ISO 8601, and human-readable dates. Real-time conversion. Free, client-side.",
+    keywords: "timestamp converter unix, unix time converter, epoch converter, timestamp to date",
+    slug: "timestamp",
+  },
+  lorem: {
+    title: "Lorem Ipsum Generator | OmniStack",
+    description: "Generate placeholder text with configurable paragraph count. Classic lorem ipsum or custom text. Free, client-side.",
+    keywords: "lorem ipsum generator, placeholder text, dummy text generator, lorem ipsum creator",
+    slug: "lorem",
+  },
+  tokenizer: {
+    title: "Text Tokenizer — Count Tokens & Words | OmniStack",
+    description: "Count tokens, words, characters, and lines for LLM token limits. Visual token breakdown. Free, client-side.",
+    keywords: "text tokenizer, token counter, word counter, llm token counter, token count tool",
+    slug: "tokenizer",
+  },
+  "html-preview": {
+    title: "Live HTML Preview Editor | OmniStack",
+    description: "Live side-by-side HTML/CSS/JS editor with instant preview. Syntax highlighting, full-page preview mode. Free, client-side.",
+    keywords: "html preview editor live, html editor online, live code editor, html sandbox",
+    slug: "html-preview",
+  },
+  markdown: {
+    title: "Markdown Preview Editor | OmniStack",
+    description: "Real-time Markdown editor with live HTML preview. Supports headings, lists, tables, code blocks, and links. Free, client-side.",
+    keywords: "markdown preview editor, markdown editor online, markdown to html, live markdown",
+    slug: "markdown",
+  },
+  "color-contrast": {
+    title: "WCAG Color Contrast Checker | OmniStack",
+    description: "WCAG accessibility compliance checker for color contrast ratios. Check AA and AAA compliance levels. Free, client-side.",
+    keywords: "color contrast checker wcag, accessibility checker, contrast ratio, color accessibility",
+    slug: "color-contrast",
+  },
+  "css-minifier": {
+    title: "CSS Minifier & Compressor | OmniStack",
+    description: "Compress CSS code by removing whitespace, comments, and unnecessary characters. Size comparison display. Free, client-side.",
+    keywords: "css minifier, css compressor, minify css, compress css online",
+    slug: "css-minifier",
+  },
+};
