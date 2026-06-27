@@ -120,6 +120,7 @@ export default function Generator({
       </aside>
 
       <main className="flex-1 flex flex-col min-w-0 p-4 md:p-5">
+        <h1 className={`text-xs font-bold uppercase tracking-wider ${mutedText} mb-4`}>Mock Data Generator</h1>
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div className={`flex items-center gap-2 text-sm ${mutedText} font-mono`}>
             <span className="text-[#FF6B6B] font-bold">{count}</span>
