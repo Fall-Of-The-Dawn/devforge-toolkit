@@ -52,6 +52,13 @@ const NAV_GROUPS = [
   },
 ];
 
+const TOOL_LABELS = {};
+NAV_GROUPS.forEach((group) => {
+  group.items.forEach((item) => {
+    TOOL_LABELS[item.id] = item.label;
+  });
+});
+
 function Dropdown({ group, activeTool, setActiveTool, isLight, mutedText2, activeBtn }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -100,7 +107,7 @@ function Dropdown({ group, activeTool, setActiveTool, isLight, mutedText2, activ
       </button>
       {open && (
         <div
-          className={`absolute top-full left-0 mt-1 min-w-[180px] rounded-lg border py-1.5 shadow-xl z-[100] ${isLight ? "bg-white border-[#e2e0da] shadow-black/10" : "bg-[#181c28] border-[#1c2030] shadow-black/40"}`}
+          className={`absolute top-full left-0 mt-1 min-w-[180px] rounded-lg border py-1.5 shadow-xl z-[100] backdrop-blur-xl saturate-150 ${isLight ? "bg-white/80 border-[#e0e0e0]/50 shadow-black/10" : "bg-[#0c0e14]/80 border-[#1c2030]/50 shadow-black/40"}`}
         >
           {group.items.map((item) => (
             <button
@@ -138,7 +145,7 @@ function MobileMenu({ open, setOpen, activeTool, setActiveTool, isLight }) {
   return (
     <div className="fixed inset-0 z-[90] md:hidden">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setOpen(false)} />
-      <div className={`absolute top-[52px] left-0 right-0 bottom-0 overflow-y-auto ${isLight ? "bg-[#f7f6f3]" : "bg-[#0c0e14]"}`}>
+      <div className={`absolute top-[52px] left-0 right-0 bottom-0 overflow-y-auto backdrop-blur-xl saturate-150 ${isLight ? "bg-[#fafafa]/80" : "bg-[#0c0e14]/80"}`}>
         <div className="p-4 space-y-1">
           {NAV_GROUPS.map((group) => (
             <div key={group.id}>
@@ -182,7 +189,7 @@ export default function Header({ activeTool, setActiveTool, isLight, setTheme, s
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className={`h-[52px] border-b ${isLight ? "bg-[#f7f6f3]/80 border-[#e2e0da]" : "bg-[#0c0e14]/80 border-[#1c2030]"} backdrop-blur-md px-4 flex items-center justify-between shrink-0 z-40 transition-colors duration-200`}>
+    <header className={`fixed top-0 left-0 right-0 h-[52px] border-b ${isLight ? "glass-light border-[#e0e0e0]/50" : "glass border-[#1a1a1a]/50"} px-4 flex items-center justify-between z-40 transition-colors duration-200`}>
       <div className="flex items-center gap-1 min-w-0">
         <button
           onClick={() => setActiveTool("home")}
@@ -197,8 +204,19 @@ export default function Header({ activeTool, setActiveTool, isLight, setTheme, s
           <span className={`text-xs ${mutedText} font-mono shrink-0`}>.tools</span>
         </button>
 
+        {activeTool && activeTool !== "home" && (
+          <>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`shrink-0 ${mutedText}`}>
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span className={`text-sm font-medium ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"} shrink-0`}>
+              {TOOL_LABELS[activeTool] || activeTool}
+            </span>
+          </>
+        )}
+
         <nav className="hidden md:flex items-center gap-0.5 min-w-0">
-          {NAV_GROUPS.map((group) => (
+          {(!activeTool || activeTool === "home") && NAV_GROUPS.map((group) => (
             <Dropdown
               key={group.id}
               group={group}
