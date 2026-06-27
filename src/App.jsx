@@ -59,7 +59,7 @@ export default function App() {
   const codeBg = t.codeBg;
 
   return (
-    <div className={`h-screen flex flex-col font-sans transition-colors duration-300 ${isLight ? "bg-[#f5f4f0] text-[#1a1d26]" : "bg-[#080a10] text-[#c8ccd4]"}`}>
+    <div className={`h-screen flex flex-col font-sans transition-colors duration-300 ${isLight ? "bg-[#fafafa] text-[#1a1a1a]" : "bg-[#050505] text-[#e8e8e8]"}`}>
       <Header
         activeTool={activeTool} setActiveTool={setActiveTool}
         isLight={isLight} setTheme={handleSetTheme}
@@ -67,16 +67,17 @@ export default function App() {
         mutedText={mutedText} mutedText2={mutedText2} activeBtn={activeBtn}
       />
 
-      {activeTool === "home" && (
-        <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-          <Home setActiveTool={setActiveTool} isLight={isLight} />
-        </div>
-      )}
+      <div className="flex-1 pt-[52px] min-h-0 overflow-hidden">
+        {activeTool === "home" && (
+          <div className="flex-1 flex flex-col min-h-0 overflow-hidden h-full">
+            <Home setActiveTool={setActiveTool} isLight={isLight} />
+          </div>
+        )}
 
-      {activeTool !== "home" && (
-        <>
-          <div className="flex-1 flex flex-row min-h-0 overflow-hidden">
-            <div className="flex-1 overflow-auto flex flex-col min-h-0">
+        {activeTool !== "home" && (
+          <>
+            <div className="flex-1 flex flex-row min-h-0 overflow-hidden h-full">
+              <div className="flex-1 overflow-auto flex flex-col min-h-0">
 
               {activeTool === "generator" && (
                 <div className="flex-1 flex flex-col md:flex-row min-h-0 overflow-auto md:overflow-hidden">
@@ -230,6 +231,7 @@ export default function App() {
           <Footer isLight={isLight} mutedText={mutedText} setActiveTool={setActiveTool} adConfig={AD_CONFIG} theme={theme} />
         </>
       )}
+      </div>
 
       <PrivacyModal isOpen={isPrivacyOpen} setIsPrivacyOpen={setIsPrivacyOpen} isLight={isLight} />
       <ExportModal isOpen={isExportModalOpen} setIsExportModalOpen={setIsExportModalOpen} isLight={isLight} mutedText={mutedText} data={fields} />
