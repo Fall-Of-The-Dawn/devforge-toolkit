@@ -2,9 +2,9 @@ export const THEME_VARS = {
   light: {
     bg: "bg-[#fafafa]",
     text: "text-[#1a1a1a]",
-    headerBg: "bg-[#fafafa]/80 border-[#e0e0e0]",
-    panelBg: "bg-[#fafafa] border-[#e0e0e0]",
-    cardBg: "bg-white border-[#e0e0e0]",
+    headerBg: "glass-light border-[#e0e0e0]/50",
+    panelBg: "bg-[#ffffff] border-[#e0e0e0]",
+    cardBg: "bg-[#ffffff] border-[#e0e0e0]",
     inputBg: "bg-[#f5f5f5] border-[#e0e0e0]",
     mutedText: "text-[#555555]",
     mutedText2: "text-[#888888]",
@@ -16,7 +16,7 @@ export const THEME_VARS = {
   dark: {
     bg: "bg-[#050505]",
     text: "text-[#c8c8c8]",
-    headerBg: "bg-[#050505]/80 border-[#1a1a1a]",
+    headerBg: "glass border-[#1a1a1a]/50",
     panelBg: "bg-[#0a0a0a] border-[#1a1a1a]",
     cardBg: "bg-[#0a0a0a] border-[#1a1a1a]",
     inputBg: "bg-[#050505] border-[#1a1a1a]",
