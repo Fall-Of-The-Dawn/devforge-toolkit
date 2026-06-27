@@ -23,6 +23,7 @@ import MarkdownPreview from "./components/MarkdownPreview";
 import PasswordGenerator from "./components/PasswordGenerator";
 import CssMinifier from "./components/CssMinifier";
 import Tokenizer from "./components/Tokenizer";
+import ToolSubNav from "./components/ToolSubNav";
 import Footer from "./components/Footer";
 import AdBanner from "./components/AdBanner";
 import { ExportModal, PrivacyModal } from "./components/Modals";
@@ -67,7 +68,12 @@ export default function App() {
         mutedText={mutedText} mutedText2={mutedText2} activeBtn={activeBtn}
       />
 
-      <div className="flex-1 pt-[52px] min-h-0 overflow-hidden">
+      <ToolSubNav
+        activeTool={activeTool} setActiveTool={setActiveTool}
+        isLight={isLight} mutedText={mutedText}
+      />
+
+      <div className={`flex-1 min-h-0 overflow-hidden ${activeTool === "home" ? "pt-[52px]" : "pt-[93px]"}`}>
         {activeTool === "home" && (
           <div className="flex-1 flex flex-col min-h-0 overflow-hidden h-full">
             <Home setActiveTool={setActiveTool} isLight={isLight} />
