@@ -403,33 +403,57 @@ export default function Home({ setActiveTool, isLight }) {
           </div>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 stagger-children">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 stagger-children">
             {filteredTools.map((tool) => (
               <button
                 key={tool.id}
                 onClick={() => setActiveTool(tool.id)}
-                className={`animate-slide-up text-left p-5 rounded-xl border transition-all duration-200 cursor-pointer group relative ${
+                className={`animate-slide-up text-left p-6 rounded-2xl border transition-all duration-300 cursor-pointer group relative overflow-hidden ${
                   isLight
-                    ? "bg-white border-[#e2e0da] hover:border-[#c53a3a]/40 hover:shadow-lg hover:shadow-[#c53a3a]/5"
-                    : "bg-[#12151e] border-[#1c2030] hover:border-[rgba(255,107,107,0.3)] hover:shadow-lg hover:shadow-[rgba(255,107,107,0.05)]"
+                    ? "bg-white border-[#e8e6e1] hover:border-[#E55B5B]/30 hover:shadow-xl hover:shadow-[#E55B5B]/8 hover:-translate-y-1"
+                    : "bg-gradient-to-br from-[#0d1017] to-[#0a0d12] border-[#1e2230] hover:border-[rgba(255,107,107,0.25)] hover:shadow-xl hover:shadow-[rgba(255,107,107,0.08)] hover:-translate-y-1"
                 }`}
               >
-                {/* Left accent bar */}
-                <div className="absolute left-0 top-4 bottom-4 w-[2px] rounded-full bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                <div className={`w-9 h-9 rounded-lg flex items-center justify-center mb-3 transition-colors ${
+                {/* Subtle gradient overlay on hover */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
                   isLight
-                    ? "bg-[#fff0f0] text-[#c53a3a] group-hover:bg-[#c53a3a] group-hover:text-white"
-                    : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B] group-hover:bg-[#FF6B6B] group-hover:text-[#0c0e14]"
-                }`}>
-                  {tool.icon}
+                    ? "bg-gradient-to-br from-[#fff5f5]/50 to-transparent"
+                    : "bg-gradient-to-br from-[rgba(255,107,107,0.03)] to-transparent"
+                }`} />
+
+                {/* Top accent line */}
+                <div className={`absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                  isLight
+                    ? "bg-gradient-to-r from-transparent via-[#E55B5B] to-transparent"
+                    : "bg-gradient-to-r from-transparent via-[#FF6B6B] to-transparent"
+                }`} />
+
+                <div className="relative z-10">
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
+                    isLight
+                      ? "bg-[#fff5f5] text-[#E55B5B] group-hover:bg-[#E55B5B] group-hover:text-white group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#E55B5B]/20"
+                      : "bg-[rgba(255,107,107,0.06)] text-[#FF6B6B] group-hover:bg-[#FF6B6B] group-hover:text-[#0a0d12] group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[rgba(255,107,107,0.2)]"
+                  }`}>
+                    {tool.icon}
+                  </div>
+                  <h3 className={`text-[15px] font-semibold mb-2 tracking-tight ${isLight ? "text-[#1a1d26]" : "text-[#e8e8e8]"} group-hover:text-[var(--accent)] transition-colors duration-200`}>
+                    {tool.title}
+                  </h3>
+                  <p className={`text-[13px] leading-relaxed ${isLight ? "text-[#6b7280]" : "text-[#6b7280]"}`}>
+                    {tool.description}
+                  </p>
                 </div>
-                <h3 className={`text-sm font-semibold mb-1.5 ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"} group-hover:text-accent transition-colors`}>
-                  {tool.title}
-                </h3>
-                <p className={`text-xs leading-relaxed ${isLight ? "text-[#5a5f6e]" : "text-[#505868]"}`}>
-                  {tool.description}
-                </p>
+
+                {/* Arrow indicator on hover */}
+                <div className={`absolute bottom-5 right-5 w-7 h-7 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 ${
+                  isLight
+                    ? "bg-[#fff5f5] text-[#E55B5B]"
+                    : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B]"
+                }`}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
               </button>
             ))}
           </div>
