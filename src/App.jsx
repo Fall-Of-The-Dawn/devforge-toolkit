@@ -23,10 +23,9 @@ import MarkdownPreview from "./components/MarkdownPreview";
 import PasswordGenerator from "./components/PasswordGenerator";
 import CssMinifier from "./components/CssMinifier";
 import Tokenizer from "./components/Tokenizer";
-import ToolSubNav from "./components/ToolSubNav";
 import Footer from "./components/Footer";
-import AdBanner from "./components/AdBanner";
 import { ExportModal, PrivacyModal } from "./components/Modals";
+import SEOHead from "./components/SEOHead";
 import { DATA_TYPE_PRESETS, AD_CONFIG, THEME_VARS } from "./utils/constants";
 
 export default function App() {
@@ -61,6 +60,7 @@ export default function App() {
 
   return (
     <div className={`h-screen flex flex-col font-sans transition-colors duration-300 ${isLight ? "bg-[#fafafa] text-[#1a1a1a]" : "bg-[#050505] text-[#e8e8e8]"}`}>
+      <SEOHead toolId={activeTool} />
       <Header
         activeTool={activeTool} setActiveTool={setActiveTool}
         isLight={isLight} setTheme={handleSetTheme}
@@ -68,12 +68,7 @@ export default function App() {
         mutedText={mutedText} mutedText2={mutedText2} activeBtn={activeBtn}
       />
 
-      <ToolSubNav
-        activeTool={activeTool} setActiveTool={setActiveTool}
-        isLight={isLight} mutedText={mutedText}
-      />
-
-      <div className={`flex-1 min-h-0 overflow-hidden ${activeTool === "home" ? "pt-[52px]" : "pt-[93px]"}`}>
+      <div className="flex-1 min-h-0 overflow-hidden">
         {activeTool === "home" && (
           <div className="flex-1 flex flex-col min-h-0 overflow-hidden h-full">
             <Home setActiveTool={setActiveTool} isLight={isLight} />
@@ -234,7 +229,7 @@ export default function App() {
             <Sidebar isLight={isLight} mutedText={mutedText} adConfig={AD_CONFIG} theme={theme} setActiveTool={setActiveTool} />
           </div>
 
-          <Footer isLight={isLight} mutedText={mutedText} setActiveTool={setActiveTool} adConfig={AD_CONFIG} theme={theme} />
+          <Footer isLight={isLight} setActiveTool={setActiveTool} />
         </>
       )}
       </div>
