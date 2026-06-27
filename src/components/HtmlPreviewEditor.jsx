@@ -17,7 +17,7 @@ const DEFAULT_HTML = `<!DOCTYPE html>
 </head>
 <body>
   <div class="card">
-    <h1>Hello, OmniStack!</h1>
+    <h1>Hello, DevClat!</h1>
     <p>Edit this HTML to see live preview on the right.</p>
     <button onclick="alert('It works!')">Click Me</button>
   </div>

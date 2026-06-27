@@ -330,10 +330,10 @@ export default function Header({ activeTool, setActiveTool, isLight, setTheme, s
           className="flex items-center gap-2 no-underline cursor-pointer shrink-0 mr-1"
         >
           <div className={`w-7 h-7 ${isLight ? "bg-[#fff0f0] border-[#e0d0d0]" : "bg-[#000000] border-[#1a1a1a]"} border rounded-full flex items-center justify-center shrink-0 overflow-hidden`}>
-            <img src="/logo.png" alt="OmniStack" className="w-full h-full object-cover rounded-full" />
+            <img src="/logo.png" alt="DevClat" className="w-full h-full object-cover rounded-full" />
           </div>
           <span className={`text-sm font-bold ${isLight ? "text-[#1a1d26]" : "text-[#e2e5eb]"} tracking-tight shrink-0 font-display`}>
-            omnistack
+            devclat
           </span>
           <span className={`text-[11px] ${mutedText} font-mono shrink-0`}>.tools</span>
         </button>

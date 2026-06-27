@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import QRCode from "qrcode";
 
 export default function QrCodeGenerator({ isLight, mutedText }) {
-  const [text, setText] = useState("https://omnistack.vercel.app");
+  const [text, setText] = useState("https://devclat.vercel.app");
   const [size, setSize] = useState(256);
   const [darkColor, setDarkColor] = useState("#000000");
   const [lightColor, setLightColor] = useState("#ffffff");

@@ -2,12 +2,12 @@ import { useState } from "react";
 
 const FAQ_DATA = [
   {
-    q: "What is OmniStack?",
-    a: "OmniStack is a free, client-side developer toolkit with 20+ tools for generating mock data, converting CSS, formatting JSON, testing regex, building QR codes, and more. All processing happens in your browser — no data is sent to any server.",
+    q: "What is DevClat?",
+    a: "DevClat is a free, client-side developer toolkit with 20+ tools for generating mock data, converting CSS, formatting JSON, testing regex, building QR codes, and more. All processing happens in your browser — no data is sent to any server.",
   },
   {
-    q: "Is OmniStack really free?",
-    a: "Yes. OmniStack is 100% free with no hidden fees, no sign-up required, and no usage limits. All tools run entirely in your browser.",
+    q: "Is DevClat really free?",
+    a: "Yes. DevClat is 100% free with no hidden fees, no sign-up required, and no usage limits. All tools run entirely in your browser.",
   },
   {
     q: "Is my data private?",
@@ -15,15 +15,15 @@ const FAQ_DATA = [
   },
   {
     q: "Do I need to install anything?",
-    a: "No. OmniStack is a web-based tool that works directly in your browser. No installation, no extensions, no accounts needed.",
+    a: "No. DevClat is a web-based tool that works directly in your browser. No installation, no extensions, no accounts needed.",
   },
   {
     q: "Which browsers are supported?",
-    a: "OmniStack works on all modern browsers including Chrome, Firefox, Safari, and Edge. We recommend using the latest version for the best experience.",
+    a: "DevClat works on all modern browsers including Chrome, Firefox, Safari, and Edge. We recommend using the latest version for the best experience.",
   },
   {
-    q: "Can I use OmniStack on mobile?",
-    a: "Yes. OmniStack is responsive and works on mobile devices, though some tools like the layout playground work best on desktop.",
+    q: "Can I use DevClat on mobile?",
+    a: "Yes. DevClat is responsive and works on mobile devices, though some tools like the layout playground work best on desktop.",
   },
   {
     q: "How does the Mock Data Generator work?",
@@ -72,7 +72,7 @@ export default function FaqSection({ isLight, mutedText }) {
             Frequently Asked Questions
           </h2>
           <p className={`text-sm ${isLight ? "text-gray-500" : "text-[#666]"}`}>
-            Everything you need to know about OmniStack
+            Everything you need to know about DevClat
           </p>
         </div>
         <div className="space-y-3">

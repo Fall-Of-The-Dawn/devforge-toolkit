@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { TOOL_SEO } from "../utils/constants";
 
-const BASE_URL = "https://omnistack.vercel.app";
+const BASE_URL = "https://devclat.vercel.app";
 
 function setMeta(attr, key, content) {
   let el = document.querySelector(`meta[${attr}="${key}"]`);
@@ -38,7 +38,7 @@ export default function SEOHead({ toolId }) {
     setMeta("property", "og:url", BASE_URL);
     setMeta("property", "og:title", seo.title);
     setMeta("property", "og:description", seo.description);
-    setMeta("property", "og:site_name", "OmniStack");
+    setMeta("property", "og:site_name", "DevClat");
     setMeta("property", "og:locale", "en_US");
 
     setMeta("name", "twitter:card", "summary_large_image");

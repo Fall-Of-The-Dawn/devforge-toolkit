@@ -181,7 +181,7 @@ const TerminalDemo = forwardRef(function TerminalDemo({ isLight, setActiveTool }
 
   // Auto-type onboarding demo on mount
   useEffect(() => {
-    const demoCommand = "omnistack mock-data --users 3 --format json";
+    const demoCommand = "devclat mock-data --users 3 --format json";
     const demoOutput = `{
   "users": [
     { "id": 1, "name": "Sarah Chen", "email": "sarah@example.com", "role": "developer" },
@@ -193,7 +193,7 @@ const TerminalDemo = forwardRef(function TerminalDemo({ isLight, setActiveTool }
 
     let step = 0;
     const welcomeLines = [
-      { type: "output", text: "Welcome to OmniStack CLI v1.0" },
+      { type: "output", text: "Welcome to DevClat CLI v1.0" },
       { type: "output", text: "" },
     ];
 
@@ -331,7 +331,7 @@ const TerminalDemo = forwardRef(function TerminalDemo({ isLight, setActiveTool }
               <div className="w-3 h-3 rounded-full bg-[#eab308]" />
               <div className="w-3 h-3 rounded-full bg-[#22c55e]" />
             </div>
-            <span className={`text-[11px] ml-2 font-mono ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>~/omnistack</span>
+            <span className={`text-[11px] ml-2 font-mono ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>~/devclat</span>
           </div>
 
           {/* Terminal body */}
@@ -889,11 +889,11 @@ export default function Home({ setActiveTool, isLight }) {
         </div>
       </section>
 
-      {/* Why OmniStack */}
+      {/* Why DevClat */}
       <section className={`px-5 py-20 ${isLight ? "bg-white" : "bg-[#0a0d12]"}`}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <span className={`text-xs font-semibold tracking-widest uppercase mb-3 block ${isLight ? "text-[#E55B5B]" : "text-[#FF6B6B]"}`}>Why OmniStack</span>
+            <span className={`text-xs font-semibold tracking-widest uppercase mb-3 block ${isLight ? "text-[#E55B5B]" : "text-[#FF6B6B]"}`}>Why DevClat</span>
             <h2 className={`text-3xl md:text-4xl font-black tracking-tight font-display ${isLight ? "text-[#111827]" : "text-[#f9fafb]"}`}>
               Built for developers who value their time
             </h2>
@@ -928,7 +928,7 @@ export default function Home({ setActiveTool, isLight }) {
                   </svg>
                 ),
                 title: "No sign-up",
-                desc: "Zero friction. Open OmniStack and start working immediately.",
+                desc: "Zero friction. Open DevClat and start working immediately.",
               },
               {
                 icon: (

@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 
-const DEFAULT_MD = `# OmniStack
+const DEFAULT_MD = `# DevClat
 
 ## Features
 
