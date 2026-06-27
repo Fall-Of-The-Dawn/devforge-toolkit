@@ -128,7 +128,10 @@ function Toast({ message, onClose, isLight }) {
     <div className="fixed bottom-6 right-6 z-50 animate-slide-up">
       <div className="px-5 py-3 rounded-lg border border-[var(--accent)]/30 bg-[#111111] text-sm shadow-lg flex items-center gap-2"
         style={{ color: isLight ? "#374151" : "#d1d5db" }}>
-        <span className="text-[var(--accent)]">&#9889;</span>
+        <svg className="w-4 h-4 text-[var(--accent)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="4 17 10 11 4 5" />
+          <line x1="12" y1="19" x2="20" y2="19" />
+        </svg>
         <span>{message}</span>
       </div>
     </div>

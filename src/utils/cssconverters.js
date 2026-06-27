@@ -92,11 +92,7 @@ export function convertCss(cssInput){
   if (displayVal === 'grid') twClasses.push('grid');
 
   // 7. Compile Final Output
-  if (twClasses.length > 0) {
-    setTailwindOutput(`// Compiled Tailwind Class Tokens:\nclassName="${twClasses.join(' ')}"`);
-  } else {
-    setTailwindOutput(`// Could not find translatable parameters.\n// Try standard inputs like: margin, padding, background-color.`);
-  }
-
- return twClasses.join(' ');
+  return twClasses.length > 0
+    ? twClasses.join(' ')
+    : '';
 }
