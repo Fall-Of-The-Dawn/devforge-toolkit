@@ -25,7 +25,6 @@ function setLink(rel, href) {
 
 export default function SEOHead({ toolId }) {
   const seo = TOOL_SEO[toolId] || TOOL_SEO.home;
-  const url = seo.slug ? `${BASE_URL}/${seo.slug}` : BASE_URL;
 
   useEffect(() => {
     document.title = seo.title;
@@ -33,10 +32,10 @@ export default function SEOHead({ toolId }) {
     setMeta("name", "description", seo.description);
     setMeta("name", "keywords", seo.keywords);
     setMeta("name", "robots", "index, follow");
-    setLink("canonical", url);
+    setLink("canonical", BASE_URL);
 
     setMeta("property", "og:type", "website");
-    setMeta("property", "og:url", url);
+    setMeta("property", "og:url", BASE_URL);
     setMeta("property", "og:title", seo.title);
     setMeta("property", "og:description", seo.description);
     setMeta("property", "og:site_name", "OmniStack");
@@ -58,7 +57,7 @@ export default function SEOHead({ toolId }) {
         "@type": "ListItem",
         position: 2,
         name: seo.title.split(" | ")[0],
-        item: url,
+        item: BASE_URL,
       });
     }
 
@@ -70,7 +69,7 @@ export default function SEOHead({ toolId }) {
       document.head.appendChild(ldScript);
     }
     ldScript.textContent = JSON.stringify(breadcrumbLD);
-  }, [toolId, seo.title, seo.description, seo.keywords, url, seo.slug]);
+  }, [toolId, seo.title, seo.description, seo.keywords, seo.slug]);
 
   return null;
 }
