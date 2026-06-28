@@ -1,8 +1,8 @@
-# OmniStack Redesign Implementation Plan
+# DevClat Redesign Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Redesign OmniStack with Apple-inspired clean typography, minimal cards, glass morphism navbar, and dense footer while keeping coral accent and both themes equally polished.
+**Goal:** Redesign DevClat with Apple-inspired clean typography, minimal cards, glass morphism navbar, and dense footer while keeping coral accent and both themes equally polished.
 
 **Architecture:** Update CSS variables and typography first, then modify components (Header, Home, Footer) to match the new design system. Keep existing functionality intact while improving visual design.
 
@@ -326,7 +326,7 @@ Replace the hero section:
   <div className="relative max-w-3xl mx-auto text-center">
     {/* Logo */}
     <div className="flex justify-center mb-6">
-      <img src="/logo.png" alt="OmniStack" className="w-16 h-16 object-contain drop-shadow-lg rounded-full" />
+      <img src="/logo.png" alt="DevClat" className="w-16 h-16 object-contain drop-shadow-lg rounded-full" />
     </div>
 
     <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6 ${isLight ? "bg-[#fff0f0] text-[#c53a3a] border border-[#e0d0d0]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B] border border-[rgba(255,107,107,0.15)]"}`}>
@@ -513,7 +513,7 @@ export default function Footer({ isLight, mutedText, setActiveTool, adConfig, th
               </button>
               <span className={`text-sm ${isLight ? "text-[#888888]" : "text-[#555555]"}`}>·</span>
               <span className={`text-sm ${isLight ? "text-[#888888]" : "text-[#555555]"}`}>
-                {new Date().getFullYear()} OmniStack
+                {new Date().getFullYear()} DevClat
               </span>
             </div>
             <div className={`text-xs ${isLight ? "text-[#888888]" : "text-[#555555]"}`}>
@@ -641,5 +641,5 @@ Manually verify:
 
 ```bash
 git add -A
-git commit -m "feat: complete OmniStack redesign with Apple-inspired design"
+git commit -m "feat: complete DevClat redesign with Apple-inspired design"
 ```

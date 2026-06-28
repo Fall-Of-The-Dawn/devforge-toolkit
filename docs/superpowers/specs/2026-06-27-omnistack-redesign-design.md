@@ -1,8 +1,8 @@
-# OmniStack Redesign — Apple-Inspired with Glass Accents
+# DevClat Redesign — Apple-Inspired with Glass Accents
 
 ## Overview
 
-Redesign OmniStack developer toolkit with Apple-inspired clean typography, minimal cards, glass morphism on navbar, and dense footer. Keep coral (#FF6B6B) accent, Inter + Fraunces fonts, both dark and light themes equally polished.
+Redesign DevClat developer toolkit with Apple-inspired clean typography, minimal cards, glass morphism on navbar, and dense footer. Keep coral (#FF6B6B) accent, Inter + Fraunces fonts, both dark and light themes equally polished.
 
 ---
 
@@ -106,9 +106,9 @@ Redesign OmniStack developer toolkit with Apple-inspired clean typography, minim
 
 ### Navbar
 - Fixed position, glass effect background
-- Logo (image + "omnistack .tools" text) on left
+- Logo (image + "devclat .tools" text) on left
 - Navigation links on right (hidden on mobile, hamburger menu)
-- Breadcrumb when inside a tool: `omnistack .tools > Tool Name`
+- Breadcrumb when inside a tool: `devclat .tools > Tool Name`
 - Theme toggle and Privacy link on far right
 - Height: 52px
 

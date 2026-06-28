@@ -95,7 +95,7 @@ export default function Footer({ isLight, mutedText, setActiveTool, adConfig, th
               </button>
               <span className={`text-sm ${isLight ? "text-[#888888]" : "text-[#555555]"}`}>·</span>
               <span className={`text-sm ${isLight ? "text-[#888888]" : "text-[#555555]"}`}>
-                {new Date().getFullYear()} OmniStack
+                {new Date().getFullYear()} DevClat
               </span>
             </div>
             <div className={`text-xs ${isLight ? "text-[#888888]" : "text-[#555555]"}`}>

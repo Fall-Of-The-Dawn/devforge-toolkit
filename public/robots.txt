@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://omnistack.vercel.app/sitemap.xml
+Sitemap: https://devclat.vercel.app/sitemap.xml
