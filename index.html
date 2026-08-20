@@ -340,8 +340,11 @@
 
   <div id="root"></div>
   <iframe src="https://hukum-chatbot-staging.vercel.app/iframe-bot/sM9mGD4FgxtDbMw" width="100%" height="100%"
-    style="border: none;" id="fwdslash-widget"></iframe>
-
+    style="border: none;" id="fwdslash-widget" referrerpolicy="no-referrer"></iframe>
+  <script>
+    const i = document.getElementById("fwdslash-widget");
+    i.onload = () => { const h = e => e.data?.type === "FWDSLASH_WIDGET_READY" && (i.contentWindow.postMessage({ type: "INIT", isEmbedded: true }, e.origin), removeEventListener("message", h)); addEventListener("message", h) };
+  </script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
