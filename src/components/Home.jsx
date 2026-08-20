@@ -718,7 +718,7 @@ export default function Home({ setActiveTool, isLight }) {
               <div className="flex items-center gap-3 mb-8">
                 <button
                   onClick={() => {
-                    window.open("https://hukum-chatbot-staging.vercel.app/iframe-bot/sM9mGD4FgxtDbMw", '_blank');
+                    window.open("https://hukum-chatbot-staging.vercel.app/iframe-bot/6Iqf17vsyqcx159", '_blank');
                   }}>checking</button>
                 <button
                   onClick={() => {
