@@ -716,10 +716,10 @@ export default function Home({ setActiveTool, isLight }) {
 
               {/* CTA Buttons */}
               <div className="flex items-center gap-3 mb-8">
-                <button
+                {/* <button
                   onClick={() => {
                     window.open("https://hukum-chatbot-staging.vercel.app/iframe-bot/6Iqf17vsyqcx159", '_blank');
-                  }}>checking</button>
+                  }}>checking</button> */}
                 <button
                   onClick={() => {
                     document.getElementById("tool-grid")?.scrollIntoView({ behavior: "smooth" });
