@@ -320,88 +320,88 @@ const TerminalDemo = forwardRef(function TerminalDemo({ isLight, setActiveTool }
 
   return (
     <div className="w-full">
-        <div
-          className={`rounded-xl border overflow-hidden cursor-text ${isLight ? "bg-[#fafafa] border-[#e5e7eb] shadow-lg shadow-black/5" : "bg-[#0d0f14] border-[#1f2937] shadow-2xl shadow-black/30"}`}
-          onClick={() => inputRef.current?.focus()}
-        >
-          {/* Terminal top bar */}
-          <div className={`flex items-center gap-2 px-4 py-2.5 border-b ${isLight ? "bg-[#f3f4f6] border-[#e5e7eb]" : "bg-[#111318] border-[#1f2937]"}`}>
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-[#ef4444]" />
-              <div className="w-3 h-3 rounded-full bg-[#eab308]" />
-              <div className="w-3 h-3 rounded-full bg-[#22c55e]" />
-            </div>
-            <span className={`text-[11px] ml-2 font-mono ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>~/devclat</span>
+      <div
+        className={`rounded-xl border overflow-hidden cursor-text ${isLight ? "bg-[#fafafa] border-[#e5e7eb] shadow-lg shadow-black/5" : "bg-[#0d0f14] border-[#1f2937] shadow-2xl shadow-black/30"}`}
+        onClick={() => inputRef.current?.focus()}
+      >
+        {/* Terminal top bar */}
+        <div className={`flex items-center gap-2 px-4 py-2.5 border-b ${isLight ? "bg-[#f3f4f6] border-[#e5e7eb]" : "bg-[#111318] border-[#1f2937]"}`}>
+          <div className="flex gap-1.5">
+            <div className="w-3 h-3 rounded-full bg-[#ef4444]" />
+            <div className="w-3 h-3 rounded-full bg-[#eab308]" />
+            <div className="w-3 h-3 rounded-full bg-[#22c55e]" />
           </div>
+          <span className={`text-[11px] ml-2 font-mono ${isLight ? "text-[#9ca3af]" : "text-[#6b7280]"}`}>~/devclat</span>
+        </div>
 
-          {/* Terminal body */}
-          <div
-            ref={scrollRef}
-            className={`p-4 font-mono text-[13px] leading-relaxed max-h-[240px] overflow-y-auto scrollbar-hide ${isLight ? "text-[#374151]" : "text-[#d1d5db]"}`}
-          >
-            {history.filter(Boolean).map((entry, i) => (
-              <div key={i} className="whitespace-pre-wrap mb-0.5">
-                {entry.type === "input" && (
-                  <div className="flex items-center gap-2">
-                    <span style={{ color: "#22c55e" }}>$</span>
-                    <span>{entry.text}</span>
-                  </div>
-                )}
-                {entry.type === "output" && (
-                  <div style={{ color: isLight ? "#6b7280" : "#6b7280" }}>{entry.text}</div>
-                )}
-                {entry.type === "success" && (
-                  <div style={{ color: "#22c55e" }}>{entry.text}</div>
-                )}
-                {entry.type === "error" && (
-                  <div style={{ color: "#ef4444" }}>{entry.text}</div>
-                )}
-                {entry.type === "json" && (
-                  <div className="text-xs">
-                    {entry.text.split("\n").map((line, j) => {
-                      const highlighted = line
-                        .replace(/("[\w]+")\s*:/g, '<span style="color:#FF6B6B">$1</span>:')
-                        .replace(/:\s*(".*?")/g, ': <span style="color:#a5d6a7">$1</span>')
-                        .replace(/:\s*(\d+)/g, ': <span style="color:#82aaff">$1</span>');
-                      return (
-                        <div key={j} dangerouslySetInnerHTML={{ __html: highlighted }} />
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            ))}
-
-            {/* Current input line */}
-            <div className="flex items-center gap-2">
-              <span style={{ color: "#22c55e" }}>$</span>
-              <span className="flex-1 relative">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  className="bg-transparent border-none outline-none w-full font-mono text-[13px] caret-transparent"
-                  style={{ color: isLight ? "#374151" : "#d1d5db" }}
-                  autoFocus
-                />
-                {/* Custom cursor */}
-                <span
-                  className="absolute top-0 pointer-events-none"
-                  style={{
-                    left: `${input.length * 7.8}px`,
-                    width: "2px",
-                    height: "16px",
-                    backgroundColor: isLight ? "#1a1a1a" : "#e8e8e8",
-                    opacity: cursorVisible ? 1 : 0,
-                    transition: "opacity 0.1s",
-                  }}
-                />
-              </span>
+        {/* Terminal body */}
+        <div
+          ref={scrollRef}
+          className={`p-4 font-mono text-[13px] leading-relaxed max-h-[240px] overflow-y-auto scrollbar-hide ${isLight ? "text-[#374151]" : "text-[#d1d5db]"}`}
+        >
+          {history.filter(Boolean).map((entry, i) => (
+            <div key={i} className="whitespace-pre-wrap mb-0.5">
+              {entry.type === "input" && (
+                <div className="flex items-center gap-2">
+                  <span style={{ color: "#22c55e" }}>$</span>
+                  <span>{entry.text}</span>
+                </div>
+              )}
+              {entry.type === "output" && (
+                <div style={{ color: isLight ? "#6b7280" : "#6b7280" }}>{entry.text}</div>
+              )}
+              {entry.type === "success" && (
+                <div style={{ color: "#22c55e" }}>{entry.text}</div>
+              )}
+              {entry.type === "error" && (
+                <div style={{ color: "#ef4444" }}>{entry.text}</div>
+              )}
+              {entry.type === "json" && (
+                <div className="text-xs">
+                  {entry.text.split("\n").map((line, j) => {
+                    const highlighted = line
+                      .replace(/("[\w]+")\s*:/g, '<span style="color:#FF6B6B">$1</span>:')
+                      .replace(/:\s*(".*?")/g, ': <span style="color:#a5d6a7">$1</span>')
+                      .replace(/:\s*(\d+)/g, ': <span style="color:#82aaff">$1</span>');
+                    return (
+                      <div key={j} dangerouslySetInnerHTML={{ __html: highlighted }} />
+                    );
+                  })}
+                </div>
+              )}
             </div>
+          ))}
+
+          {/* Current input line */}
+          <div className="flex items-center gap-2">
+            <span style={{ color: "#22c55e" }}>$</span>
+            <span className="flex-1 relative">
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="bg-transparent border-none outline-none w-full font-mono text-[13px] caret-transparent"
+                style={{ color: isLight ? "#374151" : "#d1d5db" }}
+                autoFocus
+              />
+              {/* Custom cursor */}
+              <span
+                className="absolute top-0 pointer-events-none"
+                style={{
+                  left: `${input.length * 7.8}px`,
+                  width: "2px",
+                  height: "16px",
+                  backgroundColor: isLight ? "#1a1a1a" : "#e8e8e8",
+                  opacity: cursorVisible ? 1 : 0,
+                  transition: "opacity 0.1s",
+                }}
+              />
+            </span>
           </div>
         </div>
+      </div>
     </div>
   );
 });
@@ -705,6 +705,7 @@ export default function Home({ setActiveTool, isLight }) {
                 </span>
               </h1>
 
+
               <div className="text-lg md:text-xl min-h-[2rem] mb-5" style={{ color: isLight ? "#555555" : "#888888" }}>
                 <Typewriter />
               </div>
@@ -715,6 +716,10 @@ export default function Home({ setActiveTool, isLight }) {
 
               {/* CTA Buttons */}
               <div className="flex items-center gap-3 mb-8">
+                <button
+                  onClick={() => {
+                    window.open("https://hukum-chatbot-staging.vercel.app/iframe-bot/sM9mGD4FgxtDbMw", '_blank');
+                  }}>checking</button>
                 <button
                   onClick={() => {
                     document.getElementById("tool-grid")?.scrollIntoView({ behavior: "smooth" });
@@ -733,11 +738,10 @@ export default function Home({ setActiveTool, isLight }) {
                     }, 300);
                     setToast({ text: "Terminal active — try typing help", duration: 4000 });
                   }}
-                  className={`px-6 py-2.5 text-sm font-semibold rounded-lg border transition-all duration-200 cursor-pointer ${
-                    isLight
-                      ? "border-[#d1d5db] text-[#374151] hover:border-[#FF6B6B] hover:text-[#FF6B6B]"
-                      : "border-[#374151] text-[#d1d5db] hover:border-[#FF6B6B] hover:text-[#FF6B6B]"
-                  }`}
+                  className={`px-6 py-2.5 text-sm font-semibold rounded-lg border transition-all duration-200 cursor-pointer ${isLight
+                    ? "border-[#d1d5db] text-[#374151] hover:border-[#FF6B6B] hover:text-[#FF6B6B]"
+                    : "border-[#374151] text-[#d1d5db] hover:border-[#FF6B6B] hover:text-[#FF6B6B]"
+                    }`}
                 >
                   Try CLI
                 </button>
@@ -779,15 +783,14 @@ export default function Home({ setActiveTool, isLight }) {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 cursor-pointer whitespace-nowrap ${
-                  activeCategory === cat.id
-                    ? isLight
-                      ? "bg-[#111827] text-white border-[#111827]"
-                      : "bg-[rgba(255,107,107,0.1)] text-[#FF6B6B] border-[rgba(255,107,107,0.2)]"
-                    : isLight
-                      ? "bg-white text-[#6b7280] border-[#e5e7eb] hover:border-[#d1d5db] hover:text-[#374151]"
-                      : "bg-transparent text-[#6b7280] border-[#1f2937] hover:border-[#374151] hover:text-[#9ca3af]"
-                }`}
+                className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 cursor-pointer whitespace-nowrap ${activeCategory === cat.id
+                  ? isLight
+                    ? "bg-[#111827] text-white border-[#111827]"
+                    : "bg-[rgba(255,107,107,0.1)] text-[#FF6B6B] border-[rgba(255,107,107,0.2)]"
+                  : isLight
+                    ? "bg-white text-[#6b7280] border-[#e5e7eb] hover:border-[#d1d5db] hover:text-[#374151]"
+                    : "bg-transparent text-[#6b7280] border-[#1f2937] hover:border-[#374151] hover:text-[#9ca3af]"
+                  }`}
               >
                 {cat.label}
               </button>
@@ -800,32 +803,28 @@ export default function Home({ setActiveTool, isLight }) {
               <button
                 key={tool.id}
                 onClick={() => setActiveTool(tool.id)}
-                className={`animate-slide-up text-left p-6 rounded-2xl border transition-all duration-300 cursor-pointer group relative overflow-hidden ${
-                  isLight
-                    ? "bg-white border-[#e8e6e1] hover:border-[#E55B5B]/30 hover:shadow-xl hover:shadow-[#E55B5B]/8 hover:-translate-y-1"
-                    : "bg-gradient-to-br from-[#0d1017] to-[#0a0d12] border-[#1e2230] hover:border-[rgba(255,107,107,0.25)] hover:shadow-xl hover:shadow-[rgba(255,107,107,0.08)] hover:-translate-y-1"
-                }`}
+                className={`animate-slide-up text-left p-6 rounded-2xl border transition-all duration-300 cursor-pointer group relative overflow-hidden ${isLight
+                  ? "bg-white border-[#e8e6e1] hover:border-[#E55B5B]/30 hover:shadow-xl hover:shadow-[#E55B5B]/8 hover:-translate-y-1"
+                  : "bg-gradient-to-br from-[#0d1017] to-[#0a0d12] border-[#1e2230] hover:border-[rgba(255,107,107,0.25)] hover:shadow-xl hover:shadow-[rgba(255,107,107,0.08)] hover:-translate-y-1"
+                  }`}
               >
                 {/* Subtle gradient overlay on hover */}
-                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-                  isLight
-                    ? "bg-gradient-to-br from-[#fff5f5]/50 to-transparent"
-                    : "bg-gradient-to-br from-[rgba(255,107,107,0.03)] to-transparent"
-                }`} />
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isLight
+                  ? "bg-gradient-to-br from-[#fff5f5]/50 to-transparent"
+                  : "bg-gradient-to-br from-[rgba(255,107,107,0.03)] to-transparent"
+                  }`} />
 
                 {/* Top accent line */}
-                <div className={`absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                  isLight
-                    ? "bg-gradient-to-r from-transparent via-[#E55B5B] to-transparent"
-                    : "bg-gradient-to-r from-transparent via-[#FF6B6B] to-transparent"
-                }`} />
+                <div className={`absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${isLight
+                  ? "bg-gradient-to-r from-transparent via-[#E55B5B] to-transparent"
+                  : "bg-gradient-to-r from-transparent via-[#FF6B6B] to-transparent"
+                  }`} />
 
                 <div className="relative z-10">
-                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
-                    isLight
-                      ? "bg-[#fff5f5] text-[#E55B5B] group-hover:bg-[#E55B5B] group-hover:text-white group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#E55B5B]/20"
-                      : "bg-[rgba(255,107,107,0.06)] text-[#FF6B6B] group-hover:bg-[#FF6B6B] group-hover:text-[#0a0d12] group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[rgba(255,107,107,0.2)]"
-                  }`}>
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${isLight
+                    ? "bg-[#fff5f5] text-[#E55B5B] group-hover:bg-[#E55B5B] group-hover:text-white group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#E55B5B]/20"
+                    : "bg-[rgba(255,107,107,0.06)] text-[#FF6B6B] group-hover:bg-[#FF6B6B] group-hover:text-[#0a0d12] group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[rgba(255,107,107,0.2)]"
+                    }`}>
                     {tool.icon}
                   </div>
                   <p className={`text-[15px] font-semibold mb-2 tracking-tight ${isLight ? "text-[#1a1d26]" : "text-[#e8e8e8]"} group-hover:text-[var(--accent)] transition-colors duration-200`}>
@@ -837,11 +836,10 @@ export default function Home({ setActiveTool, isLight }) {
                 </div>
 
                 {/* Arrow indicator on hover */}
-                <div className={`absolute bottom-5 right-5 w-7 h-7 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 ${
-                  isLight
-                    ? "bg-[#fff5f5] text-[#E55B5B]"
-                    : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B]"
-                }`}>
+                <div className={`absolute bottom-5 right-5 w-7 h-7 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 ${isLight
+                  ? "bg-[#fff5f5] text-[#E55B5B]"
+                  : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B]"
+                  }`}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
@@ -861,7 +859,7 @@ export default function Home({ setActiveTool, isLight }) {
               Three steps. Zero friction.
             </h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             {/* Animated dashed connecting line (desktop) */}
             <div className={`hidden md:block absolute top-10 left-[15%] right-[15%] h-[2px] ${isLight ? "bg-[#e5e7eb]" : "bg-[#1f2937]"}`}>
@@ -874,11 +872,10 @@ export default function Home({ setActiveTool, isLight }) {
               { step: "03", title: "Copy or download", desc: "Get instant results. Copy to clipboard, download as a file, or export in multiple formats." },
             ].map((item, i) => (
               <div key={item.step} className={`text-center relative ${i === 1 ? "md:mt-8" : ""}`}>
-                <div className={`w-16 h-16 rounded-2xl mx-auto mb-6 flex items-center justify-center text-lg font-bold font-display relative z-10 transition-all duration-300 ${
-                  isLight
-                    ? "bg-white border-2 border-[#e5e7eb] text-[#E55B5B] shadow-lg shadow-black/5"
-                    : "bg-gradient-to-br from-[#1a1f2e] to-[#111827] border-2 border-[#2d3748] text-[#FF6B6B] shadow-lg shadow-black/20"
-                }`}>
+                <div className={`w-16 h-16 rounded-2xl mx-auto mb-6 flex items-center justify-center text-lg font-bold font-display relative z-10 transition-all duration-300 ${isLight
+                  ? "bg-white border-2 border-[#e5e7eb] text-[#E55B5B] shadow-lg shadow-black/5"
+                  : "bg-gradient-to-br from-[#1a1f2e] to-[#111827] border-2 border-[#2d3748] text-[#FF6B6B] shadow-lg shadow-black/20"
+                  }`}>
                   {item.step}
                 </div>
                 <h3 className={`text-lg font-bold mb-3 ${isLight ? "text-[#111827]" : "text-[#f9fafb]"}`}>{item.title}</h3>
@@ -898,7 +895,7 @@ export default function Home({ setActiveTool, isLight }) {
               Built for developers who value their time
             </h2>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {[
               {
@@ -942,14 +939,12 @@ export default function Home({ setActiveTool, isLight }) {
                 desc: "Responsive on mobile, tablet, and desktop. No installation required.",
               },
             ].map((item) => (
-              <div key={item.title} className={`flex items-start gap-4 p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
-                isLight 
-                  ? "bg-[#f9fafb] border-[#e5e7eb] hover:border-[#d1d5db] hover:shadow-lg hover:shadow-black/5" 
-                  : "bg-gradient-to-br from-[#111827] to-[#0d1017] border-[#1f2937] hover:border-[#374151] hover:shadow-lg hover:shadow-black/20"
-              }`}>
-                <div className={`w-10 h-10 rounded-xl shrink-0 flex items-center justify-center ${
-                  isLight ? "bg-[#fff5f5] text-[#E55B5B]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B]"
+              <div key={item.title} className={`flex items-start gap-4 p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${isLight
+                ? "bg-[#f9fafb] border-[#e5e7eb] hover:border-[#d1d5db] hover:shadow-lg hover:shadow-black/5"
+                : "bg-gradient-to-br from-[#111827] to-[#0d1017] border-[#1f2937] hover:border-[#374151] hover:shadow-lg hover:shadow-black/20"
                 }`}>
+                <div className={`w-10 h-10 rounded-xl shrink-0 flex items-center justify-center ${isLight ? "bg-[#fff5f5] text-[#E55B5B]" : "bg-[rgba(255,107,107,0.08)] text-[#FF6B6B]"
+                  }`}>
                   {item.icon}
                 </div>
                 <div>
